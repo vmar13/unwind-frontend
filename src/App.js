@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom'
 import AlternateNostril from './AlternateNostril';
 import Ujjayi from './Ujjayi'
 import WimHof from './WimHof';
@@ -18,14 +19,18 @@ render () {
       Homepage
     </div>
 
-    <AlternateNostril />
-    <Ujjayi />
-    <WimHof />
-    <Diaphragmatic />
-    <LionsBreath />
-    <HummingBee />
-    <BreathOfFire />
-    <PursedLip />
+    <Switch>
+      <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
+      <Ujjayi />
+      <WimHof />
+      <Diaphragmatic />
+      <LionsBreath />
+      <HummingBee />
+      <BreathOfFire />
+      <PursedLip />
+    </Switch>
+
+    
     </>
   )
 }
