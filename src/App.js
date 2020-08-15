@@ -6,6 +6,7 @@ import WimHof from './WimHof';
 import Diaphragmatic from './Diaphragmatic'
 import LionsBreath from './LionsBreath'
 import HummingBee from './HummingBee';
+import BreathOfFire from './BreathOfFire';
 
 class App extends React.Component {
   
@@ -22,6 +23,7 @@ render () {
     <Diaphragmatic />
     <LionsBreath />
     <HummingBee />
+    <BreathOfFire />
     </>
   )
 }
