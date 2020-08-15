@@ -22,7 +22,7 @@ render () {
     <Switch>
       <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> }/>
-      <WimHof />
+      <Route path='wimhof' render={ () => <WimHof />}  />
       <Diaphragmatic />
       <LionsBreath />
       <HummingBee />
