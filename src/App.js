@@ -22,8 +22,8 @@ render () {
     <Switch>
       <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> }/>
-      <Route path='wimhof' render={ () => <WimHof />}  />
-      <Diaphragmatic />
+      <Route path='/wimhof' render={ () => <WimHof />}  />
+      <Route path='/diaphragmatic-breathing' render={ () => <Diaphragmatic />}  />
       <LionsBreath />
       <HummingBee />
       <BreathOfFire />
