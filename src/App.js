@@ -3,6 +3,8 @@ import './App.css';
 import AlternateNostril from './AlternateNostril';
 import Ujjayi from './Ujjayi'
 import WimHof from './WimHof';
+import Diaphragmatic from './Diaphragmatic'
+import LionsBreath from './LionsBreath'
 
 class App extends React.Component {
   
@@ -16,6 +18,8 @@ render () {
     <AlternateNostril />
     <Ujjayi />
     <WimHof />
+    <Diaphragmatic />
+    <LionsBreath />
     </>
   )
 }
