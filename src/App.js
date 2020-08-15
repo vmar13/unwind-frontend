@@ -1,13 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AlternateNostril from './AlternateNostril';
 
-function App() {
+class App extends React.Component {
+  
+render () {
   return (
+    <>
     <div>
-      content to go here
+      Homepage
     </div>
-  );
+
+    <AlternateNostril />
+    </>
+  )
 }
+}
+  
 
 export default App;
