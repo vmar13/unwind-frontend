@@ -16,7 +16,7 @@ render () {
   return (
     <>
     <div>
-      Homepage
+      Homepage with menu of breathing techniques
     </div>
 
     <Switch>
