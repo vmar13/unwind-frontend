@@ -9,6 +9,7 @@ import LionsBreath from './LionsBreath'
 import HummingBee from './HummingBee';
 import BreathOfFire from './BreathOfFire';
 import PursedLip from './PursedLip';
+import NavBar from './NavBar';
 
 class App extends React.Component {
   
@@ -18,6 +19,8 @@ render () {
     <div>
       Homepage with menu of breathing techniques
     </div>
+   
+   <NavBar />
 
     <Switch>
       <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
