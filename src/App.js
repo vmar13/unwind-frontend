@@ -17,7 +17,7 @@ render () {
   return (
     <>
     <div>
-      Homepage with menu of breathing techniques
+      Unwind
     </div>
    
    <NavBar />
