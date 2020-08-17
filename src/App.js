@@ -17,7 +17,7 @@ render () {
   return (
     <>
     <div className='logo-name'>
-      Unwind
+      Unwind <img src={require('./images/tornado.png')} alt='tornado' className='logo' />
     </div>
    
    <NavBar />
