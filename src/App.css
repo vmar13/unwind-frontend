@@ -8,8 +8,13 @@ body {
 
 .nav-container {
   background: rgba(255, 255, 255, 0.568);
+  width: 19%;
+  margin-top: 15%;
+  padding: 2.5% 1%;
 }
 
 .nav-element {
-  
+  /* margin: 1% 1% 1% 1%; */
+  margin: 10%;
+  padding-top: 5%;
 }
