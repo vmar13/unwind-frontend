@@ -3,7 +3,6 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom'
 import AlternateNostril from './AlternateNostril';
 import Ujjayi from './Ujjayi'
-import WimHof from './WimHof';
 import Diaphragmatic from './Diaphragmatic'
 import LionsBreath from './LionsBreath'
 import HummingBee from './HummingBee';
@@ -25,7 +24,6 @@ render () {
     <Switch>
       <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> } />
-      <Route path='/wimhof' render={ () => <WimHof />} />
       <Route path='/diaphragmatic-breathing' render={ () => <Diaphragmatic />} />
       <Route path='/lions-breath' render={ () => <LionsBreath />} />
       <Route path='/hummingbee' render={ () => <HummingBee />} />

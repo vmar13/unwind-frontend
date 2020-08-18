@@ -4,7 +4,7 @@ class HummingBee extends React.Component {
 
     render() {
         return (
-            <h2>Humming Bee</h2>
+            <h2>Humming Bee Breath</h2>
         )
     }
 }
