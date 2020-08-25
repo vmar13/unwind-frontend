@@ -10,6 +10,7 @@ import BreathOfFire from './BreathOfFire';
 import PursedLip from './PursedLip';
 import NavBar from './NavBar';
 import BreathingTechContainer from './BreathingTechContainer';
+import BreathingTech from './BreathingTech';
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 
@@ -39,7 +40,7 @@ render () {
   {/* <BreathingTechContainer breathingTechs={this.state.breathingTechs}  />  */}
   
    
-   <NavBar />
+   <NavBar breathingTechs={this.state.breathingTechs}/>
 
     <Switch>
       <Route path='/alt-nostril' render={ (routerProps) => <AlternateNostril {...routerProps} breathingTechs={this.state.breathingTechs}/>} />
@@ -49,6 +50,9 @@ render () {
       <Route path='/hummingbee' render={ () => <HummingBee />} />
       <Route path='/breath-of-fire'render={ () => <BreathOfFire />} />
       <Route path='/pursed-lip' render={ () => <PursedLip />}  />
+      <Route path='/breathing-technique/:id' render={ (routerProps) => {
+        const breathingTechId = parseInt(routerProps.match.params.id)
+      return <BreathingTech {...routerProps} breathingTechId={breathingTechId} /> }} />
     </Switch>
 
     
