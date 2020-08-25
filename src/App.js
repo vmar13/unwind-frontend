@@ -9,6 +9,7 @@ import HummingBee from './HummingBee';
 import BreathOfFire from './BreathOfFire';
 import PursedLip from './PursedLip';
 import NavBar from './NavBar';
+import BreathingTechContainer from './BreathingTechContainer';
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 
@@ -34,9 +35,9 @@ render () {
       Unwind <img src={require('./images/tornado.png')} alt='tornado' className='logo' />
     </div>
 
-    {/* <div>
-      {this.state.breathingTechs.map(breathing_tech => <div></div>) }
-    </div> */}
+    
+  <BreathingTechContainer breathingTechs={this.state.breathingTechs}  /> 
+  
    
    <NavBar />
 
