@@ -9,7 +9,7 @@ class BreathingTechContainer extends React.Component {
 
         return (
             <div>
-                {breathingTechs.map(breathingTech => <div>{breathingTech.name}</div>)}
+                {/* {breathingTechs.map(breathingTech => <div>{breathingTech.name}</div>)} */}
             </div>
         )
     }

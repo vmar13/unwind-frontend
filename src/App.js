@@ -36,13 +36,13 @@ render () {
     </div>
 
     
-  <BreathingTechContainer breathingTechs={this.state.breathingTechs}  /> 
+  {/* <BreathingTechContainer breathingTechs={this.state.breathingTechs}  />  */}
   
    
    <NavBar />
 
     <Switch>
-      <Route path='/alt-nostril' render={ () => <AlternateNostril />} />
+      <Route path='/alt-nostril' render={ (routerProps) => <AlternateNostril {...routerProps} breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> } />
       <Route path='/diaphragmatic-breathing' render={ () => <Diaphragmatic />} />
       <Route path='/lions-breath' render={ () => <LionsBreath />} />

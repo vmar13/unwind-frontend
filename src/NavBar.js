@@ -19,3 +19,5 @@ const NavBar = () => {
 }
 
 export default NavBar
+
+//navlink to='/breathing-technique/:id <strong>{breathing_technique.name}</strong>
