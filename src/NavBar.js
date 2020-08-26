@@ -13,11 +13,11 @@ const NavBar = ({ breathingTechs }) => {
             <NavLink to='/hummingbee' className='nav-element'><strong>Hummingbee</strong></NavLink><br/>
             <NavLink to='/breath-of-fire' className='nav-element'><strong>Breath of Fire</strong></NavLink><br/>
             <NavLink to='/pursed-lip' className='nav-element'><strong>Pursed Lip</strong></NavLink><br/> */}
-            <NavLink to='/breathing-technique/:id' className='nav-element'> {breathingTechs.map(breathingTech => <strong>{breathingTech.name}</strong>)}</NavLink><br/>
+            {/* <NavLink to='/breathing-techniques/:id/' className='nav-element'> {breathingTechs.map(breathingTech => <strong>{breathingTech.name}</strong>)}</NavLink><br/> */}
+            {breathingTechs.map(breathingTech => <NavLink to={`/breathing-techniques/${breathingTech.id}`} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)}
         </div>
     )
 }
 
 export default NavBar
 
-//navlink to='/breathing-technique/:id <strong>{breathing_technique.name}</strong>

@@ -43,16 +43,16 @@ render () {
    <NavBar breathingTechs={this.state.breathingTechs}/>
 
     <Switch>
-      <Route path='/alt-nostril' render={ (routerProps) => <AlternateNostril {...routerProps} breathingTechs={this.state.breathingTechs}/>} />
+      <Route path='/alt-nostril' render={ (routeProps) => <AlternateNostril {...routeProps} breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> } />
       <Route path='/diaphragmatic-breathing' render={ () => <Diaphragmatic />} />
       <Route path='/lions-breath' render={ () => <LionsBreath />} />
       <Route path='/hummingbee' render={ () => <HummingBee />} />
       <Route path='/breath-of-fire'render={ () => <BreathOfFire />} />
       <Route path='/pursed-lip' render={ () => <PursedLip />}  />
-      <Route path='/breathing-technique/:id' render={ (routerProps) => {
-        const breathingTechId = parseInt(routerProps.match.params.id)
-      return <BreathingTech {...routerProps} breathingTechId={breathingTechId} /> }} />
+      <Route path='/breathing-techniques/:id' render={ (routeProps) => {
+        const breathingTechId = parseInt(routeProps.match.params.id)
+      return <BreathingTech {...routeProps} breathingTechId={breathingTechId} /> }} />
     </Switch>
 
     
