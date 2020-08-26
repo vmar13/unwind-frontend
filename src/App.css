@@ -39,4 +39,5 @@ body {
   list-style: none;
   display: inline-flex;
   margin: .5% auto;
+  padding-bottom: 6%;
 }

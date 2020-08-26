@@ -9,7 +9,6 @@ import HummingBee from './HummingBee';
 import BreathOfFire from './BreathOfFire';
 import PursedLip from './PursedLip';
 import NavBar from './NavBar';
-import BreathingTechContainer from './BreathingTechContainer';
 import BreathingTech from './BreathingTech';
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
@@ -37,19 +36,18 @@ render () {
     </div>
 
     
-  {/* <BreathingTechContainer breathingTechs={this.state.breathingTechs}  />  */}
   
    
    <NavBar breathingTechs={this.state.breathingTechs}/>
 
     <Switch>
-      <Route path='/alt-nostril' render={ (routeProps) => <AlternateNostril {...routeProps} breathingTechs={this.state.breathingTechs}/>} />
+      {/* <Route path='/alt-nostril' render={ (routeProps) => <AlternateNostril {...routeProps} breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/ujjayi' render={ () => <Ujjayi /> } />
       <Route path='/diaphragmatic-breathing' render={ () => <Diaphragmatic />} />
       <Route path='/lions-breath' render={ () => <LionsBreath />} />
       <Route path='/hummingbee' render={ () => <HummingBee />} />
       <Route path='/breath-of-fire'render={ () => <BreathOfFire />} />
-      <Route path='/pursed-lip' render={ () => <PursedLip />}  />
+      <Route path='/pursed-lip' render={ () => <PursedLip />}  /> */}
       <Route path='/breathing-techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)
       return <BreathingTech {...routeProps} breathingTechId={breathingTechId} /> }} />
