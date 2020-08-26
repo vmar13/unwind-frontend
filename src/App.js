@@ -48,9 +48,12 @@ render () {
       <Route path='/hummingbee' render={ () => <HummingBee />} />
       <Route path='/breath-of-fire'render={ () => <BreathOfFire />} />
       <Route path='/pursed-lip' render={ () => <PursedLip />}  /> */}
-      <Route path='/breathing-techniques/:id' render={ (routeProps) => {
+      <Route path='/breathing_techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)
-      return <BreathingTech {...routeProps} breathingTechId={breathingTechId} /> }} />
+      return <BreathingTech {...routeProps} 
+      breathingTechId={breathingTechId} 
+      breathingTech={this.props.breathingTech}
+      /> }} />
     </Switch>
 
     

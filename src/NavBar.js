@@ -15,7 +15,7 @@ const NavBar = ({ breathingTechs }) => {
             <NavLink to='/pursed-lip' className='nav-element'><strong>Pursed Lip</strong></NavLink><br/> */}
             {/* <NavLink to='/breathing-techniques/:id/' className='nav-element'> {breathingTechs.map(breathingTech => <strong>{breathingTech.name}</strong>)}</NavLink><br/> */}
             <NavLink to='/' className='nav-element'><strong>Home</strong></NavLink>
-            {breathingTechs.map(breathingTech => <NavLink to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} {...breathingTech} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)}
+            {breathingTechs.map(breathingTech => <NavLink to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} breathingTech={breathingTech} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)}
         </div>
     )
 }
