@@ -13,8 +13,19 @@ body {
 
 .breathing-tech-container {
   position: absolute;
-  margin-top: -30%;
+  margin-top: -22%;
   margin-left: 30%;
+  width: 46%;
+  /* background: black; */
+}
+
+.bt-instructions {
+  margin-top: 60%;
+}
+
+li {
+  color: white;
+  font-size: 10pt;
 }
 
 .logo {

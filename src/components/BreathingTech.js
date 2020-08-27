@@ -26,12 +26,18 @@ class BreathingTech extends React.Component {
     render() {
         console.log(this.state.breathingTech)
 
-        const { name } = this.state.breathingTech
+        const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
 
         return(
         <>
             <div className='breathing-tech-container'>
                 <h2>{name}</h2>
+                <ul className='bt-instructions'>
+                    <li>{step_one}</li>
+                    <li>{step_two}</li>
+                    <li>{step_three}</li>
+                    <li>{step_four}</li>
+                </ul>
             </div>
         </>
         )
