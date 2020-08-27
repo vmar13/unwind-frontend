@@ -25,11 +25,13 @@ class BreathingTech extends React.Component {
 
     render() {
         console.log(this.state.breathingTech)
-        // const { breathingTechs } = this.props
+
+        const { name } = this.state.breathingTech
+
         return(
         <>
-            <div>
-                name
+            <div className='breathing-tech-container'>
+                <h2>{name}</h2>
             </div>
         </>
         )
