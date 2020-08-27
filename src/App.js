@@ -52,7 +52,6 @@ render () {
         const breathingTechId = parseInt(routeProps.match.params.id)
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
-      breathingTech={this.props.breathingTech}
       /> }} />
     </Switch>
 

@@ -8,26 +8,29 @@ class BreathingTech extends React.Component {
         breathingTech: {}
     }
 
+
     //fetch breathing technique object
-    // getBreathingTech = () => {
-    //     fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         this.setState({
-    //             breathingTech: data
+    componentDidMount(){
+        fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`)
+        .then(res => res.json())
+        .then(data => {
+            this.setState({
+                breathingTech: data
             
-    //         })
-    //     })
-    // }
+            })
+        })
+    }
+    
+
 
     render() {
-
-        const { name } = this.props.breathingTech
-        // const { breathingTech } = this.state
+        console.log(this.state.breathingTech)
+        // const { breathingTechs } = this.props
         return(
         <>
-        <h2>{name}</h2>
-      
+            <div>
+                name
+            </div>
         </>
         )
     }
