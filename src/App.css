@@ -33,7 +33,14 @@ body {
   height: 200px;
   border-radius: 50%;
   background: lightblue;
-  animation: animate 5s linear infinite;
+  /* animation: animate 5s linear infinite; */
+  box-shadow: 0 0 0 15px rgba(0, 0, 225, .1), 0 0 0 30px rgba(0,0,255, .1), 0 0 0 45px rgba(0, 0, 255, .1), 0 0 0 60px rgba(0,0,255, .1), 0 0 0 75px rgba(0,0,255, .1);
+}
+
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 0 15px rgba(0,0, 255, .1);
+  }
 }
 
 li {
