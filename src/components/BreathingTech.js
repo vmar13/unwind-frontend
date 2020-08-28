@@ -16,12 +16,10 @@ class BreathingTech extends React.Component {
         .then(data => {
             this.setState({
                 breathingTech: data
-            
             })
         })
     }
     
-
 
     render() {
         console.log(this.state.breathingTech)
@@ -31,6 +29,13 @@ class BreathingTech extends React.Component {
         return(
         <>
             <div className='breathing-tech-container'>
+                {name === 'Alternate Nostril Breathing' ? <p>alt nost animation</p> : null}
+                {name === 'Ujjayi' ? <p>ujjayi animation</p> : null}
+                {name === 'Diaphragmatic Breathing' ? <p>diaphragmatic animation</p> : null}
+                {name === "Lion's Breath" ? <p>Lion's breath animation</p> : null}
+                {name === 'Humming Bee' ? <p>humming bee animation</p> : null}
+                {name === 'Pursed Lip' ? <p>pursed lip animation</p> : null}
+
                 <h2>{name}</h2>
                 <ul className='bt-instructions'>
                     <li>{step_one}</li>
