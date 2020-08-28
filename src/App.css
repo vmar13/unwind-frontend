@@ -23,6 +23,19 @@ body {
   margin-top: 60%;
 }
 
+.center {
+  color: transparent;
+  position: absolute;
+  top: -28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: lightblue;
+  animation: animate 5s linear infinite;
+}
+
 li {
   color: white;
   font-size: 10pt;
