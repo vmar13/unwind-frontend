@@ -29,9 +29,9 @@ class BreathingTech extends React.Component {
         return(
         <>
             <div className='breathing-tech-container'>
-                {name === 'Alternate Nostril Breathing' ? <p className='center'>alt nost animation</p> : null}
+                {name === 'Alternate Nostril Breathing' ? <p className='anim-split'>alt nost animation</p> : null}
                 {name === 'Ujjayi' ? <p>ujjayi animation</p> : null}
-                {name === 'Diaphragmatic Breathing' ? <p>diaphragmatic animation</p> : null}
+                {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
                 {name === "Lion's Breath" ? <p>Lion's breath animation</p> : null}
                 {name === 'Humming Bee' ? <p>humming bee animation</p> : null}
                 {name === 'Pursed Lip' ? <p>pursed lip animation</p> : null}
