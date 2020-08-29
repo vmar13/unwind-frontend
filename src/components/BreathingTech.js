@@ -32,9 +32,9 @@ class BreathingTech extends React.Component {
         {name === 'Alternate Nostril Breathing' ? [<p className='anim-split-left'>alt nost animation</p>, <p className='anim-split-right'>alt nost animation2</p>] : null}
         {name === 'Ujjayi' ? [<div className='anim-fog-div'>,<div className='anim-fog'>ujjayi animation</div>,</div>] : null}
                 {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
-                {name === "Lion's Breath" ? <p>Lion's breath animation</p> : null}
-                {name === 'Humming Bee' ? <p>humming bee animation</p> : null}
-                {name === 'Pursed Lip' ? <p>pursed lip animation</p> : null}
+                {name === "Lion's Breath" ? <p className='anim-circle'>Lion's breath animation</p> : null}
+                {name === 'Humming Bee' ? <p className='anim-circle'>humming bee animation</p> : null}
+                {name === 'Pursed Lip' ? <p className='anim-circle'>pursed lip animation</p> : null}
 
                 <h2>{name}</h2>
                 <ul className='bt-instructions'>
