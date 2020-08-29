@@ -42,7 +42,8 @@ h2 {
 .anim-fog {
   color: transparent;
   position: absolute;
-  top: -28%;
+  /* top: -28%; */
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100px;
@@ -57,8 +58,9 @@ h2 {
   background-image: url('./images/fog.png');
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 43vh;
   position: relative;
+  margin-top: -20%;
 }
 
 
