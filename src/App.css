@@ -13,8 +13,8 @@ h2 {
   top: -28%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: lightblue;
   animation: animate 5s linear infinite;
@@ -43,11 +43,11 @@ h2 {
   color: transparent;
   position: absolute;
   /* top: -28%; */
-  top: 30%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background: lightblue;
   animation: animate 6s linear infinite;
@@ -55,12 +55,13 @@ h2 {
 }
 
 .anim-fog-div {
+  color: transparent;
   background-image: url('./images/fog.png');
   background-position: center;
   background-size: cover;
   height: 43vh;
   position: relative;
-  margin-top: -20%;
+  margin-top: -40%;
 }
 
 
@@ -90,8 +91,8 @@ h2 {
   top: -28%;
   left: 30%;
   transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
+  width: 65px;
+  height: 65px;
   /* border-radius: 50%; */
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
@@ -161,7 +162,7 @@ body {
 }
 
 .bt-instructions {
-  margin-top: 60%;
+  margin-top: 50%;
 }
 
 li {
