@@ -150,6 +150,7 @@ h2 {
 
 body {
   background-image: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 17%, rgba(0,212,255,1) 100%);
+  margin: 0;
 }
 
 .breathing-tech-container {
@@ -162,7 +163,9 @@ body {
 }
 
 .bt-instructions {
-  margin-top: 50%;
+  margin-top: 65%;
+  overflow-y: scroll;
+  height: 120px;
 }
 
 li {
