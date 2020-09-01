@@ -8,9 +8,7 @@ class BreathingTech extends React.Component {
         breathingTech: {}
     }
 
-
-    //fetch breathing technique object
-    componentDidMount(){
+    getBreathingTechs = () => {
         fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`)
         .then(res => res.json())
         .then(data => {
@@ -19,7 +17,16 @@ class BreathingTech extends React.Component {
             })
         })
     }
-    
+
+    componentDidMount(){
+       this.getBreathingTechs()
+    }
+
+    componentDidUpdate(prevProps) {
+      if(prevProps.breathingTechId !== this.props.breathingTechId){
+          this.getBreathingTechs()
+      }
+    }
 
     render() {
         console.log(this.state.breathingTech)
