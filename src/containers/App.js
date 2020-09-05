@@ -28,6 +28,8 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
 
+    <button>Log in</button>
+    <button>Sign up</button>
     
   
    

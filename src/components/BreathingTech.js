@@ -24,7 +24,7 @@ class BreathingTech extends React.Component {
 
     componentDidUpdate(prevProps) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
-          this.getBreathingTechs()
+        this.getBreathingTechs()
       }
     }
 
