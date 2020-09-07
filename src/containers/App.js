@@ -3,6 +3,7 @@ import '../App.css';
 import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import BreathingTech from '../components/BreathingTech';
+import Home from '../components/Home'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 
@@ -27,10 +28,6 @@ render () {
     <div className='logo-name'>
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
-
-    <button>Log in</button>
-    <button>Sign up</button>
-    
   
    
    <NavBar breathingTechs={this.state.breathingTechs}/>
@@ -41,6 +38,7 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
+      <Route path='/' render={ () => <Home /> }/>
     </Switch>
 
     

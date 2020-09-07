@@ -173,6 +173,13 @@ body {
   height: 140px;
 }
 
+.home-img {
+  background-size: cover;
+  /* background-position: center; */
+  margin-top: -44%;
+  width: 100%;
+}
+
 li {
   color: white;
   font-size: 10pt;
@@ -200,6 +207,9 @@ li {
   margin-bottom: 10%;
   padding: 2% 1%;
   border-radius: 3%;
+  position: relative;
+  z-index: 999;
+
 }
 
 .nav-element {
