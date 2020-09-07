@@ -199,6 +199,15 @@ body {
   height: 200%;
 }
 
+#home-title {
+  position: relative;
+  color: rgb(20, 152, 175);
+  font-size: 40pt;
+  margin-left: 45%;
+  margin-top: -40%;
+  z-index: 999;
+}
+
 li {
   color: white;
   font-size: 10pt;
