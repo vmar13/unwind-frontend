@@ -202,15 +202,27 @@ body {
 #home-title {
   position: relative;
   color: rgb(20, 152, 175);
-  font-size: 40pt;
-  margin-left: 45%;
-  margin-top: -40%;
+  font-size: 30pt;
+  /* margin-left: 45%; */
+  /* margin-top: -40%; */
   z-index: 999;
+}
+
+input[type=text], input[type=password] {
+  width: 35%;
+  margin: 1% 0 1% 0;
 }
 
 li {
   color: white;
   font-size: 10pt;
+}
+
+.login-form {
+  position: relative;
+  z-index: 999;
+  margin-left: 40%;
+  border-radius: 3%;
 }
 
 .logo {
