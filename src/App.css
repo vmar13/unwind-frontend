@@ -200,17 +200,26 @@ body {
 }
 
 #home-title {
-  position: relative;
+  /* position: absolute; */
   color: rgb(20, 152, 175);
   font-size: 30pt;
-  /* margin-left: 45%; */
-  /* margin-top: -40%; */
+  font-weight: 500;
+  margin-bottom: 3%;
+  /* margin-left: 45%;
+  margin-top: 20%; */
   z-index: 999;
-}
+} 
 
 input[type=text], input[type=password] {
-  width: 35%;
-  margin: 1% 0 1% 0;
+  width: 70%;
+  margin: 1% 0 1.5% 0;
+  padding: 1% 1%;
+  /* border: none; */
+  background: rgba(101, 187, 202, 0.548);
+}
+
+input[type=text] {
+  margin-top: 8%;
 }
 
 li {
@@ -218,11 +227,29 @@ li {
   font-size: 10pt;
 }
 
-.login-form {
-  position: relative;
+#login-form-container {
+  /* position: relative;
   z-index: 999;
+  margin-top: 5%;
   margin-left: 40%;
   border-radius: 3%;
+  background: white;
+  width: 30%; */
+
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  z-index: 999;
+  border-radius: 3%;
+  /* background: rgb(212, 202, 202); */
+  width: 30%;
+  height: 40%;
+  padding: 2%;
+}
+
+#login-form {
+  position: relative;
+  margin-top: 1%;
 }
 
 .logo {
@@ -259,6 +286,11 @@ li {
   display: inline-flex;
   margin: .5% auto;
   padding-bottom: 6%;
+}
+
+.signup-link{
+  margin-top: 2%;
+  color: white;
 }
 
 .source {

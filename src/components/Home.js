@@ -4,12 +4,15 @@ class Home extends React.Component {
     render(){
         return(
             <>
-            <div className='login-form'>
-                <h2 id='home-title'>Start to Unwind</h2>
-                <form>
+            <div id='login-form-container'>
+                {/* <h2 id='home-title'>Start to Unwind</h2> */}
+                <form id='login-form'>
+                    <label id='home-title'>Start to Unwind</label><br/>
                     <input type='text' placeholder='Username'/><br/>
                     <input type='password' placeholder='Password'/><br/>
-                    <input type='submit' />
+                    <input type='submit' /><br/><br/>
+                    <a href='#' className='signup-link'>Don't have an account? Sign up</a>
+
                 </form>
             </div>
                 
