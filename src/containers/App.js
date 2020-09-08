@@ -15,10 +15,12 @@ class App extends React.Component {
 
   componentDidMount() {
       fetch(API_BREATHING_TECHS)
-      .then(res => res.json())
-      .then(breathing_techs => {
-        this.setState({ breathingTechs: breathing_techs })
-      })
+      .then(res => res.text())
+      .then(text => console.log(text))
+      // .then(res => res.json())
+      // .then(breathing_techs => {
+      //   this.setState({ breathingTechs: breathing_techs })
+      // })
   }
   
   
