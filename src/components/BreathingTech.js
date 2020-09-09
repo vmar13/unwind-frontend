@@ -29,7 +29,7 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        console.log(this.state.breathingTech)
+        // console.log(this.state.breathingTech)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
 
