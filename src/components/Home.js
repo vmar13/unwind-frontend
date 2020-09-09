@@ -4,17 +4,19 @@ class Home extends React.Component {
 
     state = {
         username: '',
-        password: ''
+        password_digest: ''
     }
 
     handleChange = e =>  {
         this.setState({ [e.target.name]: e.target.value })
     } 
 
-    handleSubmit = (username, password) => {
+    handleSubmit = e => {
+        e.preventDefault()
+
         const newUser = {
-            username: username,
-            password: password
+            username: this.state.username,
+            password_digest: this.state.password_digest
         }
 
         fetch('http://localhost:3000/api/v1/users', {
@@ -23,7 +25,7 @@ class Home extends React.Component {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
-            body: JSON.stringify({ newUser })
+            body: JSON.stringify( newUser )
         })
             .then(res => res.json())
             .then(data => {console.log(data)})
@@ -31,7 +33,7 @@ class Home extends React.Component {
 
     render(){
 
-        const { username, password } = this.state
+        const { username, password_digest } = this.state
 
         return(
             <>
@@ -39,7 +41,7 @@ class Home extends React.Component {
                 <form id='login-form' onSubmit={this.handleSubmit}>
                     <label id='home-title'>Start to Unwind</label><br/>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
-                    <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
+                    <input type='password' name='password_digest'value={password_digest} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign up'/><br/><br/>
                     <a href='#' className='signup-link'>Don't have an account? Sign up</a>
 
