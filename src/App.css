@@ -136,7 +136,7 @@ h2 {
   animation: animate 5s linear infinite;
 
 }
-/* @keyframes animate {
+@keyframes animate {
   0% {
     box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.486), 0 0 0 30px rgba(188, 237, 243, 0.486), 0 0 0 45px rgba(188, 237, 243, 0.486), 0 0 0 60px rgba(188, 237, 243, 0.486), 0 0 0 75px rgba(188, 237, 243, 0.486);
 
@@ -151,7 +151,7 @@ h2 {
     box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.616), 0 0 0 30px rgba(188, 237, 243, 0.616), 0 0 0 45px rgba(188, 237, 243, 0.616), 0 0 0 60px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616);
 
   }
-} */
+}
 
 body {
   /* background-image: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 17%, rgba(0,212,255,1) 100%); */
@@ -199,14 +199,12 @@ body {
   font-family: 'Baloo Tamma 2', cursive;
   font-size: 30pt;
   margin-bottom: 3%;
-  /* margin-left: 45%;
-  margin-top: 20%; */
   z-index: 999;
 } 
 
 input[type=text], input[type=password] {
-  width: 70%;
-  margin: 1% 0 1.5% 0;
+  width: 76%;
+  margin: 2% 0 1.5% 0;
   padding: 2% 2%;
   border: none;
   background: rgba(227, 241, 243, 0.938);
@@ -214,6 +212,14 @@ input[type=text], input[type=password] {
 
 input[type=text] {
   margin-top: 8%;
+}
+
+input[type=submit]{
+  margin-top: 4%;
+  background: rgb(188, 237, 243);
+  border: none;
+  padding: 2% 2%;
+
 }
 
 li {
@@ -227,8 +233,8 @@ li {
   left: 37%;
   z-index: 999;
   border-radius: 3%;
-  /* background: rgb(212, 202, 202); */
-  width: 30%;
+  background: rgba(213, 230, 228, 0.562);
+  width: 25%;
   height: 40%;
   padding: 2%;
 }
@@ -236,6 +242,7 @@ li {
 #login-form {
   position: relative;
   margin-top: 1%;
+  margin: 4% 0 0 8%;
 }
 
 .logo {

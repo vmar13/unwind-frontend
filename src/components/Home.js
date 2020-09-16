@@ -45,8 +45,8 @@ class Home extends React.Component {
                     <label id='home-title'>Start to Unwind</label><br/>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password_digest'value={password_digest} onChange={this.handleChange} placeholder='Password'/><br/>
-                    <input type='submit' value='Sign up'/><br/><br/>
-                    <a href='#' className='signup-link'>Don't have an account? Sign up</a>
+                    <input type='submit' value='Sign Up'/><br/><br/>
+                    <a href='#' className='signup-link'>Already have an account? Log in</a>
 
                 </form>
             </div>
