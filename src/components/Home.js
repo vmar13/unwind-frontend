@@ -32,6 +32,10 @@ class Home extends React.Component {
                 console.log(data)
             })
             .then( () => this.setState({ username: '', password_digest: '' }))
+            .catch( error => {
+                alert(error.message)
+            })
+            
     }
 
     render(){
