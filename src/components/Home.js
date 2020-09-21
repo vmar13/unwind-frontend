@@ -4,7 +4,7 @@ class Home extends React.Component {
 
     state = {
         username: '',
-        password_digest: ''
+        password: ''
     }
 
     handleChange = e =>  {
@@ -16,7 +16,7 @@ class Home extends React.Component {
 
         const newUser = {
             username: this.state.username,
-            password_digest: this.state.password_digest
+            password: this.state.password
         }
 
         fetch('http://localhost:3000/api/v1/users', {
@@ -31,16 +31,17 @@ class Home extends React.Component {
             .then(data => {
                 console.log(data)
             })
-            .then( () => this.setState({ username: '', password_digest: '' }))
             .catch( error => {
                 alert(error.message)
             })
+            .then( () => this.setState({ username: '', password: '' }))
+           
             
     }
 
     render(){
 
-        const { username, password_digest } = this.state
+        const { username, password } = this.state
 
         return(
             <>
@@ -48,7 +49,7 @@ class Home extends React.Component {
                 <form id='login-form' onSubmit={this.handleSubmit}>
                     <label id='home-title'>Start to Unwind</label><br/>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
-                    <input type='password' name='password_digest'value={password_digest} onChange={this.handleChange} placeholder='Password'/><br/>
+                    <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
                     <a href='#' className='signup-link'>Already have an account? Log in</a>
 

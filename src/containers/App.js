@@ -31,7 +31,6 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   
    <NavBar breathingTechs={this.state.breathingTechs}/>
 
     <Switch>
