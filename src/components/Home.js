@@ -31,13 +31,11 @@ class Home extends React.Component {
             .then(data => {
                 console.log(data)
             })
-            .catch( error => {
-                alert(error.message)
-            })
-            .then( () => this.setState({ username: '', password: '' }))
-           
-            
+            .then( () => this.setState({ username: '', password: '' }))   
     }
+    
+      
+
 
     render(){
 
