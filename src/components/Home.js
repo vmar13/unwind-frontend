@@ -27,8 +27,8 @@ class Home extends React.Component {
             },
             body: JSON.stringify({
                 user: {
-                    username: 'amparo',
-                    password: 'test123'
+                    username: this.state.username,
+                    password: this.state.password
                 }
             })
         })
