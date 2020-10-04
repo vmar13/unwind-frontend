@@ -14,10 +14,10 @@ class Home extends React.Component {
     handleSubmit = e => {
         e.preventDefault()
 
-        const newUser = {
-            username: this.state.username,
-            password: this.state.password
-        }
+        // const newUser = {
+        //     username: this.state.username,
+        //     password: this.state.password
+        // }
 
         fetch('http://localhost:3000/api/v1/users', {
             method: 'POST',
@@ -25,7 +25,12 @@ class Home extends React.Component {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
             },
-            body: JSON.stringify( newUser )
+            body: JSON.stringify({
+                user: {
+                    username: 'amparo',
+                    password: 'test123'
+                }
+            })
         })
             .then(res => res.json())
             .then(data => {
