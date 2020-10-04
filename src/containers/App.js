@@ -3,7 +3,7 @@ import '../App.css'
 import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import BreathingTech from '../components/BreathingTech'
-import Home from '../components/Home'
+import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
@@ -64,7 +64,7 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/' render={ () => <Home /> }/>
+      <Route path='/' render={ () => <SignUp /> }/>
       <Route path='/profile' render={ () => <Profile />} />
     </Switch>
 

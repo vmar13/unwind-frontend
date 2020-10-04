@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Home extends React.Component {
+class SignUp extends React.Component {
 
     state = {
         username: '',
@@ -13,11 +13,6 @@ class Home extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
-
-        // const newUser = {
-        //     username: this.state.username,
-        //     password: this.state.password
-        // }
 
         fetch('http://localhost:3000/api/v1/users', {
             method: 'POST',
@@ -50,11 +45,11 @@ class Home extends React.Component {
             <>
             <div id='login-form-container'>
                 <form id='login-form' onSubmit={this.handleSubmit}>
-                    <label id='home-title'>Start to Unwind</label><br/>
+                    <label id='home-title'>Sign Up</label><br/>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    <a href='#' className='signup-link'>Already have an account? Log in</a>
+                    <p>Already have an account? </p><a href='#' className='signup-link'>Log in</a>
 
                 </form>
             </div>
@@ -67,4 +62,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+export default SignUp
