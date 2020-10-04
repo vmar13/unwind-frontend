@@ -1,4 +1,8 @@
 import React from 'react'
+// import { Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom';
+
+
 
 class SignUp extends React.Component {
 
@@ -34,7 +38,6 @@ class SignUp extends React.Component {
             .then( () => this.setState({ username: '', password: '' }))   
     }
     
-      
 
 
     render(){
@@ -49,7 +52,8 @@ class SignUp extends React.Component {
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    <p>Already have an account? </p><a href='#' className='signup-link'>Log in</a>
+                    <p>Already have an account?</p><Link className='signup-link' to='/login' style={{color: 'white'}} activeStyle={{color: 'red'}}>Login</Link>
+
 
                 </form>
             </div>

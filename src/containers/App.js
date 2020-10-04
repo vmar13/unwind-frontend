@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar'
 import BreathingTech from '../components/BreathingTech'
 import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
+import Login from '../components/Login'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 
@@ -64,8 +65,9 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/' render={ () => <SignUp /> }/>
+      <Route path='/login' render={ () => <Login /> }/>
       <Route path='/profile' render={ () => <Profile />} />
+      <Route path='/signup' render={ () => <SignUp />} />
     </Switch>
 
     

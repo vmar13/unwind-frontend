@@ -1,7 +1,45 @@
 import React from 'react'
+// import { Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom';
+
 
 class Login extends React.Component{
+
+    state = {
+        username: '',
+        password: ''
+    }
+
+    handleChange = e =>  {
+        this.setState({ [e.target.name]: e.target.value })
+    } 
+
+    handleSubmit = e => {
+        e.preventDefault()
+
+        fetch('http://localhost:3000/api/v1/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username: this.state.username,
+                    password: this.state.password
+                }
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .then( () => this.setState({ username: '', password: '' }))   
+    }
     render(){
+
+        const { username, password } = this.state
+
         return(
             <>
             <div id='login-form-container'>
@@ -10,7 +48,8 @@ class Login extends React.Component{
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    <p>Don't have an account?</p><a href='#' className='signup-link'>Sign Up</a>
+                    <p>Don't have an account?</p><Link className='signup-link' to="/signup" style={{color: 'white'}} activeStyle={{color: 'red'}}>Sign Up</Link>
+                    {/* <p>Don't have an account?</p><Link className='signup-link' to="/signup">Sign Up</Link> */}
 
                 </form>
             </div>
