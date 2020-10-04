@@ -6,6 +6,8 @@ class Profile extends React.Component {
             <>
             'PROFILE'
             <p>calendar goes here</p>
+            <p>insert scheduled times</p>
+            <p>ability to create, update, or delete BT reminder</p>
             </>
         )
     }
