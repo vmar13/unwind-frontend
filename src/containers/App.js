@@ -65,9 +65,11 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/login' render={ () => <Login /> }/>
+      {/* <Route path='/login' render={ () => <Login /> }/> */}
       <Route path='/profile' render={ () => <Profile />} />
-      <Route path='/signup' render={ () => <SignUp />} />
+      <Route path='/login' render={ () => <Login />} />
+      <Route path='/' render={ () => <SignUp /> }/>
+
     </Switch>
 
     
