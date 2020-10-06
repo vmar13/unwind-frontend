@@ -20,6 +20,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.renderBreathingTechs()
+    this.checkForToken()
   }
 
     renderBreathingTechs = () => {
@@ -32,51 +33,54 @@ class App extends React.Component {
       })
     }
       
-      verifyLoggedIn = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(!user){
-          return
-        } else {
-          this.setState({ username: user.username })
-          this.setState({ loggedIn: true })
-        }
-      }
+      // verifyLoggedIn = () => {
+      //   const user = JSON.parse(localStorage.getItem('user'))
+      //   if(!user){
+      //     return
+      //   } else {
+      //     this.setState({ username: user.username })
+      //     this.setState({ loggedIn: true })
+      //   }
+      // }
 
-      renderUserProfile = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(user){
-          fetch(`${USER_PROFILE}/${user.id}`, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}
-          })
-            .then(res => res.json())
-            .then(userProfile => {
-              console.log(userProfile)
-            })
-        }
-      }
+      // renderUserProfile = () => {
+      //   const user = JSON.parse(localStorage.getItem('user'))
+      //   if(user){
+      //     fetch(`${USER_PROFILE}/${user.id}`, {
+      //       method: 'GET',
+      //       headers: {Authorization: `Bearer ${user.token}`}
+      //     })
+      //       .then(res => res.json())
+      //       .then(userProfile => {
+      //         console.log(userProfile)
+      //       })
+      //   }
+      // }
       
-  //     if(localStorage.token){
-  //       fetch('http://localhost:3000/api/v1/users/profile', {
-  //         method: 'GET',
-  //         headers: {
-  //             'Authorization': localStorage.token
-  //         }
-  //         })
-  //         .then(res => res.json())
-  //         .then(this.handleProfile)
-  //     }
-  // }
+      checkForToken = () => {
+        if(localStorage.token){
+          fetch('http://localhost:3000/api/v1/users/profile', {
+            method: 'GET',
+            headers: {
+                'Authorization': localStorage.token
+            }
+            })
+            .then(res => res.json())
+            .then(this.handleProfile)
+        }
+    }
+      
   
-  // handleProfile = res => {
-  //   if(res.user){
-  //     localStorage.token = res.token 
-  //     this.setState(res, () => {
-  //       this.props.history.push('/profile')
-  //     })
-  //   } else {
-  //     alert(res.error)
-  //   }
+  handleProfile = res => {
+    if(res.user){
+      localStorage.token = res.token 
+      this.setState(res, () => {
+        this.props.history.push('/profile')
+      })
+    } else {
+      alert(res.error)
+    }
+  }
   
   
 render () {
