@@ -20,7 +20,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.renderBreathingTechs()
-    this.checkForToken()
+    this.verifyLoggedIn()
+    this.renderUserProfile()
+    // this.checkForToken()
   }
 
     renderBreathingTechs = () => {
@@ -33,42 +35,42 @@ class App extends React.Component {
       })
     }
       
-      // verifyLoggedIn = () => {
-      //   const user = JSON.parse(localStorage.getItem('user'))
-      //   if(!user){
-      //     return
-      //   } else {
-      //     this.setState({ username: user.username })
-      //     this.setState({ loggedIn: true })
-      //   }
-      // }
-
-      // renderUserProfile = () => {
-      //   const user = JSON.parse(localStorage.getItem('user'))
-      //   if(user){
-      //     fetch(`${USER_PROFILE}/${user.id}`, {
-      //       method: 'GET',
-      //       headers: {Authorization: `Bearer ${user.token}`}
-      //     })
-      //       .then(res => res.json())
-      //       .then(userProfile => {
-      //         console.log(userProfile)
-      //       })
-      //   }
-      // }
-      
-      checkForToken = () => {
-        if(localStorage.token){
-          fetch('http://localhost:3000/api/v1/users/profile', {
-            method: 'GET',
-            headers: {
-                'Authorization': localStorage.token
-            }
-            })
-            .then(res => res.json())
-            .then(this.handleProfile)
+      verifyLoggedIn = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(!user){
+          return
+        } else {
+          this.setState({ username: user.username })
+          this.setState({ loggedIn: true })
         }
-    }
+      }
+
+      renderUserProfile = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+          fetch(`${USER_PROFILE}/${user.id}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+          })
+            .then(res => res.json())
+            .then(userProfile => {
+              console.log(userProfile)
+            })
+        }
+      }
+      
+    //   checkForToken = () => {
+    //     if(localStorage.token){
+    //       fetch('http://localhost:3000/api/v1/users/profile', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Authorization': localStorage.token
+    //         }
+    //         })
+    //         .then(res => res.json())
+    //         .then(this.handleProfile)
+    //     }
+    // }
       
   
   handleProfile = res => {
@@ -99,7 +101,6 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      {/* <Route path='/login' render={ () => <Login /> }/> */}
       <Route path='/profile' render={ () => <Profile />} />
       <Route path='/login' render={ (routeProps) => <Login showUserProfile={this.renderUserProfile} />} />
       <Route path='/' render={ () => <SignUp /> }/>
