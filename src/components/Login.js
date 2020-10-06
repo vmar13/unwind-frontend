@@ -37,17 +37,17 @@ class Login extends React.Component{
     render(){
 
         const { username, password } = this.state
+        const { showUserProfile } = this.props
 
         return(
             <>
             <div id='login-form-container'>
-                <form id='login-form' onSubmit={this.handleSubmit}>
+                <form id='login-form' onSubmit={showUserProfile}>
                     <label id='home-title'>Log In</label><br/>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
-                    <input type='submit' value='Sign Up'/><br/><br/>
-                    <p>Don't have an account?</p><Link className='signup-link' to="/signup" style={{color: 'blue'}} activeStyle={{color: 'purple'}}>Sign Up</Link>
-                    {/* <p>Don't have an account?</p><Link className='signup-link' to="/signup">Sign Up</Link> */}
+                    <input type='submit' value='Log In'/><br/><br/>
+                    <p>Don't have an account?</p><Link className='signup-link' to="/signup" style={{color: 'blue'}} >Sign Up</Link>
 
                 </form>
             </div>

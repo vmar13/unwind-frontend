@@ -8,6 +8,7 @@ import Profile from '../components/Profile'
 import Login from '../components/Login'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+const USER_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class App extends React.Component {
 
@@ -18,6 +19,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.renderBreathingTechs()
+  }
+
+    renderBreathingTechs = () => {
       fetch(API_BREATHING_TECHS)
       // .then(res => res.text())
       // .then(text => console.log(text))
@@ -25,29 +30,54 @@ class App extends React.Component {
       .then(breathing_techs => {
         this.setState({ breathingTechs: breathing_techs })
       })
-      
-      if(localStorage.token){
-        fetch('http://localhost:3000/api/v1/users/profile', {
-          method: 'GET',
-          headers: {
-              'Authorization': localStorage.token
-          }
-          })
-          .then(res => res.json())
-          .then(this.handleProfile)
-      }
-  }
-  
-  handleProfile = res => {
-    if(res.user){
-      localStorage.token = res.token 
-      this.setState(res, () => {
-        this.props.history.push('/profile')
-      })
-    } else {
-      alert(res.error)
     }
-  }
+      
+      verifyLoggedIn = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(!user){
+          return
+        } else {
+          this.setState({ username: user.username })
+          this.setState({ loggedIn: true })
+        }
+      }
+
+      renderUserProfile = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        if(user){
+          fetch(`${USER_PROFILE}/${user.id}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+          })
+            .then(res => res.json())
+            .then(userProfile => {
+              console.log(userProfile)
+            })
+        }
+      }
+      
+  //     if(localStorage.token){
+  //       fetch('http://localhost:3000/api/v1/users/profile', {
+  //         method: 'GET',
+  //         headers: {
+  //             'Authorization': localStorage.token
+  //         }
+  //         })
+  //         .then(res => res.json())
+  //         .then(this.handleProfile)
+  //     }
+  // }
+  
+  // handleProfile = res => {
+  //   if(res.user){
+  //     localStorage.token = res.token 
+  //     this.setState(res, () => {
+  //       this.props.history.push('/profile')
+  //     })
+  //   } else {
+  //     alert(res.error)
+  //   }
+  
   
 render () {
   console.log(localStorage)
@@ -67,7 +97,7 @@ render () {
       /> }} />
       {/* <Route path='/login' render={ () => <Login /> }/> */}
       <Route path='/profile' render={ () => <Profile />} />
-      <Route path='/login' render={ () => <Login />} />
+      <Route path='/login' render={ (routeProps) => <Login showUserProfile={this.renderUserProfile} />} />
       <Route path='/' render={ () => <SignUp /> }/>
 
     </Switch>
