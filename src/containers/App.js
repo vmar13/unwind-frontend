@@ -93,7 +93,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   <NavBar breathingTechs={this.state.breathingTechs}/>
+   {this.state.username? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
@@ -101,7 +101,7 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/profile' render={ () => <Profile />} />
+      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/login' render={ (routeProps) => <Login showUserProfile={this.renderUserProfile} />} />
       <Route path='/' render={ () => <SignUp /> }/>
 

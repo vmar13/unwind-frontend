@@ -16,7 +16,7 @@ class Login extends React.Component{
     handleSubmit = e => {
         e.preventDefault()
 
-        fetch('http://localhost:3000/api/v1/profile', {
+        fetch('http://localhost:3000/api/v1/users', {
             method: 'GET',
             headers: {
              Authorization: `Bearer <token>`
