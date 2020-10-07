@@ -3,9 +3,10 @@ import '../App.css'
 import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import BreathingTech from '../components/BreathingTech'
-import SignUp from '../components/SignUp'
+// import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
-import Login from '../components/Login'
+// import Login from '../components/Login'
+import Form from '../components/Form'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const USER_PROFILE = `http://localhost:3000/api/v1/profile`
@@ -145,7 +146,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   {this.state.username? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
+   {this.state.user? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
@@ -154,8 +155,8 @@ render () {
       breathingTechId={breathingTechId} 
       /> }} />
       <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs}/>} />
-      <Route path='/login' render={ (routeProps) => <Login showUserProfile={this.renderUserProfile} />} />
-      <Route path='/' render={ () => <SignUp /> }/>
+      <Route path='/login' render={this.renderForm} />
+      <Route path='/' render={this.renderForm} />
 
     </Switch>
 
