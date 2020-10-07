@@ -7,6 +7,8 @@ import BreathingTech from '../components/BreathingTech'
 import Profile from '../components/Profile'
 // import Login from '../components/Login'
 import Form from '../components/Form'
+import { Link } from 'react-router-dom'
+
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const USER_PROFILE = `http://localhost:3000/api/v1/profile`
@@ -103,16 +105,19 @@ class App extends React.Component {
         formName="Login"
         user={this.state.user}
         handleSubmit={this.handleLoginSubmit}
-        
+        formLink={["Don't have an account?", <Link to="/signup" style={{color: 'blue'}} >Sign Up</Link>]
+      }
       />
-    } else if (routeProps.location.pathname === "/signup") {
+    } else if (routeProps.location.pathname === "/signup" || '/') {
       return <Form
       formName="Sign Up"
       handleSubmit={this.handleSignUpSubmit}
+      formLink={['Already have an account?', <Link to='/login' style={{color: 'blue'}}>Login</Link>]}
       />
     }
   }
 
+   
       // verifyLoggedIn = () => {
       //   const user = JSON.parse(localStorage.getItem('user'))
       //   if(!user){
@@ -146,7 +151,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   {this.state.user? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
+   {this.state.username? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {

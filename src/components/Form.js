@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 class Form extends React.Component{
 
     state = {
-        username: '',
-        password: ''
+        formInputs: {
+            username: '',
+            password: ''
+        },
+        signupForm: true
     }
 
     handleChange = e =>  {
@@ -14,12 +17,14 @@ class Form extends React.Component{
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.handleSubmit(this.state)
-      }
+        this.props.handleSubmit(this.state.formInputs)
+    }
+
+    
 
     render(){
 
-        let {formName} = this.props
+        let {formName, formLink} = this.props
         let {username, password} = this.state
 
         return(
@@ -30,7 +35,7 @@ class Form extends React.Component{
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Submit'/><br/><br/>
-                    <p>Already have an account?</p><Link to='/login' style={{color: 'blue'}}>Login</Link>
+                {formLink}   
                 </form>
             </div>
                 
