@@ -4,12 +4,9 @@ import React from 'react'
 class Form extends React.Component{
 
     state = {
-        formInputs: {
-            username: '',
-            password: ''
-        },
-        signupForm: true
-    }
+        username: '',
+        password: ''
+        }
 
     handleChange = e =>  {
         this.setState({ [e.target.name]: e.target.value })
