@@ -14,15 +14,15 @@ class App extends React.Component {
 
   state = {
     username: '',
-    loggedIn: false,
+    token: '',
     breathingTechs: []
   }
 
   componentDidMount() {
     this.renderBreathingTechs()
-    this.verifyLoggedIn()
-    this.renderUserProfile()
-    // this.checkForToken()
+    this.checkForToken()
+    // this.verifyLoggedIn()
+    // this.renderUserProfile()
   }
 
     renderBreathingTechs = () => {
@@ -35,54 +35,52 @@ class App extends React.Component {
       })
     }
       
-      verifyLoggedIn = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(!user){
-          return
-        } else {
-          this.setState({ username: user.username })
-          this.setState({ loggedIn: true })
-        }
-      }
-
-      renderUserProfile = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        if(user){
-          fetch(`${USER_PROFILE}/${user.id}`, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}
+    checkForToken = () => {
+      if(localStorage.token){
+        fetch('http://localhost:3000/api/v1/profile', {
+          headers: {
+              'Authorization': localStorage.token
+          }
           })
-            .then(res => res.json())
-            .then(userProfile => {
-              console.log(userProfile)
-            })
+          .then(res => res.json())
+          .then(this.handleRes)
         }
-      }
-      
-    //   checkForToken = () => {
-    //     if(localStorage.token){
-    //       fetch('http://localhost:3000/api/v1/users/profile', {
-    //         method: 'GET',
-    //         headers: {
-    //             'Authorization': localStorage.token
-    //         }
-    //         })
-    //         .then(res => res.json())
-    //         .then(this.handleProfile)
-    //     }
-    // }
-      
-  
-  handleProfile = res => {
-    if(res.user){
-      localStorage.token = res.token 
-      this.setState(res, () => {
-        this.props.history.push('/profile')
-      })
-    } else {
-      alert(res.error)
     }
-  }
+
+    handleRes = res => {
+      if(res.user){
+        localStorage.token = res.token 
+        this.setState(res, () => {
+          this.props.history.push('/profile')
+        })
+      } else {
+        alert(res.error)
+      }
+    }
+
+      // verifyLoggedIn = () => {
+      //   const user = JSON.parse(localStorage.getItem('user'))
+      //   if(!user){
+      //     return
+      //   } else {
+      //     this.setState({ username: user.username })
+      //     this.setState({ loggedIn: true })
+      //   }
+      // }
+
+      // renderUserProfile = () => {
+      //   const user = JSON.parse(localStorage.getItem('user'))
+      //   if(user){
+      //     fetch(`${USER_PROFILE}/${user.id}`, {
+      //       method: 'GET',
+      //       headers: {Authorization: `Bearer ${user.token}`}
+      //     })
+      //       .then(res => res.json())
+      //       .then(userProfile => {
+      //         console.log(userProfile)
+      //       })
+      //   }
+      // }
   
   
 render () {

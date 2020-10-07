@@ -16,24 +16,19 @@ class Login extends React.Component{
     handleSubmit = e => {
         e.preventDefault()
 
-        fetch('http://localhost:3000/api/v1/users', {
+        fetch('http://localhost:3000/api/v1/profile', {
             method: 'GET',
             headers: {
              Authorization: `Bearer <token>`
-            },
-            body: JSON.stringify({
-                user: {
-                    username: this.state.username,
-                    password: this.state.password
-                }
+            }
             })
-        })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
             })
             .then( () => this.setState({ username: '', password: '' }))   
     }
+
     render(){
 
         const { username, password } = this.state
