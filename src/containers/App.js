@@ -12,8 +12,17 @@ const USER_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class App extends React.Component {
 
+  // state = {
+  //   username: '',
+  //   token: '',
+  //   breathingTechs: []
+  // }
+
   state = {
-    username: '',
+    user: {
+      id: 0,
+      username: ''
+    },
     token: '',
     breathingTechs: []
   }
@@ -37,7 +46,7 @@ class App extends React.Component {
       
     checkForToken = () => {
       if(localStorage.token){
-        fetch('http://localhost:3000/api/v1/profile', {
+        fetch(USER_PROFILE, {
           headers: {
               'Authorization': localStorage.token
           }
@@ -46,6 +55,27 @@ class App extends React.Component {
           .then(this.handleRes)
         }
     }
+
+    handleSignUpSubmit = e => {
+      e.preventDefault()
+
+      fetch('http://localhost:3000/api/v1/users', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
+          },
+          body: JSON.stringify({
+              user: {
+                  username: this.state.username,
+                  password: this.state.password
+              }
+          })
+      })
+          .then(res => res.json())
+          .then(data => this.handleRes(data))
+          // .then( () => this.setState({ username: '', password: '' }))   
+  }
 
     handleRes = res => {
       if(res.user){
@@ -57,6 +87,25 @@ class App extends React.Component {
         alert(res.error)
       }
     }
+
+  //----------------RENDERING COMPONENTS-----------------//
+
+  renderForm = (routeProps) => {
+    if(routeProps.location.pathname === "/login"){
+      return <Form
+        formName="Login"
+        user={this.state.user}
+        handleSubmit={this.handleLoginSubmit}
+        
+      />
+    } else if (routerProps.location.pathname === "/register") {
+      return <Form
+      formName="Register To Begin"
+      
+      handleSubmit={this.handleRegisterSubmit}
+      />
+    }
+  }
 
       // verifyLoggedIn = () => {
       //   const user = JSON.parse(localStorage.getItem('user'))
