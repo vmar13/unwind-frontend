@@ -56,25 +56,31 @@ class App extends React.Component {
         }
     }
 
-    handleSignUpSubmit = e => {
-      e.preventDefault()
-
+    handleSignUpSubmit = userData => {
       fetch('http://localhost:3000/api/v1/users', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
               Accept: 'application/json'
           },
-          body: JSON.stringify({
-              user: {
-                  username: this.state.username,
-                  password: this.state.password
-              }
-          })
+          body: JSON.stringify(userData)
       })
           .then(res => res.json())
           .then(data => this.handleRes(data))
           // .then( () => this.setState({ username: '', password: '' }))   
+  }
+
+  handleLoginSubmit = userData => {
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+      .then(r => r.json())
+      .then(this.handleResponse)
   }
 
     handleRes = res => {
@@ -98,11 +104,10 @@ class App extends React.Component {
         handleSubmit={this.handleLoginSubmit}
         
       />
-    } else if (routerProps.location.pathname === "/register") {
+    } else if (routeProps.location.pathname === "/signup") {
       return <Form
-      formName="Register To Begin"
-      
-      handleSubmit={this.handleRegisterSubmit}
+      formName="Sign Up"
+      handleSubmit={this.handleSignUpSubmit}
       />
     }
   }
