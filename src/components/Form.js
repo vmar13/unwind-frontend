@@ -4,17 +4,21 @@ import React from 'react'
 class Form extends React.Component{
 
     state = {
-        username: '',
-        password: ''
+        user: {
+            username: '',
+            password: ''
         }
+    }
 
     handleChange = e =>  {
-        this.setState({ [e.target.name]: e.target.value })
+        let newUser = this.state.user
+        newUser[e.target.name] = e.target.value 
+        this.setState({ user: newUser })
     } 
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.handleSubmit(this.state.formInputs)
+        this.props.handleSubmit(this.state)
     }
 
     
@@ -22,7 +26,7 @@ class Form extends React.Component{
     render(){
 
         let {formName, formLink} = this.props
-        let {username, password} = this.state
+        let {username, password} = this.state.user
 
         return(
             <>

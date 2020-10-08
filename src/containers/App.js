@@ -22,10 +22,8 @@ class App extends React.Component {
   // }
 
   state = {
-    user: {
-      id: 0,
-      username: ''
-    },
+    // username: '',
+    // password: '',
     token: '',
     breathingTechs: []
   }
@@ -59,51 +57,52 @@ class App extends React.Component {
         }
     }
 
-    handleSignUpSubmit = userData => {
+    handleSignUpSubmit = (user) => {
       fetch('http://localhost:3000/api/v1/users', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
               Accept: 'application/json'
           },
-          body: JSON.stringify(userData)
+          body: JSON.stringify(user)
       })
           .then(res => res.json())
           .then(data => this.handleRes(data))
           // .then( () => this.setState({ username: '', password: '' }))   
   }
 
-  handleLoginSubmit = userData => {
+  handleLoginSubmit = (user) => {
     fetch("http://localhost:4000/login", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(user)
     })
       .then(r => r.json())
-      .then(this.handleResponse)
+      .then(data => this.handleRes(data))
   }
 
-    handleRes = res => {
-      if(res.user){
-        localStorage.token = res.token 
-        this.setState(res, () => {
-          this.props.history.push('/profile')
-        })
-      } else {
-        alert(res.error)
-      }
+    handleRes = data => {
+      localStorage.setItem('token', data.token)
     }
+      // if(data.user){
+      //   localStorage.token = res.token 
+      //   this.setState(res, () => {
+      //     this.props.history.push('/profile')
+      //   })
+    //   } else {
+    //     alert(res.error)
+    //   }
+    // }
 
-  //----------------RENDERING COMPONENTS-----------------//
+  //----------------RENDER SIGNUP OR LOGIN FORMS-----------------//
 
   renderForm = (routeProps) => {
     if(routeProps.location.pathname === "/login"){
       return <Form
         formName="Login"
-        user={this.state.user}
         handleSubmit={this.handleLoginSubmit}
         formLink={["Don't have an account?", <Link to="/signup" style={{color: 'blue'}} key='1'>Sign Up</Link>]}
       />
@@ -158,8 +157,9 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/login' render={this.renderForm} />
+      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs}/>} />
+      <Route path='/signup' render={this.renderForm} />
       <Route path='/' render={this.renderForm} />
 
     </Switch>
