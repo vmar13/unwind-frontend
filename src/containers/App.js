@@ -104,13 +104,13 @@ class App extends React.Component {
       return <Form
         formName="Login"
         handleSubmit={this.handleLoginSubmit}
-        formLink={["Don't have an account?", <Link to="/signup" style={{color: 'blue'}} key='1'>Sign Up</Link>]}
+        formLink={["Don't have an account? ", <Link to="/signup" style={{color: 'blue'}} key='1'>Sign Up</Link>]}
       />
     } else if (routeProps.location.pathname === "/signup" || '/') {
       return <Form
       formName="Sign Up"
       handleSubmit={this.handleSignUpSubmit}
-      formLink={['Already have an account?', <Link to='/login' style={{color: 'blue'}} key='2'>Login</Link>]}
+      formLink={['Already have an account? ', <Link to='/login' style={{color: 'blue'}} key='2'>Login</Link>]}
       />
     }
   }
