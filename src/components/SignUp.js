@@ -6,7 +6,8 @@ class SignUp extends React.Component {
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        hasError: false
     }
 
     handleChange = e =>  {
@@ -31,9 +32,20 @@ class SignUp extends React.Component {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                if(!data.jwt){
+                    this.setState({hasError: true})
+                } else {
+                    console.log('success', data)
+                    this.props.updateUsername(data.user.username)
+                    localStorage.clear()
+                    const userInfo = {
+                        'username': data.user.username
+                    }
+                    localStorage.setItem('user', JSON.stringify(userInfo))
+                    this.props.userLoggedIn()
+                }
             })
-            .then( () => this.setState({ username: '', password: '' }))   
+            // .then( () => this.setState({ username: '', password: '' }))   
     }
     
 

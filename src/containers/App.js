@@ -3,9 +3,9 @@ import '../App.css'
 import { Route, Switch } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import BreathingTech from '../components/BreathingTech'
-// import SignUp from '../components/SignUp'
+import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
-// import Login from '../components/Login'
+import Login from '../components/Login'
 import Form from '../components/Form'
 import { Link } from 'react-router-dom'
 
@@ -156,10 +156,10 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/login' render={this.renderForm} />
-      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs}/>} />
-      <Route path='/signup' render={this.renderForm} />
-      <Route path='/' render={this.renderForm} />
+      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs} username={this.state.username}/>} />
+      <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
     </Switch>
 
