@@ -15,30 +15,20 @@ const USER_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class App extends React.Component {
 
-  // state = {
-  //   username: '',
-  //   token: '',
-  //   breathingTechs: []
-  // }
-
   state = {
-    // username: '',
-    // password: '',
-    token: '',
+    username: '',
+    loggedIn: false,
     breathingTechs: []
   }
 
   componentDidMount() {
     this.renderBreathingTechs()
     this.checkForToken()
-    // this.verifyLoggedIn()
-    // this.renderUserProfile()
+    this.renderUserProfile()
   }
 
     renderBreathingTechs = () => {
       fetch(API_BREATHING_TECHS)
-      // .then(res => res.text())
-      // .then(text => console.log(text))
       .then(res => res.json())
       .then(breathing_techs => {
         this.setState({ breathingTechs: breathing_techs })
@@ -46,16 +36,33 @@ class App extends React.Component {
     }
       
     checkForToken = () => {
-      if(localStorage.token){
-        fetch(USER_PROFILE, {
-          headers: {
-              'Authorization': localStorage.token
-          }
-          })
-          .then(res => res.json())
-          .then(this.handleRes)
-        }
+      const user = JSON.parse(localStorage.getItem("user"))
+      if (!user) {
+        return
+      } else {
+        this.setState({username: user.username})
+        this.setState({loggedIn: true})
+      }
     }
+
+    renderUserProfile = () => {
+    const user = JSON.parse(localStorage.getItem("user"))
+    if (user) {
+      fetch(`${USER_PROFILE}/${user.id}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${user.token}`}})
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+  }
+
+  updateUsername = (username) => {
+    this.setState({username})
+  }
+
+  userLoggedIn = () => {
+    this.setState({loggedIn: !this.state.loggedIn})
+  }
 
     handleSignUpSubmit = (user) => {
       fetch('http://localhost:3000/api/v1/users', {
@@ -87,15 +94,7 @@ class App extends React.Component {
     handleRes = data => {
       localStorage.setItem('token', data.token)
     }
-      // if(data.user){
-      //   localStorage.token = res.token 
-      //   this.setState(res, () => {
-      //     this.props.history.push('/profile')
-      //   })
-    //   } else {
-    //     alert(res.error)
-    //   }
-    // }
+  
 
   //----------------RENDER SIGNUP OR LOGIN FORMS-----------------//
 
@@ -149,7 +148,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   {this.state.username? <NavBar breathingTechs={this.state.breathingTechs}/> : null}
+   {this.state.username? <NavBar breathingTechs={this.state.breathingTechs} username={this.state.username} loggedIn={this.state.loggedIn}/> : null}
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
