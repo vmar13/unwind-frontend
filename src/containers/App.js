@@ -1,7 +1,6 @@
 import React from 'react'
 import '../App.css'
 import { Route, Switch } from 'react-router-dom'
-import NavBar from '../components/NavBar'
 import BreathingTech from '../components/BreathingTech'
 import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
@@ -10,7 +9,6 @@ import Login from '../components/Login'
 // import { Link } from 'react-router-dom'
 
 
-const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 // const USER_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class App extends React.Component {
@@ -18,23 +16,14 @@ class App extends React.Component {
   state = {
     username: '',
     loggedIn: false,
-    breathingTechs: []
   }
 
   componentDidMount() {
-    this.renderBreathingTechs()
     this.checkForToken()
-    this.renderUserProfile()
+    // this.renderUserProfile()
   }
 
-    renderBreathingTechs = () => {
-      fetch(API_BREATHING_TECHS)
-      .then(res => res.json())
-      .then(breathing_techs => {
-        this.setState({ breathingTechs: breathing_techs })
-      })
-    }
-      
+    
     checkForToken = () => {
       const user = JSON.parse(localStorage.getItem("user"))
       if (!user) {
@@ -45,16 +34,16 @@ class App extends React.Component {
       }
     }
 
-    renderUserProfile = () => {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (user) {
-      fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`}})
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
-  }
+  //   renderUserProfile = () => {
+  //   const user = JSON.parse(localStorage.getItem("user"))
+  //   if (user) {
+  //     fetch(`http://localhost:3000/api/v1/profile/${user.id}`, {
+  //       method: 'GET',
+  //       headers: {Authorization: `Bearer ${user.token}`}})
+  //       .then(res => res.json())
+  //       .then(data => console.log(data))
+  //   }
+  // }
 
   updateUsername = (username) => {
     this.setState({username})
@@ -148,7 +137,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   {/* {this.state.username? <NavBar breathingTechs={this.state.breathingTechs} username={this.state.username} loggedIn={this.state.loggedIn}/> : null} */}
+   {/* {this.state.username? <NavBar breathingTechs={this.state.breathingTechs} : null} */}
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)

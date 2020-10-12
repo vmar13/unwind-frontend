@@ -39,6 +39,7 @@ class SignUp extends React.Component {
                     this.props.updateUsername(data.user.username)
                     localStorage.clear()
                     const userInfo = {
+                        'id': data.user.id,
                         'username': data.user.username,
                         'token': data.jwt
                     }
