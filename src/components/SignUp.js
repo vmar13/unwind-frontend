@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 
 
@@ -32,24 +32,23 @@ class SignUp extends React.Component {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
-                // if(!data.jwt){
-                //     this.setState({hasError: true})
-                // } else {
-                //     console.log('success', data)
-                //     this.props.updateUsername(data.user.username)
-                //     localStorage.clear()
-                //     const userInfo = {
-                //         'username': data.user.username
-                //     }
-                //     localStorage.setItem('user', JSON.stringify(userInfo))
-                //     this.props.userLoggedIn()
-                // }
+                if(!data.jwt){
+                    this.setState({hasError: true})
+                } else {
+                    console.log('success', data)
+                    this.props.updateUsername(data.user.username)
+                    localStorage.clear()
+                    const userInfo = {
+                        'username': data.user.username,
+                        'token': data.jwt
+                    }
+                    localStorage.setItem('user', JSON.stringify(userInfo))
+                    this.props.userLoggedIn()
+                }
             })
-            .then( () => this.setState({ username: '', password: '' }))   
+            // .then( () => this.setState({ username: '', password: '' }))   
     }
     
-
 
     render(){
 
@@ -64,10 +63,13 @@ class SignUp extends React.Component {
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    <p>Already have an account?</p><Link to='/login' style={{color: 'blue'}}>Login</Link>
+                    {/* <p>Already have an account?</p><Link to='/login' style={{color: 'blue'}}>Login</Link> */}
+                    <p>Already have an account?</p><a href='/login'>Login</a>
+
                 </form>
                 {this.props.loggedIn ? <Redirect to='/profile' /> : null}
             </div>
+            
                 
                 <div className='home-img-container'>
                     <img src='https://images.unsplash.com/photo-1538495435388-104fd74d46a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2841&q=80' alt='home' className='home-img' />
