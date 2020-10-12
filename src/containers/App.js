@@ -130,7 +130,7 @@ class App extends React.Component {
   
   
 render () {
-  console.log(localStorage)
+  // console.log(localStorage)
   return (
     <>
     <div className='logo-name'>
@@ -145,7 +145,7 @@ render () {
       breathingTechId={breathingTechId} 
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/profile' render={ () => <Profile breathingTechs={this.state.breathingTechs} username={this.state.username}/>} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
