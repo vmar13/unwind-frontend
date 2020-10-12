@@ -6,12 +6,12 @@ import BreathingTech from '../components/BreathingTech'
 import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
 import Login from '../components/Login'
-import Form from '../components/Form'
-import { Link } from 'react-router-dom'
+// import Form from '../components/Form'
+// import { Link } from 'react-router-dom'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
-const USER_PROFILE = `http://localhost:3000/api/v1/profile`
+// const USER_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class App extends React.Component {
 
@@ -48,7 +48,7 @@ class App extends React.Component {
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem("user"))
     if (user) {
-      fetch(`${USER_PROFILE}/${user.id}`, {
+      fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}})
         .then(res => res.json())
@@ -64,55 +64,55 @@ class App extends React.Component {
     this.setState({loggedIn: !this.state.loggedIn})
   }
 
-    handleSignUpSubmit = (user) => {
-      fetch('http://localhost:3000/api/v1/users', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json'
-          },
-          body: JSON.stringify(user)
-      })
-          .then(res => res.json())
-          .then(data => this.handleRes(data))
-          // .then( () => this.setState({ username: '', password: '' }))   
-  }
+  //   handleSignUpSubmit = (user) => {
+  //     fetch('http://localhost:3000/api/v1/users', {
+  //         method: 'POST',
+  //         headers: {
+  //             'Content-Type': 'application/json',
+  //             Accept: 'application/json'
+  //         },
+  //         body: JSON.stringify(user)
+  //     })
+  //         .then(res => res.json())
+  //         .then(data => this.handleRes(data))
+  //         // .then( () => this.setState({ username: '', password: '' }))   
+  // }
 
-  handleLoginSubmit = (user) => {
-    fetch("http://localhost:4000/login", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(user)
-    })
-      .then(r => r.json())
-      .then(data => this.handleRes(data))
-  }
+  // handleLoginSubmit = (user) => {
+  //   fetch("http://localhost:4000/login", {
+  //     method: "POST",
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json'
+  //     },
+  //     body: JSON.stringify(user)
+  //   })
+  //     .then(r => r.json())
+  //     .then(data => this.handleRes(data))
+  // }
 
-    handleRes = data => {
-      localStorage.setItem('token', data.token)
-    }
+  //   handleRes = data => {
+  //     localStorage.setItem('token', data.token)
+  //   }
   
 
   //----------------RENDER SIGNUP OR LOGIN FORMS-----------------//
 
-  renderForm = (routeProps) => {
-    if(routeProps.location.pathname === "/login"){
-      return <Form
-        formName="Login"
-        handleSubmit={this.handleLoginSubmit}
-        formLink={["Don't have an account? ", <Link to="/signup" style={{color: 'blue'}} key='1'>Sign Up</Link>]}
-      />
-    } else if (routeProps.location.pathname === "/signup" || '/') {
-      return <Form
-      formName="Sign Up"
-      handleSubmit={this.handleSignUpSubmit}
-      formLink={['Already have an account? ', <Link to='/login' style={{color: 'blue'}} key='2'>Login</Link>]}
-      />
-    }
-  }
+  // renderForm = (routeProps) => {
+  //   if(routeProps.location.pathname === "/login"){
+  //     return <Form
+  //       formName="Login"
+  //       handleSubmit={this.handleLoginSubmit}
+  //       formLink={["Don't have an account? ", <Link to="/signup" style={{color: 'blue'}} key='1'>Sign Up</Link>]}
+  //     />
+  //   } else if (routeProps.location.pathname === "/signup" || '/') {
+  //     return <Form
+  //     formName="Sign Up"
+  //     handleSubmit={this.handleSignUpSubmit}
+  //     formLink={['Already have an account? ', <Link to='/login' style={{color: 'blue'}} key='2'>Login</Link>]}
+  //     />
+  //   }
+  // }
 
    
       // verifyLoggedIn = () => {

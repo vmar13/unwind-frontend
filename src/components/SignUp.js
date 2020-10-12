@@ -21,8 +21,7 @@ class SignUp extends React.Component {
         fetch('http://localhost:3000/api/v1/users', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                Accept: 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 user: {
@@ -33,20 +32,21 @@ class SignUp extends React.Component {
         })
             .then(res => res.json())
             .then(data => {
-                if(!data.jwt){
-                    this.setState({hasError: true})
-                } else {
-                    console.log('success', data)
-                    this.props.updateUsername(data.user.username)
-                    localStorage.clear()
-                    const userInfo = {
-                        'username': data.user.username
-                    }
-                    localStorage.setItem('user', JSON.stringify(userInfo))
-                    this.props.userLoggedIn()
-                }
+                console.log(data)
+                // if(!data.jwt){
+                //     this.setState({hasError: true})
+                // } else {
+                //     console.log('success', data)
+                //     this.props.updateUsername(data.user.username)
+                //     localStorage.clear()
+                //     const userInfo = {
+                //         'username': data.user.username
+                //     }
+                //     localStorage.setItem('user', JSON.stringify(userInfo))
+                //     this.props.userLoggedIn()
+                // }
             })
-            // .then( () => this.setState({ username: '', password: '' }))   
+            .then( () => this.setState({ username: '', password: '' }))   
     }
     
 
