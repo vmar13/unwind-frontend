@@ -5,6 +5,7 @@ import BreathingTech from '../components/BreathingTech'
 import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
 import Login from '../components/Login'
+import Logout from '../components/Logout'
 import NavBar from '../components/NavBar'
 
 
@@ -71,6 +72,7 @@ render () {
       breathingTechId={breathingTechId} 
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn}/>} />

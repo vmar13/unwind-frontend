@@ -30,6 +30,7 @@ const NavBar = ({ breathingTechs }) => {
             ><strong>{breathingTech.name}</strong>
             </NavLink>)}
 
+            <NavLink to='/logout' className='nav-element'><strong>Logout</strong></NavLink>
 
         </div>
     )
