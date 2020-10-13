@@ -45,13 +45,18 @@ class App extends React.Component {
 
   renderBreathingTechs = () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    fetch(API_BREATHING_TECHS, {
+
+    if (!user) {
+      return
+    } else {
+      fetch(API_BREATHING_TECHS, {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}})
     .then(res => res.json())
     .then(breathing_techs => {
       this.setState({ breathingTechs: breathing_techs })
     })
+    }
 }
   
   

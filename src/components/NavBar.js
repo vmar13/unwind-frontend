@@ -9,9 +9,9 @@ const renderBreathingTech = (id) => {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}})
     .then(res => res.json())
-    .then(btObj => {
-      console.log(btObj)
-    })
+    // .then(btObj => {
+    //   console.log(btObj)
+    // })
 }
 
 
