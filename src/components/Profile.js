@@ -1,9 +1,9 @@
 import React from 'react'
-// import NavBar from '../components/NavBar'
-import { NavLink } from 'react-router-dom'
+import NavBar from '../components/NavBar'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+const API_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class Profile extends React.Component {
 
@@ -19,7 +19,7 @@ class Profile extends React.Component {
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     if (user) {
-      fetch(`http://localhost:3000/api/v1/profile`, {
+      fetch(API_PROFILE, {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}})
         .then(res => res.json())
@@ -37,17 +37,7 @@ class Profile extends React.Component {
           this.setState({ breathingTechs: breathing_techs })
         })
     }
-        
-    renderBreathingTech = (id) => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        fetch(`${API_BREATHING_TECHS}/${id}`, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}})
-        .then(res => res.json())
-        .then(btObj => {
-          console.log(btObj)
-        })
-    }
+  
 
     render() {
 
@@ -59,24 +49,8 @@ class Profile extends React.Component {
             <p>calendar goes here</p>
             <p>insert scheduled times</p>
             <p>ability to create, update, or delete BT reminder</p>
-               {/* {this.props.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null} */}
+            {this.props.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
                
-            <div className='nav-container'>
-            {/* <NavLink to='/' className='nav-element'><strong>Home</strong></NavLink> */}
-            {/* {breathingTechs.map(breathingTech => <NavLink to={renderBreathingTech(`${API_BREATHING_TECHS}/${breathingTech.id}`)} key={breathingTech.id} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)} */}
-       
-            {this.state.breathingTechs.map(breathingTech => 
-            <NavLink 
-            to={`/breathing_techniques/${breathingTech.id}`} 
-            key={breathingTech.id} 
-            className='nav-element'
-            // onClick={() => this.renderBreathingTech(`/breathing_techniques/${breathingTech.id}`)}
-            onClick={() => this.renderBreathingTech(breathingTech.id)}
-            ><strong>{breathingTech.name}</strong>
-            </NavLink>)}
-
-
-        </div>
             </>
         )
     }

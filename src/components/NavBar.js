@@ -1,36 +1,32 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-// const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 
-const renderBreathingTech = (path) => {
+const renderBreathingTech = (id) => {
     const user = JSON.parse(localStorage.getItem('user'))
-    fetch(path, {
+    fetch(`${API_BREATHING_TECHS}/${id}`, {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}})
     .then(res => res.json())
-    .then(breathing_tech => {
-      console.log(breathing_tech)
+    .then(btObj => {
+      console.log(btObj)
     })
 }
+
 
 const NavBar = ({ breathingTechs }) => {
 
     return(
         <div className='nav-container'>
-            {/* <NavLink to='/' className='nav-element'><strong>Home</strong></NavLink> */}
-            {/* {breathingTechs.map(breathingTech => <NavLink to={renderBreathingTech(`${API_BREATHING_TECHS}/${breathingTech.id}`)} key={breathingTech.id} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)} */}
-            {/* {breathingTechs.map(breathingTech => <NavLink to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)} */}
-       
-            {breathingTechs.map(breathingTech => <NavLink 
-            to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} className='nav-element'
-            isActive={(match, location) => {
-                if(!match){
-                    return
-                } 
-                renderBreathingTech(location)
-                }
-            }
+            <NavLink to='/profile' className='nav-element'><strong>Profile</strong></NavLink>
+            
+            {breathingTechs.map(breathingTech => 
+            <NavLink 
+            to={`/breathing_techniques/${breathingTech.id}`} 
+            key={breathingTech.id} 
+            className='nav-element'
+            onClick={() => renderBreathingTech(breathingTech.id)}
             ><strong>{breathingTech.name}</strong>
             </NavLink>)}
 
