@@ -38,6 +38,16 @@ class Profile extends React.Component {
         })
     }
         
+    renderBreathingTech = (id) => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        fetch(`${API_BREATHING_TECHS}/${id}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}})
+        .then(res => res.json())
+        .then(btObj => {
+          console.log(btObj)
+        })
+    }
 
     render() {
 
@@ -55,8 +65,14 @@ class Profile extends React.Component {
             {/* <NavLink to='/' className='nav-element'><strong>Home</strong></NavLink> */}
             {/* {breathingTechs.map(breathingTech => <NavLink to={renderBreathingTech(`${API_BREATHING_TECHS}/${breathingTech.id}`)} key={breathingTech.id} className='nav-element'><strong>{breathingTech.name}</strong></NavLink>)} */}
        
-            {this.state.breathingTechs.map(breathingTech => <NavLink 
-            to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} className='nav-element'><strong>{breathingTech.name}</strong>
+            {this.state.breathingTechs.map(breathingTech => 
+            <NavLink 
+            to={`/breathing_techniques/${breathingTech.id}`} 
+            key={breathingTech.id} 
+            className='nav-element'
+            // onClick={() => this.renderBreathingTech(`/breathing_techniques/${breathingTech.id}`)}
+            onClick={() => this.renderBreathingTech(breathingTech.id)}
+            ><strong>{breathingTech.name}</strong>
             </NavLink>)}
 
 

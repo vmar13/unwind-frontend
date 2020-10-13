@@ -9,7 +9,12 @@ class BreathingTech extends React.Component {
     }
 
     getBreathingTechs = () => {
-        fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`)
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+        })
         .then(res => res.json())
         .then(data => {
             this.setState({
