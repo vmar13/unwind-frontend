@@ -137,7 +137,6 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-   {/* {this.state.username? <NavBar breathingTechs={this.state.breathingTechs} : null} */}
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)

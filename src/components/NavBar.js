@@ -16,17 +16,6 @@ const renderBreathingTech = (path) => {
 
 const NavBar = ({ breathingTechs }) => {
 
-    // renderBreathingTech = (path) => {
-    //     const user = JSON.parse(localStorage.getItem('user'))
-    //     fetch(path, {
-    //         method: 'GET',
-    //         headers: {Authorization: `Bearer ${user.token}`}})
-    //     .then(res => res.json())
-    //     .then(breathing_tech => {
-    //       console.log(breathing_tech)
-    //     })
-    // }
-
     return(
         <div className='nav-container'>
             {/* <NavLink to='/' className='nav-element'><strong>Home</strong></NavLink> */}
@@ -37,9 +26,9 @@ const NavBar = ({ breathingTechs }) => {
             to={`/breathing_techniques/${breathingTech.id}`} key={breathingTech.id} className='nav-element'
             isActive={(match, location) => {
                 if(!match){
-                    return false
+                    return
                 } 
-                return renderBreathingTech(location)
+                renderBreathingTech(location)
                 }
             }
             ><strong>{breathingTech.name}</strong>
