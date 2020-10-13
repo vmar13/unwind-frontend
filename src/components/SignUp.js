@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
 
 
@@ -47,7 +46,6 @@ class SignUp extends React.Component {
                     this.props.userLoggedIn()
                 }
             })
-            // .then( () => this.setState({ username: '', password: '' }))   
     }
     
 
@@ -64,7 +62,6 @@ class SignUp extends React.Component {
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    {/* <p>Already have an account?</p><Link to='/login' style={{color: 'blue'}}>Login</Link> */}
                     <p>Already have an account?</p><a href='/login'>Login</a>
 
                 </form>

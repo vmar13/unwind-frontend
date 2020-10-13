@@ -5,7 +5,8 @@ const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 class BreathingTech extends React.Component {
 
     state = {
-        breathingTech: {}
+        breathingTech: {},
+        breathingTechs: []
     }
 
     getBreathingTechs = () => {
@@ -23,8 +24,20 @@ class BreathingTech extends React.Component {
         })
     }
 
+    renderBreathingTechs = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        fetch(API_BREATHING_TECHS, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}})
+        .then(res => res.json())
+        .then(breathing_techs => {
+          this.setState({ breathingTechs: breathing_techs })
+        })
+    }
+
     componentDidMount(){
        this.getBreathingTechs()
+       this.renderBreathingTechs()
     }
 
     componentDidUpdate(prevProps) {
@@ -40,9 +53,11 @@ class BreathingTech extends React.Component {
 
         return(
         <>
+         
+
             <div className='breathing-tech-container'>
-        {name === 'Alternate Nostril Breathing' ? [<p className='anim-split-left'>alt nost animation</p>, <p className='anim-split-right'>alt nost animation2</p>] : null}
-        {name === 'Ujjayi' ? [<div className='anim-fog-div'>,<div className='anim-fog'>ujjayi animation</div>,</div>] : null}
+                {name === 'Alternate Nostril Breathing' ? [<p className='anim-split-left'>alt nost animation</p>, <p className='anim-split-right'>alt nost animation2</p>] : null}
+                {name === 'Ujjayi' ? [<div className='anim-fog-div'>,<div className='anim-fog'>ujjayi animation</div>,</div>] : null}
                 {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
                 {name === "Lion's Breath" ? <p className='anim-circle'>Lion's breath animation</p> : null}
                 {name === 'Humming Bee' ? <p className='anim-circle'>humming bee animation</p> : null}

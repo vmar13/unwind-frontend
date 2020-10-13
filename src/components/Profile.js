@@ -1,8 +1,8 @@
 import React from 'react'
-import NavBar from '../components/NavBar'
+// import NavBar from '../components/NavBar'
 
 
-const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+// const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const API_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class Profile extends React.Component {
@@ -13,7 +13,7 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.renderUserProfile()
-        this.renderBreathingTechs()
+        // this.renderBreathingTechs()
     }
 
     renderUserProfile = () => {
@@ -27,16 +27,16 @@ class Profile extends React.Component {
     }
   }
 
-    renderBreathingTechs = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        fetch(API_BREATHING_TECHS, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}})
-        .then(res => res.json())
-        .then(breathing_techs => {
-          this.setState({ breathingTechs: breathing_techs })
-        })
-    }
+    // renderBreathingTechs = () => {
+    //     const user = JSON.parse(localStorage.getItem('user'))
+    //     fetch(API_BREATHING_TECHS, {
+    //         method: 'GET',
+    //         headers: {Authorization: `Bearer ${user.token}`}})
+    //     .then(res => res.json())
+    //     .then(breathing_techs => {
+    //       this.setState({ breathingTechs: breathing_techs })
+    //     })
+    // }
   
 
     render() {
@@ -49,7 +49,7 @@ class Profile extends React.Component {
             <p>calendar goes here</p>
             <p>insert scheduled times</p>
             <p>ability to create, update, or delete BT reminder</p>
-            {this.props.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
+            {/* {this.props.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null} */}
                
             </>
         )
