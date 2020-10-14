@@ -13,7 +13,6 @@ class Profile extends React.Component {
 
     componentDidMount() {
         this.renderUserProfile()
-        // this.renderBreathingTechs()
     }
 
     renderUserProfile = () => {
@@ -26,17 +25,6 @@ class Profile extends React.Component {
         .then(data => console.log(data))
     }
   }
-
-    // renderBreathingTechs = () => {
-    //     const user = JSON.parse(localStorage.getItem('user'))
-    //     fetch(API_BREATHING_TECHS, {
-    //         method: 'GET',
-    //         headers: {Authorization: `Bearer ${user.token}`}})
-    //     .then(res => res.json())
-    //     .then(breathing_techs => {
-    //       this.setState({ breathingTechs: breathing_techs })
-    //     })
-    // }
   
 
     render() {

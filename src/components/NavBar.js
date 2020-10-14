@@ -15,12 +15,17 @@ const renderBreathingTech = (id) => {
 }
 
 
-const NavBar = ({ breathingTechs }) => {
+const NavBar = ({ breathingTechs, loggedIn }) => {
+
+    console.log(breathingTechs)
 
     return(
-        <div className='nav-container'>
-            <NavLink to='/profile' className='nav-element'><strong>Profile</strong></NavLink>
-            
+        <>
+            {loggedIn ? [
+            <div className='nav-container' key='1'>,
+            <NavLink to='/profile' className='nav-element' key='2'><strong>Profile</strong></NavLink>, 
+            <NavLink to='/logout' className='nav-element' key='3'><strong>Logout</strong></NavLink>,
+
             {breathingTechs.map(breathingTech => 
             <NavLink 
             to={`/breathing_techniques/${breathingTech.id}`} 
@@ -28,13 +33,17 @@ const NavBar = ({ breathingTechs }) => {
             className='nav-element'
             onClick={() => renderBreathingTech(breathingTech.id)}
             ><strong>{breathingTech.name}</strong>
-            </NavLink>)}
+            </NavLink>)},
 
-            <NavLink to='/logout' className='nav-element'><strong>Logout</strong></NavLink>
-
-        </div>
+            </div>
+            ] : null}
+      </>  
     )
 }
 
 export default NavBar
 
+
+
+
+    

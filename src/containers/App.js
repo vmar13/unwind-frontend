@@ -1,6 +1,6 @@
 import React from 'react'
 import '../App.css'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import BreathingTech from '../components/BreathingTech'
 import SignUp from '../components/SignUp'
 import Profile from '../components/Profile'
@@ -26,7 +26,7 @@ class App extends React.Component {
 
     
     checkForToken = () => {
-      const user = JSON.parse(localStorage.getItem("user"))
+      const user = JSON.parse(localStorage.getItem('user'))
       if (!user) {
         return
       } else {
@@ -46,7 +46,7 @@ class App extends React.Component {
   renderBreathingTechs = () => {
     const user = JSON.parse(localStorage.getItem('user'))
 
-    if (!user) {
+    if (!user || '/signup' || '/login') {
       return
     } else {
       fetch(API_BREATHING_TECHS, {
@@ -68,7 +68,9 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-    <NavBar breathingTechs={this.state.breathingTechs} /> 
+    {this.state.loggedIn ? <Redirect to='/profile' /> : null}
+
+    <NavBar breathingTechs={this.state.breathingTechs} loggedIn={this.state.loggedIn} /> 
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
