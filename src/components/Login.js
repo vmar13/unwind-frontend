@@ -61,7 +61,7 @@ class Login extends React.Component{
                     <input type='submit' value='Log In'/><br/><br/>
                     <p>Don't have an account?</p><a href='/signup' className='signup-link'>Sign Up</a>
                 </form>
-                {this.props.loggedIn ? <Redirect to='/profile' /> : null}
+                {this.props.loggedIn ? <Redirect to='/profile'/> : null}
 
             </div>
                 

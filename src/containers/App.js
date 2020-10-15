@@ -46,16 +46,17 @@ class App extends React.Component {
   renderBreathingTechs = () => {
     const user = JSON.parse(localStorage.getItem('user'))
 
-    if (!user || '/signup' || '/login') {
-      return
-    } else {
+    // if (!user || '/signup' || '/login') {
+    if (user && '/profile') {
       fetch(API_BREATHING_TECHS, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`}})
-    .then(res => res.json())
-    .then(breathing_techs => {
-      this.setState({ breathingTechs: breathing_techs })
-    })
+      method: 'GET',
+      headers: {Authorization: `Bearer ${user.token}`}})
+      .then(res => res.json())
+      .then(breathing_techs => {
+        this.setState({ breathingTechs: breathing_techs })
+      })
+    } else {
+      return
     }
 }
   
@@ -68,9 +69,7 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-    {this.state.loggedIn ? <Redirect to='/profile' /> : null}
-
-    <NavBar breathingTechs={this.state.breathingTechs} loggedIn={this.state.loggedIn} /> 
+    {this.state.loggedIn ? [<Redirect to='/profile' key='1'/>, <NavBar breathingTechs={this.state.breathingTechs} key='2'/>] : null}
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
@@ -80,7 +79,7 @@ render () {
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} />} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs}/>} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn}/>} />
 

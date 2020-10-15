@@ -9,7 +9,7 @@ class BreathingTech extends React.Component {
         breathingTechs: []
     }
 
-    getBreathingTechs = () => {
+    getOneBreathingTech = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
         fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`, {
@@ -36,7 +36,7 @@ class BreathingTech extends React.Component {
     }
 
     componentDidMount(){
-       this.getBreathingTechs()
+       this.getOneBreathingTech()
        this.renderBreathingTechs()
     }
 

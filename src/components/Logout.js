@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { Redirect } from 'react-router'
 
 const Logout = (props) => {
@@ -8,15 +8,13 @@ const Logout = (props) => {
     props.updateUsername('')
     props.userLoggedIn()
     
-  // added props dependency  
   }, [props]);
 
   return (
     <>
-      ~Logging out~
-      { props.loggedIn ? <Redirect to='/' /> : null }
+      {props.loggedIn ? <Redirect to='/login' /> : null}
     </>
-  );
+  )
 }
 
 export default Logout
