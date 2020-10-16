@@ -7,7 +7,7 @@ class SignUp extends React.Component {
     state = {
         username: '',
         password: '',
-        hasError: false
+        displayError: ''
     }
 
     handleChange = e =>  {
@@ -32,7 +32,7 @@ class SignUp extends React.Component {
             .then(res => res.json())
             .then(data => {
                 if(!data.jwt){
-                    this.setState({hasError: true})
+                    this.setState({ displayError: data.error })
                 } else {
                     console.log('success', data)
                     this.props.updateUsername(data.user.username)
@@ -57,15 +57,16 @@ class SignUp extends React.Component {
             <>
             <div id='login-form-container'>
                 <form id='login-form' onSubmit={this.handleSubmit}>
-                    <label id='home-title'>Sign Up</label><br/>
+                    <label className='form-title'>Sign Up</label><br/>
                     <p>{this.state.hasError ? 'There was an error creating your account.' : null}</p>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
-                    <p>Already have an account? <a href='/login'>Login</a></p>
+                    <p className='form-extra-text'>Already have an account? <a href='/login'>Login</a></p>
 
                 </form>
                 {this.props.loggedIn ? <Redirect to='/profile' /> : null}
+                {this.state.displayError ? <p className='error-message'>{this.state.displayError}</p> : null }
             </div>
             
                 

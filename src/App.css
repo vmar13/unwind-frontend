@@ -177,6 +177,8 @@ body {
 
 .error-message {
   color: red;
+  margin: 0% 2% 0 8%;
+  font-size: 11pt;
 }
 
 .form-extra-text {
@@ -201,13 +203,16 @@ body {
   height: 250%;
 }
 
-#home-title {
+.form-title {
   /* position: absolute; */
   color: rgb(20, 152, 175);
   font-family: 'Baloo Tamma 2', cursive;
   font-size: 30pt;
-  margin-bottom: 3%;
+  margin-bottom: -2%;
+  display: block;
+  text-align: center;
   z-index: 999;
+  width: 84%;
 } 
 
 input[type=text], input[type=password] {
