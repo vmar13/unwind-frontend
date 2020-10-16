@@ -34,7 +34,7 @@ class SignUp extends React.Component {
                 if(!data.jwt){
                     this.setState({ displayError: data.error })
                 } else {
-                    console.log('success', data)
+                    console.log(data)
                     this.props.updateUsername(data.user.username)
                     localStorage.clear()
                     const userInfo = {

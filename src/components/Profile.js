@@ -1,18 +1,14 @@
 import React from 'react'
-// import NavBar from '../components/NavBar'
 
 
-// const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const API_PROFILE = `http://localhost:3000/api/v1/profile`
 
 class Profile extends React.Component {
 
-    state = {
-        breathingTechs: []
-    }
 
     componentDidMount() {
         this.renderUserProfile()
+        this.props.fetchBTs()
     }
 
     renderUserProfile = () => {
@@ -28,8 +24,6 @@ class Profile extends React.Component {
   
 
     render() {
-
-        // console.log(this.state.breathingTechs)
 
         return (
             <>

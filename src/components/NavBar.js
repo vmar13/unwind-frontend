@@ -17,7 +17,7 @@ const renderBreathingTech = (id) => {
 
 const NavBar = ({ breathingTechs, loggedIn }) => {
 
-    console.log(breathingTechs)
+    // console.log(breathingTechs)
 
     return(
         <>
