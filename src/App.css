@@ -175,6 +175,14 @@ body {
   height: 140px;
 }
 
+.error-message {
+  color: red;
+}
+
+.form-extra-text {
+  font-size: 11pt;
+}
+
 .home-img {
   position: fixed;
   width: 100%;
@@ -242,7 +250,7 @@ li {
 
 #login-form {
   position: relative;
-  margin: 44% 0 0 8%;
+  margin: 0% 0 0 8%;
 }
 
 .logo {
@@ -283,7 +291,8 @@ li {
 
 .signup-link{
   margin-top: 3%;
-  color: rgb(49, 67, 70);
+  color: rgb(37, 48, 107);
+  font-size: 11pt;
 }
 
 .source {

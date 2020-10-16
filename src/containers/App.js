@@ -20,26 +20,28 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.checkForToken()
+    this.stayLoggedIn()
     this.renderBreathingTechs()
   }
 
     
-    checkForToken = () => {
-      const user = JSON.parse(localStorage.getItem('user'))
-      if (!user) {
-        return
-      } else {
-        this.setState({username: user.username})
-        this.setState({loggedIn: true})
-      }
+  stayLoggedIn = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (!user) {
+      return
+    } else {
+      this.setState({
+        username: user.username,
+        loggedIn: true
+      })
     }
+  }
 
   updateUsername = (username) => {
     this.setState({username})
   }
 
-  userLoggedIn = () => {
+  toggleLoggedIn = () => {
     this.setState({loggedIn: !this.state.loggedIn})
   }
 
@@ -58,7 +60,7 @@ class App extends React.Component {
     } else {
       return
     }
-}
+  }
   
   
 render () {
@@ -77,11 +79,11 @@ render () {
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
       /> }} />
-      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs}/>} />
-      <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn}/>} />
+      <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
     </Switch>
 

@@ -6,7 +6,7 @@ const Logout = (props) => {
   useEffect(() => {
     localStorage.clear()
     props.updateUsername('')
-    props.userLoggedIn()
+    props.toggleLoggedIn()
     
   }, [props]);
 
