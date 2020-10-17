@@ -48,7 +48,6 @@ class App extends React.Component {
   renderBreathingTechs = () => {
     const user = JSON.parse(localStorage.getItem('user'))
 
-    // if (!user || '/signup' || '/login') {
     if (user && '/profile') {
       fetch(API_BREATHING_TECHS, {
       method: 'GET',

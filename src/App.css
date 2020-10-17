@@ -294,6 +294,11 @@ li {
   padding-bottom: 6%;
 }
 
+.profile-welcome {
+  margin-top: -40%;
+  margin-left: .7%;
+}
+
 .signup-link{
   margin-top: 3%;
   color: rgb(37, 48, 107);

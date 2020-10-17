@@ -27,10 +27,12 @@ class Profile extends React.Component {
 
         return (
             <>
-            {this.props.username ? <h3>Welcome, {this.props.username}!</h3> : null}
-            <p>calendar goes here</p>
-            <p>insert scheduled times</p>
-            <p>ability to create, update, or delete BT reminder</p>
+            <div className='profile-welcome'>
+                {this.props.username ? <h3>Welcome, {this.props.username}!</h3> : null}
+                {/* calendar goes here
+                insert scheduled times
+                ability to create, update, or delete BT reminder */}
+            </div>
                
             </>
         )
