@@ -37,7 +37,7 @@ class Profile extends React.Component {
                 ability to create, update, or delete BT reminder */}
             </div>
 
-            <div>
+            <div id='full-calendar'>
                 <FullCalendar
                 
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -50,9 +50,9 @@ class Profile extends React.Component {
                 editable={true}
                 selectMirror={true}
                 dayMaxEvents={true}
-                aspectRatio= {1}
-                height={880}
-                eventClick={this.joinEvent}
+                aspectRatio= {6}
+                height={600}
+
                 />  
             </div>    
                

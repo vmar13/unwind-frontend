@@ -215,6 +215,12 @@ body {
   width: 84%;
 } 
 
+#full-calendar {
+  width: 70%;
+  margin-top: -8%;
+  margin-left: 25%;
+}
+
 input[type=text], input[type=password] {
   width: 87%;
   margin: 2% 0 1.5% 0;
