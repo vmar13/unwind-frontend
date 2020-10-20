@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router'
 
-const Logout = (props) => {
 
-  useEffect(() => {
-    localStorage.clear()
-    props.updateUsername('')
-    props.toggleLoggedIn()
-    
-  }, [props]);
+
+const Logout = ({ clearUser, loggedIn }) => {
+
 
   return (
     <>
-      {props.loggedIn ? <Redirect to='/login' /> : null}
+        {clearUser()}
+        {loggedIn ? <Redirect to='/login' /> : null}
     </>
   )
 }

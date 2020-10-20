@@ -45,6 +45,12 @@ class App extends React.Component {
     this.setState({loggedIn: !this.state.loggedIn})
   }
 
+  clearUser = () => {
+    localStorage.clear()
+    this.updateUsername('')
+    this.toggleLoggedIn()
+}
+
   renderBreathingTechs = () => {
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -80,7 +86,7 @@ render () {
       breathingTechs={this.state.breathingTechs}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
+      <Route path='/logout' render={ () => <Logout updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} clearUser={this.clearUser}/>} />
       <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs}/>} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />

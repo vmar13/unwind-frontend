@@ -58,7 +58,6 @@ class SignUp extends React.Component {
             <div id='login-form-container'>
                 <form id='login-form' onSubmit={this.handleSubmit}>
                     <label className='form-title'>Sign Up</label><br/>
-                    <p>{this.state.hasError ? 'There was an error creating your account.' : null}</p>
                     <input type='text' name='username' value={username} onChange={this.handleChange} placeholder='Username'/><br/>
                     <input type='password' name='password'value={password} onChange={this.handleChange} placeholder='Password'/><br/>
                     <input type='submit' value='Sign Up'/><br/><br/>
