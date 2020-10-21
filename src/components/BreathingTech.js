@@ -6,7 +6,8 @@ const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`
 class BreathingTech extends React.Component {
 
     state = {
-        breathingTech: {}
+        breathingTech: {},
+        favorited: false
     }
 
     getOneBreathingTech = () => {
@@ -24,20 +25,26 @@ class BreathingTech extends React.Component {
         })
     }
 
-//will need user_id and breathing_tech_id for POST to favorites
     createFavoriteBT = () => {
         const user = JSON.parse(localStorage.getItem('user'))
-        const newFav = //add favObj here
 
         fetch(API_FAVORITES, {
             method: 'POST',
-            headers: {Authorization: `Bearer ${user.token}`},
-            body: JSON.stringify({})
+            headers: {
+                'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                    user_id: user.id,
+                    breathing_technique_id: this.state.breathingTech.id
+            })
         })
         .then(res => res.json())
         .then(data => {
             console.log(data)
         })
+    }
+
+    toggleFavorited = () => {
+        this.setState({ favorited: !this.state.favorited })
     }
 
     componentDidMount(){
@@ -59,7 +66,6 @@ class BreathingTech extends React.Component {
         return(
         <>
          
-
             <div className='breathing-tech-container'>
                 {name === 'Alternate Nostril Breathing' ? [<p className='anim-split-left' key='1'>alt nost animation</p>, <p className='anim-split-right' key='2'>alt nost animation2</p>] : null}
                 {name === 'Ujjayi' ? [<div className='anim-fog-div' key='3'>,<div className='anim-fog' key='4'>ujjayi animation</div>,</div>] : null}
@@ -68,7 +74,11 @@ class BreathingTech extends React.Component {
                 {name === 'Humming Bee' ? <p className='anim-circle'>humming bee animation</p> : null}
                 {name === 'Pursed Lip' ? <p className='anim-circle'>pursed lip animation</p> : null}
 
-                <h2>{name}</h2>
+                <h2>{name} <button onClick={() => {
+                    this.createFavoriteBT()
+                    this.toggleFavorited() }}
+                    className='favorite-btn'>{this.state.favorited ? '💙' : '♡'}</button></h2>
+
                 <ul className='bt-instructions'>
                     <li>{step_one}</li>
                     <li>{step_two}</li>
