@@ -1,12 +1,12 @@
 import React from 'react'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`
 
 class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {}
-        // breathingTechs: []
     }
 
     getOneBreathingTech = () => {
@@ -24,20 +24,24 @@ class BreathingTech extends React.Component {
         })
     }
 
-    // renderBreathingTechs = () => {
-    //     const user = JSON.parse(localStorage.getItem('user'))
-    //     fetch(API_BREATHING_TECHS, {
-    //         method: 'GET',
-    //         headers: {Authorization: `Bearer ${user.token}`}})
-    //     .then(res => res.json())
-    //     .then(breathing_techs => {
-    //       this.setState({ breathingTechs: breathing_techs })
-    //     })
-    // }
+//will need user_id and breathing_tech_id for POST to favorites
+    createFavoriteBT = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        const newFav = //add favObj here
+
+        fetch(API_FAVORITES, {
+            method: 'POST',
+            headers: {Authorization: `Bearer ${user.token}`},
+            body: JSON.stringify({})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
 
     componentDidMount(){
        this.getOneBreathingTech()
-    //    this.renderBreathingTechs()
     }
 
     componentDidUpdate(prevProps) {
@@ -50,7 +54,8 @@ class BreathingTech extends React.Component {
         // console.log(this.state.breathingTech)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
-
+       
+        //will add onClick for createFavoriteBT below 
         return(
         <>
          
