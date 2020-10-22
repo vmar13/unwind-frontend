@@ -4,10 +4,12 @@ const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`
 
 class BreathingTech extends React.Component {
+    _isMounted = false
 
     state = {
         breathingTech: {},
-        favorited: false
+        favorited: false,
+        isLoading: true
     }
 
     getOneBreathingTech = () => {
@@ -19,9 +21,12 @@ class BreathingTech extends React.Component {
         })
         .then(res => res.json())
         .then(data => {
-            this.setState({
-                breathingTech: data
+            if(this._isMounted){
+                this.setState({
+                breathingTech: data,
+                isLoading: false
             })
+            }    
         })
     }
 
@@ -49,6 +54,7 @@ class BreathingTech extends React.Component {
 
     componentDidMount(){
        this.getOneBreathingTech()
+       this._isMounted = true 
     }
 
     componentDidUpdate(prevProps) {
@@ -57,12 +63,15 @@ class BreathingTech extends React.Component {
       }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false
+    }
+
     render() {
         // console.log(this.state.breathingTech)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
        
-        //will add onClick for createFavoriteBT below 
         return(
         <>
          

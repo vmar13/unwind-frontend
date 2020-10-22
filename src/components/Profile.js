@@ -16,14 +16,14 @@ class Profile extends React.Component {
 
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    if (user) {
-      fetch(API_PROFILE, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`}})
-        .then(res => res.json())
-        .then(data => console.log(data))
+        if (user) {
+        fetch(API_PROFILE, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}})
+            .then(res => res.json())
+            .then(data => console.log(data))
+        }
     }
-  }
   
 
     render() {

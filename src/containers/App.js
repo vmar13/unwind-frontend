@@ -69,7 +69,6 @@ class App extends React.Component {
   
   
 render () {
-  // console.log(localStorage)
   return (
     <>
     <div className='logo-name'>
@@ -83,7 +82,6 @@ render () {
         const breathingTechId = parseInt(routeProps.match.params.id)
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId} 
-      breathingTechs={this.state.breathingTechs}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser}/>} />
