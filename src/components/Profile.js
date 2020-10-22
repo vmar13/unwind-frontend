@@ -6,6 +6,8 @@ import interactionPlugin from '@fullcalendar/interaction'
 
 const API_PROFILE = `http://localhost:3000/api/v1/profile`
 const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
+const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
+
 
 
 class Profile extends React.Component {
@@ -14,6 +16,7 @@ class Profile extends React.Component {
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
+        this.getFavorites()
     }
 
     renderUserProfile = () => {
@@ -25,6 +28,19 @@ class Profile extends React.Component {
             .then(res => res.json())
             .then(data => console.log(data))
         }
+    }
+
+    getFavorites = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        fetch(API_FAVORITES, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+        })
+        .then(res => res.json())
+        .then(allFavs => {
+            console.log(allFavs)
+        })
     }
 
     createPracticeTime = () => {
