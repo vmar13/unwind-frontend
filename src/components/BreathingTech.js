@@ -9,6 +9,7 @@ class BreathingTech extends React.Component {
     state = {
         breathingTech: {},
         favorited: false,
+        allFavorites: [],
         isLoading: true
     }
 
@@ -37,7 +38,8 @@ class BreathingTech extends React.Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`},
+                Authorization: `Bearer ${user.token}`
+            },
             body: JSON.stringify({
                 favorite: { 
                     user_id: user.id,
@@ -49,6 +51,23 @@ class BreathingTech extends React.Component {
         .then(data => {
             console.log(data)
         })
+    }
+
+    //need blue heart to persist until i 'unfavorite' it
+    //also do i need to fetch all favorites in order to later delete one??
+    unfavoriteBT = (id) => {
+        if(this.state.favorited){
+            const user = JSON.parse(localStorage.getItem('user'))
+
+            fetch(`${API_FAVORITES}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                }
+            })
+            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
+        }
     }
 
     toggleFavorited = () => {
@@ -91,7 +110,8 @@ class BreathingTech extends React.Component {
 
                 <h2>{name} <button onClick={() => {
                     this.createFavoriteBT()
-                    this.toggleFavorited() }}
+                    this.toggleFavorited() 
+                    this.unfavoriteBT() }}
                     className='favorite-btn'>{this.state.favorited ? '💙' : '♡'}</button></h2>
 
                 <ul className='bt-instructions'>
