@@ -5,6 +5,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
 const API_PROFILE = `http://localhost:3000/api/v1/profile`
+const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
+
 
 class Profile extends React.Component {
 
@@ -24,6 +26,24 @@ class Profile extends React.Component {
             .then(data => console.log(data))
         }
     }
+
+    createPracticeTime = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        let practiceTime = {
+            favorite_id: null,
+            date: null, 
+            time: null
+        }
+
+        fetch(API_PRACTICE_TIMES, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            },
+            body: JSON.stringify({ practiceTime })
+        })
+    }
   
 
     render() {
@@ -32,9 +52,7 @@ class Profile extends React.Component {
             <>
             <div className='profile-welcome'>
                 {this.props.username ? <h3>Welcome, {this.props.username}!</h3> : null}
-                {/* calendar goes here
-                insert scheduled times
-                ability to create, update, or delete BT reminder */}
+                {/* ability to create, update, or delete BT reminder */}
             </div>
 
             <div id='full-calendar'>
