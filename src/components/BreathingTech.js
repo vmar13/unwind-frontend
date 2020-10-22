@@ -36,10 +36,13 @@ class BreathingTech extends React.Component {
         fetch(API_FAVORITES, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'},
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`},
             body: JSON.stringify({
+                favorite: { 
                     user_id: user.id,
                     breathing_technique_id: this.state.breathingTech.id
+                }      
             })
         })
         .then(res => res.json())
