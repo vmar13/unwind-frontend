@@ -16,7 +16,8 @@ class App extends React.Component {
   state = {
     username: '',
     loggedIn: false,
-    breathingTechs: []
+    breathingTechs: [],
+    onBTcomp: false
   }
 
   componentDidMount() {
@@ -75,7 +76,9 @@ render () {
       Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-    {this.state.loggedIn ? [<Redirect to='/profile' key='1'/>, <NavBar breathingTechs={this.state.breathingTechs} key='2'/>] : null}
+    {/* {this.state.loggedIn ? [<Redirect to='/profile' key='1'/>, <NavBar breathingTechs={this.state.breathingTechs} key='2'/>] : null} */}
+    {this.state.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
+
 
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {

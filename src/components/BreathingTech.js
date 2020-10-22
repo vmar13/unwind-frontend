@@ -20,10 +20,10 @@ class BreathingTech extends React.Component {
             headers: {Authorization: `Bearer ${user.token}`}
         })
         .then(res => res.json())
-        .then(data => {
+        .then(breathingTechObj => {
             if(this._isMounted){
                 this.setState({
-                breathingTech: data,
+                breathingTech: breathingTechObj,
                 isLoading: false
             })
             }    
@@ -53,13 +53,16 @@ class BreathingTech extends React.Component {
     }
 
     componentDidMount(){
-       this.getOneBreathingTech()
        this._isMounted = true 
+       this.getOneBreathingTech()
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
+        this._isMounted = true
+      } else {
+          return
       }
     }
 
