@@ -67,7 +67,7 @@ class Profile extends React.Component {
         return (
             <>
             <div className='profile-welcome'>
-                {this.props.username ? <h3>Welcome, {this.props.username}!</h3> : null}
+                {this.props.username ? <h3 className='welcome-user'>Welcome, {this.props.username}!</h3> : null}
                 {/* ability to create, update, or delete BT reminder */}
             </div>
 

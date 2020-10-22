@@ -31,6 +31,8 @@ class BreathingTech extends React.Component {
         })
     }
 
+    //will need to add column to favorites table for 'name', so 
+    //we can display BT's name on profile pg
     createFavoriteBT = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
