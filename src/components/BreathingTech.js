@@ -34,25 +34,27 @@ class BreathingTech extends React.Component {
     //will need to add column to favorites table for 'name', so 
     //we can display BT's name on profile pg
     createFavoriteBT = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
+        if(!this.state.favorited){
+            const user = JSON.parse(localStorage.getItem('user'))
 
-        fetch(API_FAVORITES, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
-            },
-            body: JSON.stringify({
-                favorite: { 
-                    user_id: user.id,
-                    breathing_technique_id: this.state.breathingTech.id
-                }      
+            fetch(API_FAVORITES, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                },
+                body: JSON.stringify({
+                    favorite: { 
+                        user_id: user.id,
+                        breathing_technique_id: this.state.breathingTech.id
+                    }      
+                })
             })
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        }
     }
 
     //need blue heart to persist until i 'unfavorite' it

@@ -43,6 +43,10 @@ class Profile extends React.Component {
         })
     }
 
+    //after fetching allFavs and updating empty [], 
+    //need to display all names in a dropdown menu to create
+    //practice times on calendar
+
     createPracticeTime = () => {
         const user = JSON.parse(localStorage.getItem('user'))
         let practiceTime = {

@@ -16,8 +16,7 @@ class App extends React.Component {
   state = {
     username: '',
     loggedIn: false,
-    breathingTechs: [],
-    onBTcomp: false
+    breathingTechs: []
   }
 
   componentDidMount() {
