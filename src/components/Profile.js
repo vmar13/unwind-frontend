@@ -12,6 +12,9 @@ const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 
 class Profile extends React.Component {
 
+    state = {
+        allFavs: []
+    }
 
     componentDidMount() {
         this.renderUserProfile()
@@ -40,6 +43,7 @@ class Profile extends React.Component {
         .then(res => res.json())
         .then(allFavs => {
             console.log(allFavs)
+            this.setState({ allFavs: allFavs })
         })
     }
 
@@ -93,6 +97,8 @@ class Profile extends React.Component {
 
                 />  
             </div>    
+                {/* can't do this yet--need to add name column to favorites table on backend */}
+            {/* {this.state.allFavs.map(ele => ele.breathingTech)} */}
                
             </>
         )
