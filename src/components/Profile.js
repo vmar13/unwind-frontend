@@ -33,6 +33,8 @@ class Profile extends React.Component {
         }
     }
 
+    //tweak so it's only fetching favs for that specific user who's signed in
+    //after .then, filter for allfavs that match the user.id
     getFavorites = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
@@ -42,8 +44,9 @@ class Profile extends React.Component {
         })
         .then(res => res.json())
         .then(allFavsData => {
-            this.setState({ allFavs: allFavsData })
-            console.log(this.state.allFavs)
+            let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
+            this.setState({ allFavs: userFavs })
+            // console.log(this.state.allFavs)
         })
     }
 
@@ -71,7 +74,7 @@ class Profile extends React.Component {
   
 
     render() {
-        console.log(this.state.allFavs)
+        // console.log(this.state.allFavs)
 
         return (
             <>
