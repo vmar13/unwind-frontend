@@ -31,8 +31,6 @@ class BreathingTech extends React.Component {
         })
     }
 
-    //will need to add column to favorites table for 'name', so 
-    //we can display BT's name on profile pg
     createFavoriteBT = () => {
         if(!this.state.favorited){
             const user = JSON.parse(localStorage.getItem('user'))
@@ -46,7 +44,8 @@ class BreathingTech extends React.Component {
                 body: JSON.stringify({
                     favorite: { 
                         user_id: user.id,
-                        breathing_technique_id: this.state.breathingTech.id
+                        breathing_technique_id: this.state.breathingTech.id,
+                        name: this.state.breathingTech.name 
                     }      
                 })
             })
@@ -97,7 +96,7 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        // console.log(this.state.breathingTech)
+        // console.log(this.state.breathingTech.name)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
        

@@ -41,9 +41,9 @@ class Profile extends React.Component {
             headers: {Authorization: `Bearer ${user.token}`}
         })
         .then(res => res.json())
-        .then(allFavs => {
-            console.log(allFavs)
-            this.setState({ allFavs: allFavs })
+        .then(allFavsData => {
+            this.setState({ allFavs: allFavsData })
+            console.log(this.state.allFavs)
         })
     }
 
@@ -71,6 +71,7 @@ class Profile extends React.Component {
   
 
     render() {
+        console.log(this.state.allFavs)
 
         return (
             <>
@@ -98,7 +99,7 @@ class Profile extends React.Component {
                 />  
             </div>    
                 {/* can't do this yet--need to add name column to favorites table on backend */}
-            {/* {this.state.allFavs.map(ele => ele.breathingTech)} */}
+            {/* {this.state.allFavs.map(fav => fav.name)} */}
                
             </>
         )
