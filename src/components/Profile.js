@@ -34,7 +34,7 @@ class Profile extends React.Component {
     }
 
     //tweak so it's only fetching favs for that specific user who's signed in
-    //after .then, filter for allfavs that match the user.id
+    //after .then, filter for allfavs that match the user id
     getFavorites = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
@@ -51,7 +51,7 @@ class Profile extends React.Component {
     }
 
     //after fetching allFavs and updating empty [], 
-    //need to display all names in a dropdown menu to create
+    //need to display all fav names in a dropdown menu to create
     //practice times on calendar
 
     createPracticeTime = () => {
@@ -75,6 +75,8 @@ class Profile extends React.Component {
 
     render() {
         // console.log(this.state.allFavs)
+        let options = this.state.allFavs.map( fav => 
+            <option key={fav.id} value={fav.id}>{fav.name}</option> )
 
         return (
             <>
@@ -82,6 +84,11 @@ class Profile extends React.Component {
                 {this.props.username ? <h3 className='welcome-user'>Welcome, {this.props.username}!</h3> : null}
                 {/* ability to create, update, or delete BT reminder */}
             </div>
+
+            <select className="#" >
+                <option value='' className='#'>Favorites</option>
+                {options}
+           </select>
 
             <div id='full-calendar'>
                 <FullCalendar
