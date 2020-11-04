@@ -13,7 +13,8 @@ const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 class Profile extends React.Component {
 
     state = {
-        allFavs: []
+        allFavs: [],
+        favObj: {}
     }
 
     componentDidMount() {
@@ -54,6 +55,20 @@ class Profile extends React.Component {
     //need to display all fav names in a dropdown menu to create
     //practice times on calendar
 
+    //on select, need to find fav from allFavs array in state; no need to re-fetch
+    //all you need is the name
+    handleSelectChange = event => {
+        if(event.target.value === ''){
+            return null
+        }  
+        
+        fetch(`${API_FAVORITES}/${event.target.value}`)  
+        .then(res => res.json())
+        .then(favorite => {
+            this.setState({ favObj: favorite })
+        })  
+    }
+
     createPracticeTime = () => {
         const user = JSON.parse(localStorage.getItem('user'))
         let practiceTime = {
@@ -85,7 +100,7 @@ class Profile extends React.Component {
                 {/* ability to create, update, or delete BT reminder */}
             </div>
 
-            <select className="#" >
+            <select className="#" onChange={this.handleSelectChange}>
                 <option value='' className='#'>Favorites</option>
                 {options}
            </select>
