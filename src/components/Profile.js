@@ -55,18 +55,17 @@ class Profile extends React.Component {
     //need to display all fav names in a dropdown menu to create
     //practice times on calendar
 
-    //on select, need to find fav from allFavs array in state; no need to re-fetch
+    //on select, need to find specific fav from allFavs array in state; no need to re-fetch
     //all you need is the name
     handleSelectChange = event => {
         if(event.target.value === ''){
-            return null
+            return null 
         }  
-        
         fetch(`${API_FAVORITES}/${event.target.value}`)  
         .then(res => res.json())
         .then(favorite => {
             this.setState({ favObj: favorite })
-        })  
+        })   
     }
 
     createPracticeTime = () => {
@@ -92,7 +91,7 @@ class Profile extends React.Component {
         // console.log(this.state.allFavs)
         let options = this.state.allFavs.map( fav => 
             <option key={fav.id} value={fav.id}>{fav.name}</option> )
-
+        console.log(options)
         return (
             <>
             <div className='profile-welcome'>
@@ -104,6 +103,7 @@ class Profile extends React.Component {
                 <option value='' className='#'>Favorites</option>
                 {options}
            </select>
+       
 
             <div id='full-calendar'>
                 <FullCalendar
@@ -123,8 +123,6 @@ class Profile extends React.Component {
 
                 />  
             </div>    
-                {/* can't do this yet--need to add name column to favorites table on backend */}
-            {/* {this.state.allFavs.map(fav => fav.name)} */}
                
             </>
         )
