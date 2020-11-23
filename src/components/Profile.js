@@ -1,4 +1,5 @@
 import React from 'react'
+import Dropdown from '../components/Dropdown'
 import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -89,9 +90,7 @@ class Profile extends React.Component {
 
     render() {
         // console.log(this.state.allFavs)
-        let options = this.state.allFavs.map( fav => 
-            <option key={fav.id} value={fav.id}>{fav.name}</option> )
-        console.log(options)
+       
         return (
             <>
             <div className='profile-welcome'>
@@ -99,10 +98,7 @@ class Profile extends React.Component {
                 {/* ability to create, update, or delete BT reminder */}
             </div>
 
-            <select className="#" onChange={this.handleSelectChange}>
-                <option value='' className='#'>Favorites</option>
-                {options}
-           </select>
+            <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
        
 
             <div id='full-calendar'>

@@ -19,10 +19,6 @@ class App extends React.Component {
     breathingTechs: []
   }
 
-  reverseInt = num => {
-    return parseInt(num.toString().split('').reverse().join(''))
-  }
-
   componentDidMount() {
     this.stayLoggedIn()
     this.renderBreathingTechs()
