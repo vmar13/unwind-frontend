@@ -72,6 +72,10 @@ class Profile extends React.Component {
     handleDateClick = (info) => {
         console.log(info.dateStr)
     }
+
+    handleSelection = info => {        
+        console.log('selected ' + info.startStr + ' to ' + info.endStr)
+    }
     //Need to be able to select a day on calendar and 
     //create practice time
     createPracticeTime = () => {
@@ -112,13 +116,14 @@ class Profile extends React.Component {
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 dateClick={this.handleDateClick}
+                select={this.handleSelection}
                 headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 }}
                 editable={true}
-                selectMirror={true}
+                selectable={true}
                 dayMaxEvents={true}
                 aspectRatio= {6}
                 height={600}
