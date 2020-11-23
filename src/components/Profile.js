@@ -69,8 +69,8 @@ class Profile extends React.Component {
         })   
     }
 
-    handleDateClick = () => {
-        console.log("date")
+    handleDateClick = (info) => {
+        console.log(info.dateStr)
     }
     //Need to be able to select a day on calendar and 
     //create practice time
