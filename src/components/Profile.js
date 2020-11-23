@@ -69,6 +69,11 @@ class Profile extends React.Component {
         })   
     }
 
+    handleDateClick = () => {
+        console.log("date")
+    }
+    //Need to be able to select a day on calendar and 
+    //create practice time
     createPracticeTime = () => {
         const user = JSON.parse(localStorage.getItem('user'))
         let practiceTime = {
@@ -106,6 +111,7 @@ class Profile extends React.Component {
                 
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
+                dateClick={this.handleDateClick}
                 headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
