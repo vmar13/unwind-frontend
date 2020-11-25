@@ -69,11 +69,11 @@ class Profile extends React.Component {
         })   
     }
 
-    handleDateClick = (info) => {
+    handleDateClick = info => {
         console.log(info.dateStr)
     }
 
-    handleSelection = info => {        
+    handleTimeSelection = info => {        
         console.log('selected ' + info.startStr + ' to ' + info.endStr)
     }
     //Need to be able to select a day on calendar and 
@@ -106,7 +106,7 @@ class Profile extends React.Component {
                 {this.props.username ? <h3 className='welcome-user'>Welcome, {this.props.username}!</h3> : null}
                 {/* ability to create, update, or delete BT reminder */}
             </div>
-
+            {/* <p>Schedule a time to practice your favorite breathing techniques.</p> */}
             <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
        
 
@@ -116,7 +116,7 @@ class Profile extends React.Component {
                 plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 dateClick={this.handleDateClick}
-                select={this.handleSelection}
+                select={this.handleTimeSelection}
                 headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',

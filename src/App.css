@@ -301,8 +301,11 @@ li {
 }
 
 .profile-welcome {
-  margin-top: -40%;
-  margin-left: .7%;
+  /* margin-top: -40%;
+  margin-left: .7%; */
+  position: absolute;
+  margin-top: -50%;
+  margin-left: 85%;
 }
 
 .signup-link{
