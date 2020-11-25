@@ -216,8 +216,9 @@ body {
 } 
 
 #full-calendar {
+  position: absolute;
   width: 70%;
-  margin-top: -8%;
+  margin-top: -45%;
   margin-left: 25%;
 }
 
