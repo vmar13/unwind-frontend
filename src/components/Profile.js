@@ -110,14 +110,9 @@ class Profile extends React.Component {
     //Need to be able to select a day on calendar and prompt appears
     //that asks for time and has dropdown menu to select favorite BT
 
-    createPracticeTime = () => {
+    createPracticeTime = (e) => {
+        e.preventDefault()
         const user = JSON.parse(localStorage.getItem('user'))
-        let practiceTime = {
-            title: this.state.favObj.name,
-            favorite_id: this.state.favObj.id,
-            start: this.state.start, 
-            end: this.state.end
-        }
 
         fetch(API_PRACTICE_TIMES, {
             method: 'POST',
@@ -125,7 +120,12 @@ class Profile extends React.Component {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${user.token}`
             },
-            body: JSON.stringify({ practiceTime })
+            body: JSON.stringify({ 
+                title: this.state.favObj.name,
+                favorite_id: this.state.favObj.id,
+                start: this.state.start, 
+                end: this.state.end
+             })
         })
     }
   
