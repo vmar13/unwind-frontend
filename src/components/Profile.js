@@ -18,7 +18,8 @@ class Profile extends React.Component {
         allFavs: [],
         favObj: {},
         start: '',
-        end: ''
+        end: '',
+        filledIn: false
     }
 
     componentDidMount() {
@@ -83,9 +84,16 @@ class Profile extends React.Component {
         // let eventEnd = e.endStr.slice(0,-6)
         this.setState({ 
             start: info.startStr,
-            end: info.endStr
+            end: info.endStr,
+            filledIn: true
         })
     }
+
+    toggleFilledIn = () => {
+        this.setState({ filledIn: !this.state.filledIn })
+    }
+
+    //NOW -- fill out HTML that displays on condition of filledIn = true
     //Need to be able to select a day on calendar and prompt appears
     //that asks for time and has dropdown menu to select favorite BT
 
@@ -117,6 +125,7 @@ class Profile extends React.Component {
         console.log(this.state.start)
         console.log(this.state.end)
 
+        const { start, end, filledIn } = this.state
        
         return (
             <>
@@ -125,8 +134,15 @@ class Profile extends React.Component {
                 {/* ability to create, update, or delete BT reminder */}
             </div>
             {/* <p>Schedule a time to practice your favorite breathing techniques.</p> */}
-            <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
        
+            {filledIn === true ? 
+            <div id='calendar-form'>
+                <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,start.length)}  to  {end.slice(0,10)} at {end.slice(11, end.length)} </h4>
+                <h1>Choose a breathing technique to practice:</h1>
+                <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
+                <button onClick={'#'}>Submit</button>
+            </div>
+            : null}
 
             <div id='full-calendar'>
                 <FullCalendar
