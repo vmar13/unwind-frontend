@@ -19,13 +19,15 @@ class Profile extends React.Component {
         favObj: {},
         start: '',
         end: '',
-        filledIn: false
+        filledIn: false,
+        practiceTimes: []
     }
 
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getFavorites()
+        // this.getPracticeTimes()
     }
 
     renderUserProfile = () => {
@@ -56,6 +58,20 @@ class Profile extends React.Component {
         })
     }
 
+    getPracticeTimes = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        fetch(API_PRACTICE_TIMES, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+        })
+        .then(res => res.json())
+        .then(practiceTimesData => {
+            this.setState({ practiceTimes: practiceTimesData })
+            console.log(this.state.practiceTimes)
+        })
+    }
+
     //after fetching allFavs and updating empty [], 
     //need to display all fav names in a dropdown menu to create
     //practice times on calendar
@@ -79,9 +95,6 @@ class Profile extends React.Component {
 
     //---This time selection func needs to trigger a modal with form
     handleTimeSelection = (info) => {        
-        // console.log('selected ' + info.startStr + ' to ' + info.endStr)
-        // let eventStart = e.startStr
-        // let eventEnd = e.endStr.slice(0,-6)
         this.setState({ 
             start: info.startStr,
             end: info.endStr,
@@ -97,33 +110,30 @@ class Profile extends React.Component {
     //Need to be able to select a day on calendar and prompt appears
     //that asks for time and has dropdown menu to select favorite BT
 
-    // createPracticeTime = () => {
-        // handleDateClick = info => {
-        //     //modal pops up with form, fill out form, submit btn invokes createPracTime function
-        // }
+    createPracticeTime = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        let practiceTime = {
+            title: this.state.favObj.name,
+            favorite_id: this.state.favObj.id,
+            start: this.state.start, 
+            end: this.state.end
+        }
 
-    // handleDateClick = info => {
-    //     const user = JSON.parse(localStorage.getItem('user'))
-    //     let practiceTime = {
-    //         favorite_id: null,
-    //         date: info.dateStr, 
-    //         time: null
-    // }
-
-    //     fetch(API_PRACTICE_TIMES, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             Authorization: `Bearer ${user.token}`
-    //         },
-    //         body: JSON.stringify({ practiceTime })
-    //     })
-    // }
+        fetch(API_PRACTICE_TIMES, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.token}`
+            },
+            body: JSON.stringify({ practiceTime })
+        })
+    }
   
+    //Then fetch all practice_times, update state, and display in events in fullCalendar
 
     render() {
-        console.log(this.state.start)
-        console.log(this.state.end)
+        // console.log(this.state.start)
+        // console.log(this.state.end)
 
         const { start, end, filledIn } = this.state
        
@@ -140,8 +150,8 @@ class Profile extends React.Component {
                 <div id='calendar-inner-form'>
                     <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,16)}  to  {end.slice(0,10)} at {end.slice(11,16)} </h4>
                     <h4>Choose a breathing technique to practice:</h4>
-                    <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
-                    <button onClick={'#'}>Submit</button>
+                    <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/><br />
+                    <button id='cal-btn' onClick={this.createPracticeTime}>Submit</button>
                 </div>
             </div>
             : null}

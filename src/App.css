@@ -175,6 +175,10 @@ body {
   height: 140px;
 }
 
+#cal-btn {
+  margin-top: 5%;
+}
+
 #calendar-form {
   background-color: rgb(199, 230, 220);
   position: absolute;
