@@ -9,7 +9,8 @@ const API_PROFILE = `http://localhost:3000/api/v1/profile`
 const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
 const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 
-
+//Will need to fetch practice_times (events) in order to display 
+//on fullCalendar
 
 class Profile extends React.Component {
 
@@ -75,40 +76,41 @@ class Profile extends React.Component {
     //     console.log(info.dateStr)
     // }
 
-    handleTimeSelection = (e) => {        
+    //---This time selection func needs to trigger a modal with form
+    handleTimeSelection = (info) => {        
         // console.log('selected ' + info.startStr + ' to ' + info.endStr)
-        let eventStart = e.startStr
-        let eventEnd = e.endStr.slice(0,-6)
+        // let eventStart = e.startStr
+        // let eventEnd = e.endStr.slice(0,-6)
         this.setState({ 
-            start: eventStart,
-            end: eventEnd
+            start: info.startStr,
+            end: info.endStr
         })
     }
     //Need to be able to select a day on calendar and prompt appears
     //that asks for time and has dropdown menu to select favorite BT
 
     // createPracticeTime = () => {
-        handleDateClick = info => {
-            //modal pops up with form, fill out form, submit btn invokes createPracTime function
-        }
+        // handleDateClick = info => {
+        //     //modal pops up with form, fill out form, submit btn invokes createPracTime function
+        // }
 
-    handleDateClick = info => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        let practiceTime = {
-            favorite_id: null,
-            date: info.dateStr, 
-            time: null
-        }
+    // handleDateClick = info => {
+    //     const user = JSON.parse(localStorage.getItem('user'))
+    //     let practiceTime = {
+    //         favorite_id: null,
+    //         date: info.dateStr, 
+    //         time: null
+    // }
 
-        fetch(API_PRACTICE_TIMES, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`
-            },
-            body: JSON.stringify({ practiceTime })
-        })
-    }
+    //     fetch(API_PRACTICE_TIMES, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${user.token}`
+    //         },
+    //         body: JSON.stringify({ practiceTime })
+    //     })
+    // }
   
 
     render() {
@@ -135,8 +137,8 @@ class Profile extends React.Component {
                 select={this.handleTimeSelection}
                 eventBackgroundColor={'#FF4500'}
                 headerToolbar={{
-                left: 'prev,next today',
-                center: 'title',
+                left: 'prev,next addEventButton',
+                center: 'title', 
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 }}
                 editable={true}
@@ -144,14 +146,9 @@ class Profile extends React.Component {
                 dayMaxEvents={true}
                 aspectRatio= {6}
                 height={600}
-                // customButtons={
-                //     addEventButton={
-                //         text: 'Add Event',
-                //         click: function(){
-
-                //         }
-                //     }
-                //     }
+                events={[
+                    { title: 'Ujjayi', date: '2020-11-28', time: '7:00:00'}
+                ]}
 
                 />  
             </div>    
