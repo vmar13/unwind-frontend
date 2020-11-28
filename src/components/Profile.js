@@ -122,7 +122,7 @@ class Profile extends React.Component {
             },
             body: JSON.stringify({ 
                 title: this.state.favObj.name,
-                favorite_id: this.state.favObj.id,
+                user_id: user.id,
                 start: this.state.start, 
                 end: this.state.end
              })
