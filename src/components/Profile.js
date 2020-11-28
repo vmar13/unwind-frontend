@@ -137,10 +137,12 @@ class Profile extends React.Component {
        
             {filledIn === true ? 
             <div id='calendar-form'>
-                <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,start.length)}  to  {end.slice(0,10)} at {end.slice(11, end.length)} </h4>
-                <h1>Choose a breathing technique to practice:</h1>
-                <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
-                <button onClick={'#'}>Submit</button>
+                <div id='calendar-inner-form'>
+                    <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,16)}  to  {end.slice(0,10)} at {end.slice(11,16)} </h4>
+                    <h4>Choose a breathing technique to practice:</h4>
+                    <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/>
+                    <button onClick={'#'}>Submit</button>
+                </div>
             </div>
             : null}
 

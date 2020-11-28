@@ -175,6 +175,24 @@ body {
   height: 140px;
 }
 
+#calendar-form {
+  background-color: rgb(199, 230, 220);
+  position: absolute;
+  width: 70%;
+  height: 85%;
+  margin-top: -45.5%;
+  margin-left: 25%;
+  z-index: 999;
+}
+
+#calendar-inner-form {
+  background-color: yellow;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  width: 60%;
+}
 .error-message {
   color: red;
   margin: 0% 2% 0 8%;
