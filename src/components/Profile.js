@@ -15,7 +15,9 @@ class Profile extends React.Component {
 
     state = {
         allFavs: [],
-        favObj: {}
+        favObj: {},
+        start: '',
+        end: ''
     }
 
     componentDidMount() {
@@ -69,20 +71,32 @@ class Profile extends React.Component {
         })   
     }
 
-    handleDateClick = info => {
-        console.log(info.dateStr)
-    }
+    // handleDateClick = info => {
+    //     console.log(info.dateStr)
+    // }
 
-    handleTimeSelection = info => {        
-        console.log('selected ' + info.startStr + ' to ' + info.endStr)
+    handleTimeSelection = (e) => {        
+        // console.log('selected ' + info.startStr + ' to ' + info.endStr)
+        let eventStart = e.startStr
+        let eventEnd = e.endStr.slice(0,-6)
+        this.setState({ 
+            start: eventStart,
+            end: eventEnd
+        })
     }
-    //Need to be able to select a day on calendar and 
-    //create practice time
-    createPracticeTime = () => {
+    //Need to be able to select a day on calendar and prompt appears
+    //that asks for time and has dropdown menu to select favorite BT
+
+    // createPracticeTime = () => {
+        handleDateClick = info => {
+            //modal pops up with form, fill out form, submit btn invokes createPracTime function
+        }
+
+    handleDateClick = info => {
         const user = JSON.parse(localStorage.getItem('user'))
         let practiceTime = {
             favorite_id: null,
-            date: null, 
+            date: info.dateStr, 
             time: null
         }
 
@@ -98,7 +112,9 @@ class Profile extends React.Component {
   
 
     render() {
-        // console.log(this.state.allFavs)
+        console.log(this.state.start)
+        console.log(this.state.end)
+
        
         return (
             <>
@@ -113,10 +129,11 @@ class Profile extends React.Component {
             <div id='full-calendar'>
                 <FullCalendar
                 
-                plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 dateClick={this.handleDateClick}
                 select={this.handleTimeSelection}
+                eventBackgroundColor={'#FF4500'}
                 headerToolbar={{
                 left: 'prev,next today',
                 center: 'title',
@@ -127,6 +144,14 @@ class Profile extends React.Component {
                 dayMaxEvents={true}
                 aspectRatio= {6}
                 height={600}
+                // customButtons={
+                //     addEventButton={
+                //         text: 'Add Event',
+                //         click: function(){
+
+                //         }
+                //     }
+                //     }
 
                 />  
             </div>    
