@@ -27,7 +27,7 @@ class Profile extends React.Component {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getFavorites()
-        // this.getPracticeTimes()
+        this.getPracticeTimes()
     }
 
     renderUserProfile = () => {
@@ -67,7 +67,8 @@ class Profile extends React.Component {
         })
         .then(res => res.json())
         .then(practiceTimesData => {
-            this.setState({ practiceTimes: practiceTimesData })
+            let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
+            this.setState({ practiceTimes: userPTs })
             console.log(this.state.practiceTimes)
         })
     }
@@ -174,9 +175,7 @@ class Profile extends React.Component {
                 dayMaxEvents={true}
                 aspectRatio= {6}
                 height={600}
-                events={[
-                    { title: 'Ujjayi', date: '2020-11-28', time: '7:00:00'}
-                ]}
+                events={this.state.practiceTimes}
 
                 />  
             </div>    
