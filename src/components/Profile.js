@@ -128,6 +128,7 @@ class Profile extends React.Component {
                 end: this.state.end
              })
         })
+        this.toggleFilledIn()
     }
   
     //Then fetch all practice_times, update state, and display in events in fullCalendar
@@ -166,7 +167,7 @@ class Profile extends React.Component {
                 select={this.handleTimeSelection}
                 eventBackgroundColor={'#FF4500'}
                 headerToolbar={{
-                left: 'prev,next addEventButton',
+                left: 'prev,next',
                 center: 'title', 
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 }}

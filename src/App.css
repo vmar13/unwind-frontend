@@ -162,7 +162,8 @@ body {
 
 .breathing-tech-container {
   position: absolute;
-  margin-top: -22%;
+  /* margin-top: -22%; */
+  margin-top: -25%;
   margin-left: 30%;
   width: 46%;
   /* background: black; */
@@ -170,7 +171,7 @@ body {
 }
 
 .bt-instructions {
-  margin-top: 70%;
+  margin-top: 65%;
   overflow-y: scroll;
   height: 140px;
 }
