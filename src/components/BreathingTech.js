@@ -87,7 +87,7 @@ class BreathingTech extends React.Component {
         this.getOneBreathingTech()
         this._isMounted = true
       } else {
-          return
+        return
       }
     }
 

@@ -30,6 +30,10 @@ class Profile extends React.Component {
         this.getPracticeTimes()
     }
 
+    componentDidUpdate = (prevState) => {
+        if(prevState.practiceTimes !== this.state.practiceTimes) this.getPracticeTimes()
+    }
+
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
         if (user) {
@@ -69,7 +73,7 @@ class Profile extends React.Component {
         .then(practiceTimesData => {
             let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
             this.setState({ practiceTimes: userPTs })
-            console.log(this.state.practiceTimes)
+            // console.log(this.state.practiceTimes)
         })
     }
 
