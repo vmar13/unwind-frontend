@@ -20,19 +20,21 @@ class Profile extends React.Component {
         start: '',
         end: '',
         filledIn: false,
-        practiceTimes: []
+        // practiceTimes: []
     }
 
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getFavorites()
-        this.getPracticeTimes()
+        // this.getPracticeTimes()
     }
 
-    componentDidUpdate = (prevState) => {
-        if(prevState.practiceTimes !== this.state.practiceTimes) this.getPracticeTimes()
-    }
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     if(prevProps.practiceTimes !== this.props.practiceTimes) {
+    //         this.props.getPracticeTimes()
+    //     }
+    // }
 
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -62,20 +64,20 @@ class Profile extends React.Component {
         })
     }
 
-    getPracticeTimes = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
+    //---MIGHT NEED TO ADD BACK LATER----//
+    // getPracticeTimes = () => {
+    //     const user = JSON.parse(localStorage.getItem('user'))
 
-        fetch(API_PRACTICE_TIMES, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}
-        })
-        .then(res => res.json())
-        .then(practiceTimesData => {
-            let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
-            this.setState({ practiceTimes: userPTs })
-            // console.log(this.state.practiceTimes)
-        })
-    }
+    //     fetch(API_PRACTICE_TIMES, {
+    //         method: 'GET',
+    //         headers: {Authorization: `Bearer ${user.token}`}
+    //     })
+    //     .then(res => res.json())
+    //     .then(practiceTimesData => {
+    //         let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
+    //         this.setState({ practiceTimes: userPTs })
+    //     })
+    // }
 
     //after fetching allFavs and updating empty [], 
     //need to display all fav names in a dropdown menu to create
@@ -94,11 +96,6 @@ class Profile extends React.Component {
         })   
     }
 
-    // handleDateClick = info => {
-    //     console.log(info.dateStr)
-    // }
-
-    //---This time selection func needs to trigger a modal with form
     handleTimeSelection = (info) => {        
         this.setState({ 
             start: info.startStr,
@@ -167,7 +164,6 @@ class Profile extends React.Component {
                 
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
-                dateClick={this.handleDateClick}
                 select={this.handleTimeSelection}
                 eventBackgroundColor={'#FF4500'}
                 headerToolbar={{
@@ -183,7 +179,7 @@ class Profile extends React.Component {
                 events={this.state.practiceTimes}
 
                 />  
-            </div>    
+            </div>   
                
             </>
         )
