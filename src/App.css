@@ -204,6 +204,12 @@ body {
   font-size: 11pt;
 }
 
+#event-close-btn {
+  position: absolute;
+  top: 5%;
+  left: 87%;
+}
+
 #event-info {
   position: absolute;
   top: 30%;
