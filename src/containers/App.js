@@ -10,7 +10,7 @@ import NavBar from '../components/NavBar'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
-const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
+// const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
 
 class App extends React.Component {
 
@@ -18,13 +18,13 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    practiceTimes: []
+    // practiceTimes: []
   }
 
   componentDidMount() {
     this.stayLoggedIn()
     this.renderBreathingTechs()
-    this.getPracticeTimes()
+    // this.getPracticeTimes()
   }
 
     
@@ -70,19 +70,19 @@ class App extends React.Component {
     }
   }
 
-  getPracticeTimes = () => {
-    const user = JSON.parse(localStorage.getItem('user'))
+//   getPracticeTimes = () => {
+//     const user = JSON.parse(localStorage.getItem('user'))
 
-    fetch(API_PRACTICE_TIMES, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`}
-    })
-    .then(res => res.json())
-    .then(practiceTimesData => {
-        let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
-        this.setState({ practiceTimes: userPTs })
-    })
-}
+//     fetch(API_PRACTICE_TIMES, {
+//         method: 'GET',
+//         headers: {Authorization: `Bearer ${user.token}`}
+//     })
+//     .then(res => res.json())
+//     .then(practiceTimesData => {
+//         let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
+//         this.setState({ practiceTimes: userPTs })
+//     })
+// }
   
   
 render () {
@@ -103,7 +103,7 @@ render () {
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser}/>} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} practiceTimes={this.state.practiceTimes} getPracticeTimes={this.getPracticeTimes}/>} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 

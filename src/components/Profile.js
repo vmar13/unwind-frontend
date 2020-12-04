@@ -20,14 +20,14 @@ class Profile extends React.Component {
         start: '',
         end: '',
         filledIn: false,
-        // practiceTimes: []
+        practiceTimes: []
     }
 
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getFavorites()
-        // this.getPracticeTimes()
+        this.getPracticeTimes()
     }
 
     // componentDidUpdate = (prevProps, prevState) => {
@@ -65,19 +65,19 @@ class Profile extends React.Component {
     }
 
     //---MIGHT NEED TO ADD BACK LATER----//
-    // getPracticeTimes = () => {
-    //     const user = JSON.parse(localStorage.getItem('user'))
+    getPracticeTimes = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
 
-    //     fetch(API_PRACTICE_TIMES, {
-    //         method: 'GET',
-    //         headers: {Authorization: `Bearer ${user.token}`}
-    //     })
-    //     .then(res => res.json())
-    //     .then(practiceTimesData => {
-    //         let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
-    //         this.setState({ practiceTimes: userPTs })
-    //     })
-    // }
+        fetch(API_PRACTICE_TIMES, {
+            method: 'GET',
+            headers: {Authorization: `Bearer ${user.token}`}
+        })
+        .then(res => res.json())
+        .then(practiceTimesData => {
+            let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
+            this.setState({ practiceTimes: userPTs })
+        })
+    }
 
     //after fetching allFavs and updating empty [], 
     //need to display all fav names in a dropdown menu to create
@@ -108,6 +108,10 @@ class Profile extends React.Component {
         this.setState({ filledIn: !this.state.filledIn })
     }
 
+    addNewPT = newPracticeTime => {
+        this.setState({ practiceTimes: [...this.state.practiceTimes, newPracticeTime]})
+    }
+
     //NOW -- fill out HTML that displays on condition of filledIn = true
     //Need to be able to select a day on calendar and prompt appears
     //that asks for time and has dropdown menu to select favorite BT
@@ -129,16 +133,17 @@ class Profile extends React.Component {
                 end: this.state.end
              })
         })
+        .then(res => res.json())
+        .then(newPracticeTime => { this.addNewPT(newPracticeTime)})
         this.toggleFilledIn()
     }
   
     //Then fetch all practice_times, update state, and display in events in fullCalendar
 
     render() {
-        // console.log(this.state.start)
-        // console.log(this.state.end)
 
         const { start, end, filledIn } = this.state
+        // const { practiceTimes } = this.props
        
         return (
             <>
