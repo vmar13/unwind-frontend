@@ -10,7 +10,6 @@ import NavBar from '../components/NavBar'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
-// const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
 
 class App extends React.Component {
 
@@ -18,13 +17,11 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    // practiceTimes: []
   }
 
   componentDidMount() {
     this.stayLoggedIn()
     this.renderBreathingTechs()
-    // this.getPracticeTimes()
   }
 
     
@@ -69,20 +66,6 @@ class App extends React.Component {
       return
     }
   }
-
-//   getPracticeTimes = () => {
-//     const user = JSON.parse(localStorage.getItem('user'))
-
-//     fetch(API_PRACTICE_TIMES, {
-//         method: 'GET',
-//         headers: {Authorization: `Bearer ${user.token}`}
-//     })
-//     .then(res => res.json())
-//     .then(practiceTimesData => {
-//         let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
-//         this.setState({ practiceTimes: userPTs })
-//     })
-// }
   
   
 render () {

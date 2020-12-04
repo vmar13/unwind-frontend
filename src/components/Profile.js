@@ -138,7 +138,10 @@ class Profile extends React.Component {
         this.toggleFilledIn()
     }
   
-    //Then fetch all practice_times, update state, and display in events in fullCalendar
+    eventClick = info => {
+        alert('Event: ' + info.event.title + 'From: ' + info.event.start + 'to ' );
+
+      }
 
     render() {
 
@@ -170,7 +173,7 @@ class Profile extends React.Component {
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 select={this.handleTimeSelection}
-                eventBackgroundColor={'#FF4500'}
+                eventBackgroundColor={'red'}
                 headerToolbar={{
                 left: 'prev,next',
                 center: 'title', 
@@ -182,7 +185,7 @@ class Profile extends React.Component {
                 aspectRatio= {6}
                 height={600}
                 events={this.state.practiceTimes}
-
+                eventClick={this.eventClick}
                 />  
             </div>   
                
