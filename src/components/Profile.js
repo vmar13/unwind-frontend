@@ -20,7 +20,9 @@ class Profile extends React.Component {
         start: '',
         end: '',
         filledIn: false,
-        practiceTimes: []
+        practiceTimes: [],
+        eventClicked: false,
+        title: ''
     }
 
     componentDidMount() {
@@ -137,17 +139,24 @@ class Profile extends React.Component {
         .then(newPracticeTime => { this.addNewPT(newPracticeTime)})
         this.toggleFilledIn()
     }
+
+    toggleEventClicked = () => {
+        this.setState({ eventClicked: !this.state.eventClicked })
+    }
   
     eventClick = info => {
-        alert('Event: ' + info.event.title + 'From: ' + info.event.start + 'to ' );
-
+        this.setState({ 
+            eventClicked: true,
+            title: info.event.title,
+            start: JSON.stringify(info.event.start),
+            end: JSON.stringify(info.event.end)
+        })
       }
 
     render() {
 
-        const { start, end, filledIn } = this.state
-        // const { practiceTimes } = this.props
-       
+        const { start, end, filledIn, title, eventClicked } = this.state
+
         return (
             <>
             <div className='profile-welcome'>
@@ -166,6 +175,14 @@ class Profile extends React.Component {
                 </div>
             </div>
             : null}
+
+            {eventClicked === true ? 
+            <div>
+                <h4>Practice: {title}</h4> 
+                <h4>Date: {start.slice(1,11)}</h4>
+                {/* "2020-11-30T15:00:00.000Z" */}
+            </div>
+            : null }
 
             <div id='full-calendar'>
                 <FullCalendar
