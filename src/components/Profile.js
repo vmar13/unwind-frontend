@@ -181,7 +181,7 @@ class Profile extends React.Component {
                 <h4>{title}</h4> 
                 <h4>Date: {start.slice(1,11)}</h4>
                 <h4>From: {start.slice(12,17)} to {end.slice(12,17)}</h4>
-                <button>X</button>
+                <button onClick={this.toggleEventClicked}>X</button>
                 <button>Cancel</button>
             </div>
             : null }
