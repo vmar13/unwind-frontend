@@ -204,6 +204,18 @@ body {
   font-size: 11pt;
 }
 
+#event-info {
+  position: absolute;
+  top: 30%;
+  left: 42%;
+  background-color: rgb(118, 141, 218);
+  color: white;
+  /* width: 35%; */
+  z-index: 999;
+  padding: 5%;
+  border-radius: 3%;
+}
+
 .form-extra-text {
   font-size: 11pt;
 }
