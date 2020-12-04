@@ -9,8 +9,6 @@ const API_PROFILE = `http://localhost:3000/api/v1/profile`
 const API_PRACTICE_TIMES = `http://localhost:3000/api/v1/practice_times`
 const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 
-//Will need to fetch practice_times (events) in order to display 
-//on fullCalendar
 
 class Profile extends React.Component {
 
@@ -22,7 +20,8 @@ class Profile extends React.Component {
         filledIn: false,
         practiceTimes: [],
         eventClicked: false,
-        title: ''
+        title: '',
+        practiceTimeId: null
     }
 
     componentDidMount() {
@@ -149,9 +148,29 @@ class Profile extends React.Component {
             eventClicked: true,
             title: info.event.title,
             start: JSON.stringify(info.event.start),
-            end: JSON.stringify(info.event.end)
+            end: JSON.stringify(info.event.end),
+            practiceTimeId: info.event.id
         })
-      }
+        console.log(info)
+    }
+
+    cancelEvent = e => {
+        e.preventDefault()
+        const user = JSON.parse(localStorage.getItem('user'))
+        const id = this.state.practiceTimeId
+
+        // console.log(typeof id)
+
+        fetch(`${API_PRACTICE_TIMES}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
+        })
+        //---need to add logic HERE to remove event from frontend ---//
+        this.toggleEventClicked()
+    }
+
 
     render() {
 
@@ -182,7 +201,7 @@ class Profile extends React.Component {
                 <h4>Date: {start.slice(1,11)}</h4>
                 <h4>From: {start.slice(12,17)} to {end.slice(12,17)}</h4>
                 <button onClick={this.toggleEventClicked} id='event-close-btn'>X</button>
-                <button>Cancel</button>
+                <button onClick={this.cancelEvent}>Cancel Event</button>
             </div>
             : null }
 
