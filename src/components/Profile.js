@@ -151,15 +151,13 @@ class Profile extends React.Component {
             end: JSON.stringify(info.event.end),
             practiceTimeId: info.event.id
         })
-        console.log(info)
+        // console.log(info)
     }
 
-    cancelEvent = e => {
-        e.preventDefault()
+    cancelEvent = id => {
+        // e.preventDefault()
         const user = JSON.parse(localStorage.getItem('user'))
-        const id = this.state.practiceTimeId
-
-        // console.log(typeof id)
+        // const id = this.state.practiceTimeId
 
         fetch(`${API_PRACTICE_TIMES}/${id}`, {
             method: 'DELETE',
@@ -167,7 +165,9 @@ class Profile extends React.Component {
                 Authorization: `Bearer ${user.token}`
             }
         })
-        //---need to add logic HERE to remove event from frontend ---//
+        let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
+        this.setState({ practiceTimes: updatedPTs })
+        
         this.toggleEventClicked()
     }
 
@@ -201,7 +201,7 @@ class Profile extends React.Component {
                 <h4>Date: {start.slice(1,11)}</h4>
                 <h4>From: {start.slice(12,17)} to {end.slice(12,17)}</h4>
                 <button onClick={this.toggleEventClicked} id='event-close-btn'>X</button>
-                <button onClick={this.cancelEvent}>Cancel Event</button>
+                <button onClick={() => this.cancelEvent(this.state.practiceTimeId)}>Cancel Event</button>
             </div>
             : null }
 
