@@ -65,7 +65,6 @@ class Profile extends React.Component {
         })
     }
 
-    //---MIGHT NEED TO ADD BACK LATER----//
     getPracticeTimes = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
@@ -165,8 +164,8 @@ class Profile extends React.Component {
                 Authorization: `Bearer ${user.token}`
             }
         })
-        let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
-        this.setState({ practiceTimes: updatedPTs })
+        // let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
+        this.setState({ practiceTimes: this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id) })
         
         this.toggleEventClicked()
     }
