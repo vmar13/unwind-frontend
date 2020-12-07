@@ -21,7 +21,8 @@ class Profile extends React.Component {
         practiceTimes: [],
         eventClicked: false,
         title: '',
-        practiceTimeId: null
+        practiceTimeId: null,
+        practiceTime: {}
     }
 
     componentDidMount() {
@@ -148,9 +149,10 @@ class Profile extends React.Component {
             title: info.event.title,
             start: JSON.stringify(info.event.start),
             end: JSON.stringify(info.event.end),
-            practiceTimeId: info.event.id
+            practiceTimeId: info.event.id,
+            practiceTime: info.event
         })
-        // console.log(info)
+        // console.log(this.state.practiceTime)
     }
 
     cancelEvent = id => {
@@ -164,10 +166,15 @@ class Profile extends React.Component {
                 Authorization: `Bearer ${user.token}`
             }
         })
-        // let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
-        this.setState({ practiceTimes: this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id) })
+        .then(res => {
+            let event = this.state.practiceTime
+            event.remove()
+            // let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
+            // this.setState({ practiceTimes: updatedPTs })
+            // console.log(this.state.practiceTimes)
+            this.toggleEventClicked()
+        })
         
-        this.toggleEventClicked()
     }
 
 
