@@ -176,7 +176,7 @@ body {
   height: 140px;
 }
 
-#cal-btn {
+#cal-form-submit-btn {
   margin-top: 5%;
 }
 
@@ -188,6 +188,12 @@ body {
   margin-top: -45.5%;
   margin-left: 25%;
   z-index: 999;
+}
+
+#cal-form-close-btn {
+  position: absolute;
+  top: 4%;
+  left: 95%;
 }
 
 #calendar-inner-form {
