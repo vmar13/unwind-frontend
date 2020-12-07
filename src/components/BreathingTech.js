@@ -8,7 +8,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        favorited: false,
+        // favorited: false,
         allFavorites: [],
         isLoading: true
     }
@@ -31,8 +31,8 @@ class BreathingTech extends React.Component {
         })
     }
 
-    createFavoriteBT = () => {
-        if(!this.state.favorited){
+    toggleFavBT = () => {
+        if(this.state.breathingTech.favorited === false){
             const user = JSON.parse(localStorage.getItem('user'))
 
             fetch(API_FAVORITES, {
@@ -53,13 +53,30 @@ class BreathingTech extends React.Component {
             .then(data => {
                 console.log(data)
             })
+            //send PATCH request to breathingTech to toggle favorited:false to true
+
+        } else {
+            const user = JSON.parse(localStorage.getItem('user'))
+            const id = this.state.breathingTech.id
+
+            fetch(`${API_FAVORITES}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                }
+            })
+            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
+
+            //send PATCH request to breathingTech to toggle favorited:true to false
+
         }
     }
 
     //need blue heart to persist until i 'unfavorite' it
     //also do i need to fetch all favorites in order to later delete one??
     unfavoriteBT = (id) => {
-        if(this.state.favorited){
+        if(this.state.breathingTech.favorited === true){
             const user = JSON.parse(localStorage.getItem('user'))
 
             fetch(`${API_FAVORITES}/${id}`, {
@@ -73,9 +90,9 @@ class BreathingTech extends React.Component {
         }
     }
 
-    toggleFavorited = () => {
-        this.setState({ favorited: !this.state.favorited })
-    }
+    // toggleFavorited = () => {
+    //     this.setState({ favorited: !this.state.favorited })
+    // }
 
     componentDidMount(){
        this._isMounted = true 
@@ -98,7 +115,7 @@ class BreathingTech extends React.Component {
     render() {
         // console.log(this.state.breathingTech.name)
 
-        const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
+        const { name, step_one, step_two, step_three, step_four, favorited } = this.state.breathingTech
        
         return(
         <>
@@ -112,10 +129,9 @@ class BreathingTech extends React.Component {
                 {name === 'Pursed Lip' ? <p className='anim-circle'>pursed lip animation</p> : null}
 
                 <h2>{name} <button onClick={() => {
-                    this.createFavoriteBT()
-                    this.toggleFavorited() 
-                    this.unfavoriteBT() }}
-                    className='favorite-btn'>{this.state.favorited ? '💙' : '♡'}</button></h2>
+                    this.toggleFavBT()
+                     }}
+                    className='favorite-btn'>{favorited ? '💙' : '♡'}</button></h2>
 
                 <ul className='bt-instructions'>
                     <li>{step_one}</li>
