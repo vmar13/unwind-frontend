@@ -29,7 +29,7 @@ class Profile extends React.Component {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getFavorites()
-        this.getPracticeTimes()
+        // this.getPracticeTimes()
     }
 
     // componentDidUpdate = (prevProps, prevState) => {
@@ -51,6 +51,7 @@ class Profile extends React.Component {
 
     //tweak so it's only fetching favs for that specific user who's signed in
     //after .then, filter for allfavs that match the user id
+    //if there ARE favorites, then fetch them; if NOT, do nothing
     getFavorites = () => {
         const user = JSON.parse(localStorage.getItem('user'))
 
@@ -62,7 +63,7 @@ class Profile extends React.Component {
         .then(allFavsData => {
             let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
             this.setState({ allFavs: userFavs })
-            // console.log(this.state.allFavs)
+            console.log(this.state.allFavs)
         })
     }
 

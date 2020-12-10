@@ -8,7 +8,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        // favorited: false,
+        favorite: {},
         allFavorites: [],
         isLoading: true
     }
@@ -31,10 +31,14 @@ class BreathingTech extends React.Component {
         })
     }
 
+    //This both favorites and UNfavorites a BT
     toggleFavBT = () => {
-        if(this.state.breathingTech.favorited === false){
-            const user = JSON.parse(localStorage.getItem('user'))
+        const user = JSON.parse(localStorage.getItem('user'))
 
+        if(this.state.breathingTech.favorited === false){
+            // const user = JSON.parse(localStorage.getItem('user'))
+
+            //send POST request to create favorite of BT
             fetch(API_FAVORITES, {
                 method: 'POST',
                 headers: {
@@ -50,26 +54,47 @@ class BreathingTech extends React.Component {
                 })
             })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(favObj => {
+                this.setState({ favorite: favObj })
+                //----THIS ^^ WON'T WORK BC YOU COULD HAVE MULTIPLE FAVS;
+                //SHOULD instead add newfav to allFavs array 
             })
             //send PATCH request to breathingTech to toggle favorited:false to true
-
+            fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                },
+                body: JSON.stringify({ favorited: true })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
         } else {
-            const user = JSON.parse(localStorage.getItem('user'))
-            const id = this.state.breathingTech.id
+            // const user = JSON.parse(localStorage.getItem('user'))
+            const favId = this.state.favorite.id
+            //---THIS ^^ WON'T WORK; need to 
 
-            fetch(`${API_FAVORITES}/${id}`, {
+            fetch(`${API_FAVORITES}/${favId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${user.token}`
                 }
             })
-            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
+            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== favId)})
 
             //send PATCH request to breathingTech to toggle favorited:true to false
-
+            fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`
+                },
+                body: JSON.stringify({ favorited: false })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
         }
     }
 
@@ -131,6 +156,7 @@ class BreathingTech extends React.Component {
                 <h2>{name} <button onClick={() => {
                     this.toggleFavBT()
                      }}
+                     //need to fix so that blue heart appear without pg refresh
                     className='favorite-btn'>{favorited ? '💙' : '♡'}</button></h2>
 
                 <ul className='bt-instructions'>
