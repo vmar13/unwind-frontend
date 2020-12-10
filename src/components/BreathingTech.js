@@ -31,6 +31,10 @@ class BreathingTech extends React.Component {
         })
     }
 
+    addNewFav = newFav => {
+        this.setState({ allFavorites: [...this.state.allFavorites, newFav] })
+    }
+
     //This both favorites and UNfavorites a BT
     toggleFavBT = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -55,9 +59,10 @@ class BreathingTech extends React.Component {
             })
             .then(res => res.json())
             .then(favObj => {
-                this.setState({ favorite: favObj })
+                this.addNewFav(favObj)
                 //----THIS ^^ WON'T WORK BC YOU COULD HAVE MULTIPLE FAVS;
                 //SHOULD instead add newfav to allFavs array 
+                //grab favObj.id and then create const favId = e.target.dataset.id
             })
             //send PATCH request to breathingTech to toggle favorited:false to true
             fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
@@ -71,6 +76,7 @@ class BreathingTech extends React.Component {
             .then(res => res.json())
             .then(data => console.log(data))
         } else {
+            //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
             const favId = this.state.favorite.id
             //---THIS ^^ WON'T WORK; need to 
