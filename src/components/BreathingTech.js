@@ -91,9 +91,7 @@ class BreathingTech extends React.Component {
                     Authorization: `Bearer ${user.token}`
                 }
             })
-            //this below won't run until i've fetched allFavs; need access to them from app.js
-            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== favId)})
-
+            this.props.deleteFav(favId)
             //send PATCH request to breathingTech to toggle favorited:true to false
             fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
                 method: 'PATCH',
