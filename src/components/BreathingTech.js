@@ -8,7 +8,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        allFavorites: [],
+        // allFavorites: [],
         favorite: {},
         isLoading: true
     }
@@ -38,6 +38,10 @@ class BreathingTech extends React.Component {
     //     })
     // }
 
+    removeFavorite = () => {
+        this.setState({ favorite: {} })
+    }
+
     //This both favorites and UNfavorites a BT
     toggleFavBT = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -62,10 +66,10 @@ class BreathingTech extends React.Component {
             })
             .then(res => res.json())
             .then(favObj => {
-                this.addNewFav(favObj)
+                this.props.addNewFav(favObj)
+                this.setState({ favorite: favObj })
                 //----THIS ^^ will need to change to this.props.addNewFav(favObj);
-                //SHOULD instead add newfav to allFavs array 
-                //grab favObj.id and then create const favId = e.target.dataset.id
+                //Adds favObj to allFavs array 
             })
             //send PATCH request to breathingTech to toggle favorited:false to true
             fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
@@ -74,11 +78,15 @@ class BreathingTech extends React.Component {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${user.token}`
                 },
-                body: JSON.stringify({ favorited: true })
+                body: JSON.stringify({ 
+                    favorited: true,
+                    favId: this.state.favorite.id 
+                })
                 //also patch in favObj.id to key favId!!!!!!!!!!
             })
             .then(res => res.json())
             .then(data => console.log(data))
+            this.removeFavorite()
         } else {
             //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
@@ -99,7 +107,10 @@ class BreathingTech extends React.Component {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${user.token}`
                 },
-                body: JSON.stringify({ favorited: false })
+                body: JSON.stringify({ 
+                    favorited: false,
+                    favId: null 
+                })
             })
             .then(res => res.json())
             .then(data => console.log(data))
