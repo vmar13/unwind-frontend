@@ -31,15 +31,11 @@ class BreathingTech extends React.Component {
         })
     }
 
-    addNewFav = newFav => {
-        this.setState({ 
-            allFavorites: [...this.state.allFavorites, newFav],
-            favorite: newFav 
-        })
-    }
-
-    // addIdtoFavBtn = (e) => {
-    //     return [e.target.dataset.id] = this.state.favorite.id
+    // addNewFav = newFav => {
+    //     this.setState({ 
+    //         allFavorites: [...this.state.allFavorites, newFav],
+    //         favorite: newFav 
+    //     })
     // }
 
     //This both favorites and UNfavorites a BT
@@ -67,7 +63,7 @@ class BreathingTech extends React.Component {
             .then(res => res.json())
             .then(favObj => {
                 this.addNewFav(favObj)
-                //----THIS ^^ WON'T WORK BC YOU COULD HAVE MULTIPLE FAVS;
+                //----THIS ^^ will need to change to this.props.addNewFav(favObj);
                 //SHOULD instead add newfav to allFavs array 
                 //grab favObj.id and then create const favId = e.target.dataset.id
             })
@@ -79,14 +75,14 @@ class BreathingTech extends React.Component {
                     Authorization: `Bearer ${user.token}`
                 },
                 body: JSON.stringify({ favorited: true })
+                //also patch in favObj.id to key favId!!!!!!!!!!
             })
             .then(res => res.json())
             .then(data => console.log(data))
         } else {
             //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
-            const favId = this.state.favorite.id
-            //---THIS ^^ WON'T WORK; need to 
+            const favId = this.state.breathingTech.favId 
 
             fetch(`${API_FAVORITES}/${favId}`, {
                 method: 'DELETE',
@@ -147,7 +143,7 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        console.log(this.state.allFavorites)
+        // console.log(this.state.allFavorites)
 
         const { name, step_one, step_two, step_three, step_four, favorited } = this.state.breathingTech
        

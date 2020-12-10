@@ -13,7 +13,7 @@ const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 class Profile extends React.Component {
 
     state = {
-        allFavs: [],
+        // allFavs: [],
         favObj: {},
         start: '',
         end: '',
@@ -52,20 +52,20 @@ class Profile extends React.Component {
     //tweak so it's only fetching favs for that specific user who's signed in
     //after .then, filter for allfavs that match the user id
     //if there ARE favorites, then fetch them; if NOT, do nothing
-    getFavorites = () => {
-        const user = JSON.parse(localStorage.getItem('user'))
+    // getFavorites = () => {
+    //     const user = JSON.parse(localStorage.getItem('user'))
 
-        fetch(API_FAVORITES, {
-            method: 'GET',
-            headers: {Authorization: `Bearer ${user.token}`}
-        })
-        .then(res => res.json())
-        .then(allFavsData => {
-            let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
-            this.setState({ allFavs: userFavs })
-            console.log(this.state.allFavs)
-        })
-    }
+    //     fetch(API_FAVORITES, {
+    //         method: 'GET',
+    //         headers: {Authorization: `Bearer ${user.token}`}
+    //     })
+    //     .then(res => res.json())
+    //     .then(allFavsData => {
+    //         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
+    //         this.setState({ allFavs: userFavs })
+    //         console.log(this.state.allFavs)
+    //     })
+    // }
 
     getPracticeTimes = () => {
         const user = JSON.parse(localStorage.getItem('user'))

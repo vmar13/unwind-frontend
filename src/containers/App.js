@@ -10,6 +10,7 @@ import NavBar from '../components/NavBar'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
+const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 
 class App extends React.Component {
 
@@ -17,6 +18,7 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
+    allFavs: []
   }
 
   componentDidMount() {
@@ -67,6 +69,29 @@ class App extends React.Component {
     }
   }
   
+  getFavorites = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    fetch(API_FAVORITES, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${user.token}`}
+    })
+    .then(res => res.json())
+    .then(allFavsData => {
+      if(allFavsData.length > 0){
+        let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
+        this.setState({ allFavs: userFavs })
+      } else {
+        return
+      }
+    })
+}
+
+addNewFav = newFav => {
+  this.setState({ 
+      allFavs: [...this.state.allFavorites, newFav],
+  })
+}
   
 render () {
   return (
