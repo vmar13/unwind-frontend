@@ -28,15 +28,9 @@ class Profile extends React.Component {
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
-        this.getFavorites()
-        // this.getPracticeTimes()
+        // this.getFavorites()
+        this.getPracticeTimes()
     }
-
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     if(prevProps.practiceTimes !== this.props.practiceTimes) {
-    //         this.props.getPracticeTimes()
-    //     }
-    // }
 
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -76,8 +70,12 @@ class Profile extends React.Component {
         })
         .then(res => res.json())
         .then(practiceTimesData => {
-            let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
-            this.setState({ practiceTimes: userPTs })
+            if(practiceTimesData.length > 0){
+                let userPTs = practiceTimesData.filter(practiceTime => practiceTime.user_id === user.id)
+                this.setState({ practiceTimes: userPTs })
+            } else {
+                return
+            }
         })
     }
 
