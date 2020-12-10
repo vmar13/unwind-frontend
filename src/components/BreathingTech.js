@@ -8,8 +8,8 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        favorite: {},
         allFavorites: [],
+        favorite: {},
         isLoading: true
     }
 
@@ -32,8 +32,15 @@ class BreathingTech extends React.Component {
     }
 
     addNewFav = newFav => {
-        this.setState({ allFavorites: [...this.state.allFavorites, newFav] })
+        this.setState({ 
+            allFavorites: [...this.state.allFavorites, newFav],
+            favorite: newFav 
+        })
     }
+
+    // addIdtoFavBtn = (e) => {
+    //     return [e.target.dataset.id] = this.state.favorite.id
+    // }
 
     //This both favorites and UNfavorites a BT
     toggleFavBT = () => {
@@ -88,6 +95,7 @@ class BreathingTech extends React.Component {
                     Authorization: `Bearer ${user.token}`
                 }
             })
+            //this below won't run until i've fetched allFavs; need access to them from app.js
             this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== favId)})
 
             //send PATCH request to breathingTech to toggle favorited:true to false
@@ -104,26 +112,21 @@ class BreathingTech extends React.Component {
         }
     }
 
-    //need blue heart to persist until i 'unfavorite' it
-    //also do i need to fetch all favorites in order to later delete one??
-    unfavoriteBT = (id) => {
-        if(this.state.breathingTech.favorited === true){
-            const user = JSON.parse(localStorage.getItem('user'))
+    // unfavoriteBT = (id) => {
+    //     if(this.state.breathingTech.favorited === true){
+    //         const user = JSON.parse(localStorage.getItem('user'))
 
-            fetch(`${API_FAVORITES}/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                }
-            })
-            this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
-        }
-    }
-
-    // toggleFavorited = () => {
-    //     this.setState({ favorited: !this.state.favorited })
+    //         fetch(`${API_FAVORITES}/${id}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: `Bearer ${user.token}`
+    //             }
+    //         })
+    //         this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
+    //     }
     // }
+
 
     componentDidMount(){
        this._isMounted = true 
@@ -144,7 +147,7 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        // console.log(this.state.breathingTech.name)
+        console.log(this.state.allFavorites)
 
         const { name, step_one, step_two, step_three, step_four, favorited } = this.state.breathingTech
        
