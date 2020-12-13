@@ -193,7 +193,7 @@ class Profile extends React.Component {
                 <div id='calendar-inner-form'>
                     <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,16)}  to  {end.slice(0,10)} at {end.slice(11,16)} </h4>
                     <h4>Choose a breathing technique to practice:</h4>
-                    <Dropdown allFavs={this.state.allFavs} onSelectChange={this.handleSelectChange}/><br />
+                    <Dropdown allFavs={this.props.allFavs} onSelectChange={this.handleSelectChange}/><br />
                     <button id='cal-form-submit-btn' onClick={this.createPracticeTime}>Submit</button>
                 </div>
             </div>

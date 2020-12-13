@@ -73,7 +73,8 @@ class App extends React.Component {
   getFavorites = () => {
     const user = JSON.parse(localStorage.getItem('user'))
 
-    fetch(API_FAVORITES, {
+    if(user){
+      fetch(API_FAVORITES, {
         method: 'GET',
         headers: {Authorization: `Bearer ${user.token}`}
     })
@@ -86,12 +87,16 @@ class App extends React.Component {
         return
       }
     })
+    } else {
+      return
+    }
 }
 
 addNewFav = newFav => {
   this.setState({ 
-      allFavs: [...this.state.allFavorites, newFav],
+      allFavs: [...this.state.allFavs, newFav],
   })
+  console.log(this.state.allFavs)
 }
 
 deleteFav = favId => {
@@ -112,12 +117,13 @@ render () {
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)
       return <BreathingTech {...routeProps} 
-      breathingTechId={breathingTechId} 
+      breathingTechId={breathingTechId}
+      addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser}/>} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} addNewFav={this.addNewFav} />} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs}  />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 

@@ -38,19 +38,17 @@ class BreathingTech extends React.Component {
     //     })
     // }
 
-    removeFavorite = () => {
-        this.setState({ favorite: {} })
-    }
+    // removeFavorite = () => {
+    //     this.setState({ favorite: {} })
+    // }
 
     //This both favorites and UNfavorites a BT
-    toggleFavBT = () => {
+    async toggleFavBT () {
         const user = JSON.parse(localStorage.getItem('user'))
 
         if(this.state.breathingTech.favorited === false){
-            // const user = JSON.parse(localStorage.getItem('user'))
-
             //send POST request to create favorite of BT
-            fetch(API_FAVORITES, {
+            await fetch(API_FAVORITES, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,11 +66,12 @@ class BreathingTech extends React.Component {
             .then(favObj => {
                 this.props.addNewFav(favObj)
                 this.setState({ favorite: favObj })
+                console.log(this.state.favorite)
                 //----THIS ^^ will need to change to this.props.addNewFav(favObj);
                 //Adds favObj to allFavs array 
             })
             //send PATCH request to breathingTech to toggle favorited:false to true
-            fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
+            await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,13 +79,13 @@ class BreathingTech extends React.Component {
                 },
                 body: JSON.stringify({ 
                     favorited: true,
-                    favId: this.state.favorite.id 
+                    fav_id: this.state.favorite.id 
                 })
                 //also patch in favObj.id to key favId!!!!!!!!!!
             })
             .then(res => res.json())
             .then(data => console.log(data))
-            this.removeFavorite()
+            // this.removeFavorite()
         } else {
             //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
@@ -109,7 +108,7 @@ class BreathingTech extends React.Component {
                 },
                 body: JSON.stringify({ 
                     favorited: false,
-                    favId: null 
+                    fav_id: 0 
                 })
             })
             .then(res => res.json())
