@@ -8,7 +8,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        // allFavorites: [],
+        blueHeart: false,
         favorite: {},
         isLoading: true
     }
@@ -31,16 +31,9 @@ class BreathingTech extends React.Component {
         })
     }
 
-    // addNewFav = newFav => {
-    //     this.setState({ 
-    //         allFavorites: [...this.state.allFavorites, newFav],
-    //         favorite: newFav 
-    //     })
-    // }
-
-    // removeFavorite = () => {
-    //     this.setState({ favorite: {} })
-    // }
+    toggleBlueHeart = () => {
+        this.setState({ blueHeart: !this.state.blueHeart })
+    }
 
     //This both favorites and UNfavorites a BT
     async toggleFavBT () {
@@ -66,9 +59,6 @@ class BreathingTech extends React.Component {
             .then(favObj => {
                 this.props.addNewFav(favObj)
                 this.setState({ favorite: favObj })
-                console.log(this.state.favorite)
-                //----THIS ^^ will need to change to this.props.addNewFav(favObj);
-                //Adds favObj to allFavs array 
             })
             //send PATCH request to breathingTech to toggle favorited:false to true
             await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
@@ -81,11 +71,10 @@ class BreathingTech extends React.Component {
                     favorited: true,
                     fav_id: this.state.favorite.id 
                 })
-                //also patch in favObj.id to key favId!!!!!!!!!!
             })
             .then(res => res.json())
             .then(data => console.log(data))
-            // this.removeFavorite()
+            // this.setState({ blueHeart: '💙' })
         } else {
             //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
@@ -114,24 +103,9 @@ class BreathingTech extends React.Component {
             })
             .then(res => res.json())
             .then(data => console.log(data))
+            // this.setState({ blueHeart: '♡' })
         }
     }
-
-    // unfavoriteBT = (id) => {
-    //     if(this.state.breathingTech.favorited === true){
-    //         const user = JSON.parse(localStorage.getItem('user'))
-
-    //         fetch(`${API_FAVORITES}/${id}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             }
-    //         })
-    //         this.setState({ allFavorites: this.state.allFavorites.filter(fav => fav.id !== id)})
-    //     }
-    // }
-
 
     componentDidMount(){
        this._isMounted = true 
@@ -169,6 +143,7 @@ class BreathingTech extends React.Component {
 
                 <h2>{name} <button onClick={() => {
                     this.toggleFavBT()
+                    this.toggleBlueHeart()
                      }}
                      //need to fix so that blue heart appear without pg refresh
                     className='favorite-btn'>{favorited ? '💙' : '♡'}</button></h2>
