@@ -89,7 +89,8 @@ class BreathingTech extends React.Component {
         } else {
             //this.state.breathingTech.favorited === true
             // const user = JSON.parse(localStorage.getItem('user'))
-            const favId = this.state.breathingTech.favId 
+            const favId = this.state.breathingTech.fav_id
+            // console.log(favId)
 
             fetch(`${API_FAVORITES}/${favId}`, {
                 method: 'DELETE',
