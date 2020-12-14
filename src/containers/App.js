@@ -18,7 +18,8 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    allFavs: []
+    allFavs: [],
+    blueHeart: false
   }
 
   componentDidMount() {
@@ -102,6 +103,10 @@ addNewFav = newFav => {
 deleteFav = favId => {
   this.setState({ allFavs: this.state.allFavs.filter(fav => fav.id !== favId)})
 }
+
+toggleBlueHeart = () => {
+  this.setState({ blueHeart: !this.state.blueHeart })
+}
   
 render () {
   return (
@@ -120,6 +125,8 @@ render () {
       breathingTechId={breathingTechId}
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
+      blueHeart={this.state.blueHeart}
+      toggleBlueHeart={this.toggleBlueHeart}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser}/>} />
