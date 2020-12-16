@@ -31,9 +31,22 @@ class BreathingTech extends React.Component {
         })
     }
 
-    // toggleBlueHeart = () => {
-    //     this.setState({ blueHeart: !this.state.blueHeart })
-    // }
+   favoriteBT = () => {
+       const newFav = JSON.parse(localStorage.setItem('favoriteInfo'))
+       //would need to then add the newFav to the array of favs
+       //which would get updated in localStorage
+
+        // const user = JSON.parse(localStorage.getItem('user'))
+        // if (!user) {
+        //   return
+        // } else {
+        //   this.setState({
+        //     username: user.username,
+        //     loggedIn: true
+        //   })
+        // }
+      
+   }
 
     //This both favorites and UNfavorites a BT
     async favoriteBT () {

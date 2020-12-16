@@ -13,7 +13,6 @@ const API_FAVORITES = `http://localhost:3000/api/v1/favorites`
 class Profile extends React.Component {
 
     state = {
-        // allFavs: [],
         favObj: {},
         start: '',
         end: '',
@@ -28,7 +27,6 @@ class Profile extends React.Component {
     componentDidMount() {
         this.renderUserProfile()
         this.props.fetchBTs()
-        // this.getFavorites()
         this.getPracticeTimes()
     }
 
@@ -174,6 +172,9 @@ class Profile extends React.Component {
         
     }
 
+    reverseInt = num => {
+        return parseInt(num.toString().split('').reverse().join(''))
+    }
 
     render() {
 
