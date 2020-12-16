@@ -208,6 +208,18 @@ class BreathingTech extends React.Component {
         return p1 + 1
     }
 
+    removeElement = function(nums, val) {
+        if(nums.length === 0) return 0
+        
+        let i = 0
+        for(let j = 0; j < nums.length; j++){
+            if(nums[i] === val){
+                nums[i] = nums.length - 1
+            }
+        }
+     return nums.length
+    }
+
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
