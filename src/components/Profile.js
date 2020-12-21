@@ -172,9 +172,6 @@ class Profile extends React.Component {
         
     }
 
-    reverseInt = num => {
-        return parseInt(num.toString().split('').reverse().join(''))
-    }
 
     render() {
 
