@@ -172,19 +172,19 @@ h2 {
 }
 
 .hum {
-    border-radius: 50%;
-    height: 125px;
+    border-radius: 10%;
+    height: 100px;
     position: absolute;
     transform: translate(0, 0);
-    width: 125px;
+    width: 100px;
 }
 
 .hum:nth-child(1) {
-  transform: translate(-35px, -50px);
+  transform: translate(-60px, -52px);
 }
 
 .hum:nth-child(6) {
-  transform: translate(35px, 50px);
+  transform: translate(33px, 52px);
 }
 
 body {
