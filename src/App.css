@@ -89,7 +89,7 @@ h2 {
   position: absolute;
   top: -66%;
   left: 10%;
-  filter: blur(5px);
+  animation: blur 6s linear infinite;
   /* z-index: 2; */
   /* opacity: .3;  */
 
@@ -113,6 +113,27 @@ h2 {
 
   }
 } 
+
+@keyframes blur {
+  0% {
+    filter: blur(0px);
+  }
+
+  10% {
+    filter: blur(0px);
+  }
+
+  25% {
+    filter: blur(0px);
+  }
+  75% {
+    filter: blur(4px);
+  }
+
+  100% {
+    filter: blur(7px);
+  }
+}
 
 /* @keyframes animate {
   0% {
