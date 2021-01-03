@@ -119,19 +119,17 @@ h2 {
     filter: blur(0px);
   }
 
-  10% {
+
+  54% {
     filter: blur(0px);
   }
 
-  25% {
-    filter: blur(0px);
-  }
-  75% {
-    filter: blur(4px);
+  98% {
+    filter: blur(7px);
   }
 
   100% {
-    filter: blur(7px);
+    filter: blur(9px);
   }
 }
 
