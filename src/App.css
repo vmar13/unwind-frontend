@@ -41,7 +41,6 @@ h2 {
   border-radius: 50%;
   border: 2px solid black;
   background: white;
-  /* animation: tongue 7s linear infinite; */
 }
 
 .anim-eye-right {
@@ -55,7 +54,6 @@ h2 {
   border-radius: 50%;
   border: 2px solid black;
   background: white;
-  /* animation: tongue 7s linear infinite; */
 }
 
 .anim-iris-left {
@@ -68,18 +66,32 @@ h2 {
   height: 12px;
   border-radius: 50%;
   background: black;
+  animation: iris 7s linear infinite;
+
 }
 
 .anim-iris-right {
   color: transparent;
   position: absolute;
   top: -41%;
-  left: 52.7%;
+  left: 52.8%;
   background: rgb(17, 1, 3);
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: black;
+  animation: iris 7s linear infinite;
+
+}
+
+@keyframes iris {
+  0%, 10%, 20%, 30%, 40%, 50% {
+    top: -41;
+  }
+
+  99.9%, 100% {
+    top: -44%;
+  }
 }
 
 .anim-circle {
