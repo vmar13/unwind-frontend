@@ -7,6 +7,12 @@ h2 {
   color: white;
 }
 
+.anim-tongue {
+  position: absolute;
+  top: -28%;
+  left: 50%;
+}
+
 .anim-circle {
   color: transparent;
   position: absolute;
