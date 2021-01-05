@@ -11,11 +11,22 @@ h2 {
   color: transparent;
   position: absolute;
   top: -23%;
-  left: 44.5%;
+  left: 45.6%;
   background: pink;
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
   border: 2px solid rgb(170, 46, 108);
+  animation: tongue 7s infinite;
+}
+
+@keyframes tongue {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 30%;
+  }
 }
 
 .anim-circle {
