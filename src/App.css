@@ -352,24 +352,39 @@ h2 {
   color: transparent;
   position: absolute;
   top: -43.5%;
-  left: 44%;
+  left: 46%;
   width: 20px;
   height: 20px;
   border-radius: 36% 64% 100% 0% / 30% 0% 100% 70% ;
-  border: 2px solid black;
+  /* border: 1px solid black; */
   background: rgb(231, 37, 37);
+  transform: rotate(45deg) scale(1.7);
 }
 
 .anim-right-lip {
   color: transparent;
   position: absolute;
   top: -43.5%;
-  left: 52%;
+  left: 51%;
   width: 20px;
   height: 20px;
   border-radius: 64% 36% 0% 100% / 0% 30% 70% 100% ;
-  border: 2px solid black;
+  /* border: 1px solid black; */
   background: rgb(231, 37, 37);
+  transform: rotate(-45deg) scale(1.7);
+
+}
+
+.anim-lower-lip {
+  color: transparent;
+  position: absolute;
+  top: -37%;
+  left: 48%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100% 0% 84% 0% / 98% 0% 82% 0% ;
+  background: rgb(231, 37, 37);
+  transform: rotate(45deg) scale(1.7);
 }
 
 .anim-split-left {
