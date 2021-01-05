@@ -348,6 +348,30 @@ h2 {
     
 }
 
+.anim-left-lip {
+  color: transparent;
+  position: absolute;
+  top: -43.5%;
+  left: 44%;
+  width: 20px;
+  height: 20px;
+  border-radius: 36% 64% 100% 0% / 30% 0% 100% 70% ;
+  border: 2px solid black;
+  background: rgb(231, 37, 37);
+}
+
+.anim-right-lip {
+  color: transparent;
+  position: absolute;
+  top: -43.5%;
+  left: 52%;
+  width: 20px;
+  height: 20px;
+  border-radius: 64% 36% 0% 100% / 0% 30% 70% 100% ;
+  border: 2px solid black;
+  background: rgb(231, 37, 37);
+}
+
 .anim-split-left {
   background: lightblue;
   color: transparent;

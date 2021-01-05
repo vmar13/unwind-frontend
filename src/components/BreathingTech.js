@@ -241,7 +241,10 @@ class BreathingTech extends React.Component {
 
                 {name === 'Humming Bee' ? <p className='anim-hum'>humming bee animation</p> : null}
 
-                {name === 'Pursed Lip' ? <p className='anim-pursed-lip'>pursed lip animation</p> : null}
+                {name === 'Pursed Lip' ? 
+                [<p className='anim-pursed-lip'>pursed lip animation</p>,
+                <p className='anim-left-lip'>leftsidelip</p>,
+                <p className='anim-right-lip'>rightsidelip</p>] : null}
 
                 <h2>{name} <button onClick={() => {
                     this.favoriteBT()
