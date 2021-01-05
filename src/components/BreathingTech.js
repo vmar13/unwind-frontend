@@ -240,8 +240,8 @@ class BreathingTech extends React.Component {
                 <p className='anim-iris-right'>iris-2</p>] : null}
 
                 {name === 'Humming Bee' ? <p className='anim-hum'>humming bee animation</p> : null}
-                
-                {name === 'Pursed Lip' ? <p className='anim-circle'>pursed lip animation</p> : null}
+
+                {name === 'Pursed Lip' ? <p className='anim-pursed-lip'>pursed lip animation</p> : null}
 
                 <h2>{name} <button onClick={() => {
                     this.favoriteBT()
