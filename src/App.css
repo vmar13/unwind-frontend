@@ -29,32 +29,32 @@ h2 {
     height: 30%;
   }
 
-  /* 100% {
-    height: 0%;
-  } */
 }
 
-.anim-eye-1 {
+.anim-eye-left {
   color: transparent;
   position: absolute;
   top: -43.5%;
   left: 44%;
-  background: rgb(17, 1, 3);
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 2px solid black;
+  background: white;
   /* animation: tongue 7s linear infinite; */
 }
 
-.anim-eye-2 {
+.anim-eye-right {
   color: transparent;
   position: absolute;
   top: -43.5%;
-  left: 53%;
+  left: 52%;
   background: rgb(17, 1, 3);
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 2px solid black;
+  background: white;
   /* animation: tongue 7s linear infinite; */
 }
 

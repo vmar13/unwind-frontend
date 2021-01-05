@@ -223,11 +223,24 @@ class BreathingTech extends React.Component {
         <>
          
             <div className='breathing-tech-container'>
-                {name === 'Alternate Nostril Breathing' ? [<p className='anim-split-left' key='1'>alt nost animation</p>, <p className='anim-split-right' key='2'>alt nost animation2</p>] : null}
+                {name === 'Alternate Nostril Breathing' ? 
+                [<p className='anim-split-left' key='1'>alt nost animation</p>,
+                 <p className='anim-split-right' key='2'>alt nost animation2</p>] : null}
+
                 {name === 'Ujjayi' ? [<div className='anim-fog-div' key='3'>,<div className='anim-fog' key='4'>ujjayi animation</div>,</div>] : null}
+
                 {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
-                {name === "Lion's Breath" ? [<p className='anim-circle'>Lion's breath animation</p>, <p className='anim-tongue'>tongue</p>, <p className='anim-eye-1'>eye1</p>, <p className='anim-eye-2'>eye2</p>] : null}
+
+                {name === "Lion's Breath" ? 
+                [<p className='anim-circle'>Lion's breath animation</p>, 
+                <p className='anim-tongue'>tongue</p>, 
+                <p className='anim-eye-left'>eye1</p>, 
+                <p className='anim-eye-right'>eye2</p>, 
+                <p className='anim-iris-left'>iris-1</p>, 
+                <p className='anim-iris-right'>iris-2</p>] : null}
+
                 {name === 'Humming Bee' ? <p className='anim-hum'>humming bee animation</p> : null}
+                
                 {name === 'Pursed Lip' ? <p className='anim-circle'>pursed lip animation</p> : null}
 
                 <h2>{name} <button onClick={() => {
