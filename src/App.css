@@ -351,40 +351,54 @@ h2 {
 .anim-left-lip {
   color: transparent;
   position: absolute;
-  top: -43.5%;
+  top: -33%;
   left: 46%;
   width: 20px;
   height: 20px;
   border-radius: 36% 64% 100% 0% / 30% 0% 100% 70% ;
   /* border: 1px solid black; */
   background: rgb(231, 37, 37);
-  transform: rotate(45deg) scale(1.7);
+  /* transform: rotate(45deg) scale(1.7); */
+  transform: rotate(33deg) scale(1.7);
+
 }
 
 .anim-right-lip {
   color: transparent;
   position: absolute;
-  top: -43.5%;
+  top: -33%;
   left: 51%;
   width: 20px;
   height: 20px;
   border-radius: 64% 36% 0% 100% / 0% 30% 70% 100% ;
   /* border: 1px solid black; */
   background: rgb(231, 37, 37);
-  transform: rotate(-45deg) scale(1.7);
+  transform: rotate(-33deg) scale(1.7);
 
 }
 
-.anim-lower-lip {
+.anim-lower-lip-left {
   color: transparent;
   position: absolute;
-  top: -37%;
-  left: 48%;
-  width: 30px;
-  height: 30px;
-  border-radius: 100% 0% 84% 0% / 98% 0% 82% 0% ;
+  top: -26.7%;
+  left: 45.7%;
+  width: 22px;
+  height: 20px;
+  border-radius: 0% 100% 2% 98% / 0% 41% 0% 100% ;
   background: rgb(231, 37, 37);
-  transform: rotate(45deg) scale(1.7);
+  transform: rotate(-11deg) scale(1.7);
+}
+
+.anim-lower-lip-right {
+  color: transparent;
+  position: absolute;
+  top: -26.7%;
+  left: 51%;
+  width: 22px;
+  height: 20px;
+  border-radius: 100% 0% 100% 0% / 42% 0% 100% 0%;
+  background: rgb(231, 37, 37);
+  transform: rotate(11deg) scale(1.7);
 }
 
 .anim-split-left {
