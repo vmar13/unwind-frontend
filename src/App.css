@@ -163,7 +163,6 @@ h2 {
   background: lightblue;
   animation: animate 6s linear infinite;
   z-index: -1;
-  /* opacity: .95; */
 }
 
 .anim-fog-div {
@@ -177,8 +176,6 @@ h2 {
   top: -66%;
   left: 10%;
   animation: blur 6s linear infinite;
-  /* z-index: 2; */
-  /* opacity: .3;  */
 
 }
 
@@ -348,7 +345,7 @@ h2 {
     
 }
 
-.anim-left-lip {
+.anim-left-upper-lip {
   color: transparent;
   position: absolute;
   top: -33%;
@@ -360,10 +357,25 @@ h2 {
   background: rgb(231, 37, 37);
   /* transform: rotate(45deg) scale(1.7); */
   transform: rotate(33deg) scale(1.7);
-
+  animation: pursed-lip-upper-left 7s linear infinite;
 }
 
-.anim-right-lip {
+@keyframes pursed-lip-upper-left {
+  0% {
+    width: 20px;
+    height: 20px;
+  }
+
+  60% {
+    width: 25px;
+    height: 25px;
+    top: -35%;
+    transform: rotate(20deg) scale(1.7);
+
+  }
+}
+
+.anim-right-upper-lip {
   color: transparent;
   position: absolute;
   top: -33%;
@@ -374,7 +386,22 @@ h2 {
   /* border: 1px solid black; */
   background: rgb(231, 37, 37);
   transform: rotate(-33deg) scale(1.7);
+  animation: pursed-lip-upper-right 7s linear infinite;
+}
 
+@keyframes pursed-lip-upper-right {
+  0% {
+    width: 20px;
+    height: 20px;
+  }
+
+  60% {
+    width: 25px;
+    height: 25px;
+    top: -35%;
+    transform: rotate(-20deg) scale(1.7);
+
+  }
 }
 
 .anim-lower-lip-left {
@@ -382,7 +409,7 @@ h2 {
   position: absolute;
   top: -26.7%;
   left: 45.7%;
-  width: 22px;
+  width: 22.4px;
   height: 20px;
   border-radius: 0% 100% 2% 98% / 0% 41% 0% 100% ;
   background: rgb(231, 37, 37);
@@ -394,7 +421,7 @@ h2 {
   position: absolute;
   top: -26.7%;
   left: 51%;
-  width: 22px;
+  width: 22.4px;
   height: 20px;
   border-radius: 100% 0% 100% 0% / 42% 0% 100% 0%;
   background: rgb(231, 37, 37);

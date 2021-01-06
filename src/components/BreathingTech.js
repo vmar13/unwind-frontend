@@ -243,8 +243,8 @@ class BreathingTech extends React.Component {
 
                 {name === 'Pursed Lip' ? 
                 [<p className='anim-pursed-lip'>pursed lip animation</p>,
-                <p className='anim-left-lip'>leftsidelip</p>,
-                <p className='anim-right-lip'>rightsidelip</p>,
+                <p className='anim-left-upper-lip'>leftsidelip</p>,
+                <p className='anim-right-upper-lip'>rightsidelip</p>,
                 <p className='anim-lower-lip-left'>lowerlip</p>,
                 <p className='anim-lower-lip-right'>lowerlip</p>] : null}
 
