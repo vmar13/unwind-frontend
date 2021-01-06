@@ -414,6 +414,19 @@ h2 {
   border-radius: 0% 100% 2% 98% / 0% 41% 0% 100% ;
   background: rgb(231, 37, 37);
   transform: rotate(-11deg) scale(1.7);
+  animation: pursed-lower-lip-left 7s linear infinite;
+}
+
+@keyframes pursed-lower-lip-left {
+  0% {
+    width: 22.4px;
+    height: 20px;
+  }
+
+  60% {
+    width: 27.4px;
+    height: 25px;
+  }
 }
 
 .anim-lower-lip-right {
@@ -426,6 +439,19 @@ h2 {
   border-radius: 100% 0% 100% 0% / 42% 0% 100% 0%;
   background: rgb(231, 37, 37);
   transform: rotate(11deg) scale(1.7);
+  animation: pursed-lower-lip-right 7s linear infinite;
+}
+
+@keyframes pursed-lower-lip-right {
+  0% {
+    width: 22.4px;
+    height: 20px;
+  }
+
+  60% {
+    width: 27.4px;
+    height: 25px;
+  }
 }
 
 .anim-split-left {
