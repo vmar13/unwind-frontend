@@ -67,7 +67,6 @@ h2 {
   border-radius: 50%;
   background: black;
   animation: iris 7s linear infinite;
-
 }
 
 .anim-iris-right {
@@ -81,7 +80,6 @@ h2 {
   border-radius: 50%;
   background: black;
   animation: iris 7s linear infinite;
-
 }
 
 @keyframes iris {
@@ -124,33 +122,6 @@ h2 {
 
   }
 }   
-
-/* .anim-fog {
-  position: absolute; 
-  top: 49%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: lightblue;
-  animation: animate 6s linear infinite;
-  z-index: 3;
-  opacity: .99;
-}
-
-.anim-fog-div {
-  color: transparent;
-  background-image: url('./images/fog.png');
-  background-position: center;
-  background-size: cover;
-  height: 44vh;
-  width: 80%;
-  position: relative;
-  margin-top: -35%;
-  margin-left: 10%;
-  z-index: 2;
-} */
 
 .anim-fog {
   position: absolute; 
@@ -467,13 +438,12 @@ h2 {
   transform: translate(-50%, -50%);
   width: 65px;
   height: 65px;
-  /* border-radius: 50%; */
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-  animation: animate 5s linear infinite;
+  animation: breathe 32s linear infinite;
 }
 
-@keyframes animate {
+@keyframes breathe {
   0% {
     box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.616), 0 0 0 30px rgba(188, 237, 243, 0.616), 0 0 0 45px rgba(188, 237, 243, 0.616), 0 0 0 60px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616);
 
@@ -517,7 +487,7 @@ h2 {
   height: 65px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  animation: animate 5s linear infinite;
+  /* animation: animate 5s linear infinite; */
 
 }
 @keyframes animate {
