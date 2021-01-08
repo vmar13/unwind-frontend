@@ -440,26 +440,10 @@ h2 {
   height: 65px;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
-  /* animation: left 48s linear infinite; */
+  animation: left 48s linear infinite;
 }
 
 @keyframes left {
-/*   ---64 SEC VERSION BELOW-----
-  0% {
-    box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.486), 0 0 0 30px rgba(188, 237, 243, 0.486), 0 0 0 45px rgba(188, 237, 243, 0.486), 0 0 0 60px rgba(188, 237, 243, 0.486), 0 0 0 75px rgba(188, 237, 243, 0.486);
-
-  }
-
-  5.5%, 18.5%, 31.5%, 36% {
-    box-shadow: 0 0 0 25px rgba(188, 237, 243, 0.616), 0 0 0 50px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616), 0 0 0 100px rgba(188, 237, 243, 0.616), 0 0 0 125px rgba(188, 237, 243, 0.616);
-
-  }
-
-  24%, 26%, 100% {
-    box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.616), 0 0 0 30px rgba(188, 237, 243, 0.616), 0 0 0 45px rgba(188, 237, 243, 0.616), 0 0 0 60px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616);
-
-  } */
-  
   
   0% {
     box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.486), 0 0 0 30px rgba(188, 237, 243, 0.486), 0 0 0 45px rgba(188, 237, 243, 0.486), 0 0 0 60px rgba(188, 237, 243, 0.486), 0 0 0 75px rgba(188, 237, 243, 0.486);
@@ -536,13 +520,15 @@ body {
 }
 
 #calendar-form {
-  background-color: rgb(199, 230, 220);
+  background-color: white;
   position: absolute;
-  width: 70%;
+  width: 72%;
   height: 85%;
   margin-top: -45.5%;
-  margin-left: 25%;
+  margin-left: 24.5%;
   z-index: 999;
+  border-radius: 3%;
+
 }
 
 #cal-form-close-btn {
@@ -552,7 +538,7 @@ body {
 }
 
 #calendar-inner-form {
-  background-color: yellow;
+  background-color: white;
   position: relative;
   margin-left: auto;
   margin-right: auto;
