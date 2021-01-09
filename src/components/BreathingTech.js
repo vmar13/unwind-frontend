@@ -31,30 +31,16 @@ class BreathingTech extends React.Component {
         })
     }
 
-   favoriteBT = () => {
-       const newFav = JSON.parse(localStorage.setItem('favoriteInfo'))
-       //would need to then add the newFav to the array of favs
-       //which would get updated in localStorage
+    favoriteBT () {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
 
-        // const user = JSON.parse(localStorage.getItem('user'))
-        // if (!user) {
-        //   return
-        // } else {
-        //   this.setState({
-        //     username: user.username,
-        //     loggedIn: true
-        //   })
-        // }
-      
-   }
+        //if bt with name already in localStorage, don't create
+        if([] || !existingFav) {
+            const user = JSON.parse(localStorage.getItem('user'))
 
-    //This both favorites and UNfavorites a BT
-    async favoriteBT () {
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        if(this.state.breathingTech.favorited === false && this.state.breathingTech.fav_id === 0){
             //send POST request to create favorite of BT
-            await fetch(API_FAVORITES, {
+            fetch(API_FAVORITES, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,28 +55,58 @@ class BreathingTech extends React.Component {
                 })
             })
             .then(res => res.json())
-            .then(favObj => {
-                this.props.addNewFav(favObj)
-                this.setState({ favorite: favObj })
+            .then(newFav => {
+                console.log(newFav)
+                this.props.addNewFav(newFav)
+                favorites.push(newFav)
             })
-            //send PATCH request to breathingTech to toggle favorited:false to true and assign fav_id
-            await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                },
-                body: JSON.stringify({ 
-                    favorited: true,
-                    fav_id: this.state.favorite.id 
-                })
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
         } else {
             return
         }
     }
+
+    // async favoriteBT () {
+    //     const user = JSON.parse(localStorage.getItem('user'))
+
+    //     if(this.state.breathingTech.favorited === false && this.state.breathingTech.fav_id === 0){
+    //         //send POST request to create favorite of BT
+    //         await fetch(API_FAVORITES, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: `Bearer ${user.token}`
+    //             },
+    //             body: JSON.stringify({
+    //                 favorite: { 
+    //                     user_id: user.id,
+    //                     breathing_technique_id: this.state.breathingTech.id,
+    //                     name: this.state.breathingTech.name 
+    //                 }      
+    //             })
+    //         })
+    //         .then(res => res.json())
+    //         .then(favObj => {
+    //             this.props.addNewFav(favObj)
+    //             this.setState({ favorite: favObj })
+    //         })
+    //         //send PATCH request to breathingTech to toggle favorited:false to true and assign fav_id
+    //         await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
+    //             method: 'PATCH',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 Authorization: `Bearer ${user.token}`
+    //             },
+    //             body: JSON.stringify({ 
+    //                 favorited: true,
+    //                 fav_id: this.state.favorite.id 
+    //             })
+    //         })
+    //         .then(res => res.json())
+    //         .then(data => console.log(data))
+    //     } else {
+    //         return
+    //     }
+    // }
             
     unFavoriteBT = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -216,7 +232,7 @@ class BreathingTech extends React.Component {
     render() {
         // console.log(this.state.allFavorites)
 
-        const { name, step_one, step_two, step_three, step_four, favorited } = this.state.breathingTech
+        const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
         const { blueHeart, toggleBlueHeart } = this.props
        
         return(
@@ -250,8 +266,8 @@ class BreathingTech extends React.Component {
 
                 <h2>{name} <button onClick={() => {
                     this.favoriteBT()
-                    this.unFavoriteBT()
-                    toggleBlueHeart()
+                    // this.unFavoriteBT()
+                    // toggleBlueHeart()
                      }}
                      //need to fix so that blue heart appear without pg refresh
                     className='favorite-btn'>{blueHeart ? '💙' : '♡'}</button></h2>
