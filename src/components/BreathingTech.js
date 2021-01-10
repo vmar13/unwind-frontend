@@ -32,7 +32,7 @@ class BreathingTech extends React.Component {
     }
 
     favoriteBT () {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || []
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
         const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
 
         //if bt with name already in localStorage, don't create
@@ -59,6 +59,7 @@ class BreathingTech extends React.Component {
                 console.log(newFav)
                 this.props.addNewFav(newFav)
                 favorites.push(newFav)
+                localStorage.setItem('favorites', JSON.stringify(favorites))
             })
         } else {
             return
