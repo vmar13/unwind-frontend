@@ -8,7 +8,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        // blueHeart: false,
+        blueHeart: false,
         favorite: {},
         isLoading: true
     }
@@ -29,6 +29,36 @@ class BreathingTech extends React.Component {
             })
             }    
         })
+    }
+
+    stayFavorited = () => {
+        const allFavs = JSON.parse(localStorage.getItem('favorites'))
+        // console.log(allFavs)
+        // console.log(typeof(allFavs))
+        // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
+       const allFavsArr = Object.entries(allFavs)
+        for(let arrEle of allFavsArr){
+            console.log(arrEle[1])
+        }
+       
+        // for(let key in allFavs){
+        //     console.log(key)
+        //     for(let favObj in key){
+        //         console.log(favObj)
+        //     }
+            // if(favObj.name === this.state.breathingTech.name){
+            //     return console.log('true')
+            //     // this.setState({ blueHeart: true })
+            // } else {
+            //     return console.log('false')
+            // }
+        // }
+         
+        // if(!existingFav) {
+        //     this.setState({ blueHeart: true })
+        // } else {
+        //     return
+        // }
     }
 
     favoriteBT () {
@@ -60,6 +90,7 @@ class BreathingTech extends React.Component {
                 this.props.addNewFav(newFav)
                 favorites.push(newFav)
                 localStorage.setItem('favorites', JSON.stringify(favorites))
+                this.stayFavorited()
             })
         } else {
             return
@@ -215,6 +246,7 @@ class BreathingTech extends React.Component {
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
+       this.stayFavorited()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -234,7 +266,9 @@ class BreathingTech extends React.Component {
         // console.log(this.state.allFavorites)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
-        const { blueHeart, toggleBlueHeart } = this.props
+        // const { blueHeart, toggleBlueHeart } = this.props
+        const { blueHeart } = this.state
+
        
         return(
         <>
