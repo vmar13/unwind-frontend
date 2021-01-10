@@ -38,7 +38,14 @@ class BreathingTech extends React.Component {
         // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
        const allFavsArr = Object.entries(allFavs)
         for(let arrEle of allFavsArr){
-            console.log(arrEle[1])
+            const favName = arrEle[1].name
+            if(favName === this.state.breathingTech.name){
+                this.setState({ blueHeart: true })
+            } else {
+                return
+            }
+            // favName === this.state.breathingTech.name ? this.setState({ blueHeart: true }) : this.setState({ blueHeart: false })
+            // console.log(arrEle[1].name)
         }
        
         // for(let key in allFavs){
@@ -252,6 +259,7 @@ class BreathingTech extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
+        this.stayFavorited()
         this._isMounted = true
       } else {
         return
@@ -263,9 +271,10 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        // console.log(this.state.allFavorites)
+        // console.log(this.state.blueHeart)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
+        console.log(name)
         // const { blueHeart, toggleBlueHeart } = this.props
         const { blueHeart } = this.state
 
@@ -283,21 +292,21 @@ class BreathingTech extends React.Component {
                 {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
 
                 {name === "Lion's Breath" ? 
-                [<p className='anim-circle'>Lion's breath animation</p>, 
-                <p className='anim-tongue'>tongue</p>, 
-                <p className='anim-eye-left'>eye1</p>, 
-                <p className='anim-eye-right'>eye2</p>, 
-                <p className='anim-iris-left'>iris-1</p>, 
-                <p className='anim-iris-right'>iris-2</p>] : null}
+                [<p className='anim-circle' key='1'>Lion's breath animation</p>, 
+                <p className='anim-tongue' key='2'>tongue</p>, 
+                <p className='anim-eye-left' key='3'>eye1</p>, 
+                <p className='anim-eye-right' key='4'>eye2</p>, 
+                <p className='anim-iris-left' key='5'>iris-1</p>, 
+                <p className='anim-iris-right' key='6'>iris-2</p>] : null}
 
                 {name === 'Humming Bee' ? <p className='anim-hum'>humming bee animation</p> : null}
 
                 {name === 'Pursed Lip' ? 
-                [<p className='anim-pursed-lip'>pursed lip animation</p>,
-                <p className='anim-left-upper-lip'>leftsidelip</p>,
-                <p className='anim-right-upper-lip'>rightsidelip</p>,
-                <p className='anim-lower-lip-left'>lowerlip</p>,
-                <p className='anim-lower-lip-right'>lowerlip</p>] : null}
+                [<p className='anim-pursed-lip' key='1'>pursed lip animation</p>,
+                <p className='anim-left-upper-lip' key='2'>leftsidelip</p>,
+                <p className='anim-right-upper-lip' key='3'>rightsidelip</p>,
+                <p className='anim-lower-lip-left' key='4'>lowerlip</p>,
+                <p className='anim-lower-lip-right' key='5'>lowerlip</p>] : null}
 
                 <h2>{name} <button onClick={() => {
                     this.favoriteBT()
