@@ -36,7 +36,11 @@ class BreathingTech extends React.Component {
         // console.log(allFavs)
         // console.log(typeof(allFavs))
         // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
-       const allFavsArr = Object.entries(allFavs)
+       
+       if(!allFavs){
+           return
+       } else {
+        const allFavsArr = Object.entries(allFavs)
         for(let arrEle of allFavsArr){
             const favName = arrEle[1].name
             if(favName === this.state.breathingTech.name){
@@ -47,25 +51,7 @@ class BreathingTech extends React.Component {
             // favName === this.state.breathingTech.name ? this.setState({ blueHeart: true }) : this.setState({ blueHeart: false })
             // console.log(arrEle[1].name)
         }
-       
-        // for(let key in allFavs){
-        //     console.log(key)
-        //     for(let favObj in key){
-        //         console.log(favObj)
-        //     }
-            // if(favObj.name === this.state.breathingTech.name){
-            //     return console.log('true')
-            //     // this.setState({ blueHeart: true })
-            // } else {
-            //     return console.log('false')
-            // }
-        // }
-         
-        // if(!existingFav) {
-        //     this.setState({ blueHeart: true })
-        // } else {
-        //     return
-        // }
+       }
     }
 
     favoriteBT () {
@@ -73,7 +59,7 @@ class BreathingTech extends React.Component {
         const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
 
         //if bt with name already in localStorage, don't create
-        if([] || !existingFav) {
+        if([] || existingFav) {
             const user = JSON.parse(localStorage.getItem('user'))
 
             //send POST request to create favorite of BT
@@ -259,7 +245,7 @@ class BreathingTech extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
-        this.stayFavorited()
+        // this.stayFavorited()
         this._isMounted = true
       } else {
         return
@@ -274,7 +260,7 @@ class BreathingTech extends React.Component {
         // console.log(this.state.blueHeart)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
-        console.log(name)
+        console.log(this.state.breathingTech.name)
         // const { blueHeart, toggleBlueHeart } = this.props
         const { blueHeart } = this.state
 
@@ -287,7 +273,7 @@ class BreathingTech extends React.Component {
                 [<p className='anim-split-left' key='1'>alt nost animation</p>,
                  <p className='anim-split-right' key='2'>alt nost animation2</p>] : null}
 
-                {name === 'Ujjayi' ? [<div className='anim-fog-div' key='3'>,<div className='anim-fog' key='4'>ujjayi animation</div>,</div>] : null}
+                {name === 'Ujjayi' ? [<div className='anim-fog-div' key='1'>,<div className='anim-fog' key='2'>ujjayi animation</div>,</div>] : null}
 
                 {name === 'Diaphragmatic Breathing' ? <p className='anim-circle'>diaphragmatic animation</p> : null}
 
