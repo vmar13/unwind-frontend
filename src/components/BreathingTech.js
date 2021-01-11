@@ -1,4 +1,5 @@
 import React from 'react'
+import FavBtn from '../components/FavBtn'
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
 const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`
@@ -8,8 +9,8 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        blueHeart: false,
-        favorite: {},
+        // blueHeart: false,
+        favorited: false,
         isLoading: true
     }
 
@@ -31,35 +32,38 @@ class BreathingTech extends React.Component {
         })
     }
 
+    //grab all favs from localStorage as long as it's not an empty array
     stayFavorited = () => {
-        const allFavs = JSON.parse(localStorage.getItem('favorites'))
+            const allFavs = JSON.parse(localStorage.getItem('favorites'))
         // console.log(allFavs)
         // console.log(typeof(allFavs))
         // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
        
-       if(!allFavs){
-           return
-       } else {
-        const allFavsArr = Object.entries(allFavs)
-        for(let arrEle of allFavsArr){
-            const favName = arrEle[1].name
-            if(favName === this.state.breathingTech.name){
-                this.setState({ blueHeart: true })
-            } else {
+            if(allFavs.length < 1){
                 return
+            } else {
+                const allFavsArr = Object.entries(allFavs)
+                for(let arrEle of allFavsArr){
+                    const favName = arrEle[1].name //existing favorite
+                    if(favName === this.state.breathingTech.name){
+                        this.setState((state, props) => ({
+                            blueHeart: true
+                        }))
+                    } else {
+                        this.setState({ blueHeart: false })
+                    }
+                    // favName === this.state.breathingTech.name ? this.setState({ blueHeart: true }) : this.setState({ blueHeart: false })
+                    // console.log(arrEle[1].name)
+                }
             }
-            // favName === this.state.breathingTech.name ? this.setState({ blueHeart: true }) : this.setState({ blueHeart: false })
-            // console.log(arrEle[1].name)
-        }
-       }
+        
     }
 
     favoriteBT () {
         const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
         const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
-
-        //if bt with name already in localStorage, don't create
-        if([] || existingFav) {
+        //only create favorite if array is empty or no existing fav in localStorage
+        if([] || !existingFav) {
             const user = JSON.parse(localStorage.getItem('user'))
 
             //send POST request to create favorite of BT
@@ -239,7 +243,7 @@ class BreathingTech extends React.Component {
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
-       this.stayFavorited()
+    //    this.stayFavorited()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -260,10 +264,9 @@ class BreathingTech extends React.Component {
         // console.log(this.state.blueHeart)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
-        console.log(this.state.breathingTech.name)
+        // console.log(this.state.breathingTech.name)
         // const { blueHeart, toggleBlueHeart } = this.props
         const { blueHeart } = this.state
-
        
         return(
         <>
@@ -294,13 +297,13 @@ class BreathingTech extends React.Component {
                 <p className='anim-lower-lip-left' key='4'>lowerlip</p>,
                 <p className='anim-lower-lip-right' key='5'>lowerlip</p>] : null}
 
-                <h2>{name} <button onClick={() => {
+                <h2>{name} <FavBtn favorited={this.state.favorited} favoriteBT={this.favoriteBT} unFavoriteBT={this.unFavoriteBT}/></h2>
+
+                {/* <h2>{name} <button onClick={() => {
                     this.favoriteBT()
                     // this.unFavoriteBT()
-                    // toggleBlueHeart()
                      }}
-                     //need to fix so that blue heart appear without pg refresh
-                    className='favorite-btn'>{blueHeart ? '💙' : '♡'}</button></h2>
+                    className='favorite-btn'>{blueHeart ? '💙' : '♡'}</button></h2> */}
 
                 <ul className='bt-instructions'>
                     <li>{step_one}</li>
