@@ -25,12 +25,12 @@ class FavBtn extends React.Component {
                 {favorited ? 
                 <button 
                 id={BTname}
-                // className='favorite-btn'
+                className='favorite-btn'
                 onClick={unFavoriteBT}>Favorite</button> 
                 : 
                 <button 
                 id={BTname}
-                // className='favorite-btn'
+                className='favorite-btn'
                 onClick={favoriteBT}>UnFavorite</button>}
                 
             </>

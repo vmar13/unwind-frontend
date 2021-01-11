@@ -569,6 +569,10 @@ body {
   border-radius: 3%;
 }
 
+.favorite-btn {
+  background-color: hotpink;
+}
+
 .form-extra-text {
   font-size: 11pt;
 }
