@@ -266,7 +266,6 @@ class BreathingTech extends React.Component {
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
         // console.log(this.state.breathingTech.name)
         // const { blueHeart, toggleBlueHeart } = this.props
-        const { blueHeart } = this.state
        
         return(
         <>
@@ -297,7 +296,7 @@ class BreathingTech extends React.Component {
                 <p className='anim-lower-lip-left' key='4'>lowerlip</p>,
                 <p className='anim-lower-lip-right' key='5'>lowerlip</p>] : null}
 
-                <h2>{name} <FavBtn favorited={this.state.favorited} favoriteBT={this.favoriteBT} unFavoriteBT={this.unFavoriteBT}/></h2>
+                <h2>{name} <FavBtn favorited={this.state.favorited} favoriteBT={this.favoriteBT} unFavoriteBT={this.unFavoriteBT} BTname={name}/></h2>
 
                 {/* <h2>{name} <button onClick={() => {
                     this.favoriteBT()

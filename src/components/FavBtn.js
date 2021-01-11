@@ -8,17 +8,19 @@ class FavBtn extends React.Component {
 
 
     render () {
-        const { favorited, favoriteBT, unFavoriteBT } = this.props
+        const { favorited, favoriteBT, unFavoriteBT, BTname } = this.props
 
         return (
             <>
                 {favorited ? 
                 <button 
-                className='favorite-btn'
+                id={BTname}
+                // className='favorite-btn'
                 onClick={unFavoriteBT}>💙</button> 
                 : 
                 <button 
-                className='favorite-btn'
+                id={BTname}
+                // className='favorite-btn'
                 onClick={favoriteBT}>♡</button>}
                 
             </>
@@ -28,8 +30,3 @@ class FavBtn extends React.Component {
 
 export default FavBtn
 
-{/* <button
-className="btn btn-default"
-style={buttonStyle}
-onClick={this.props.handleClick}>{this.props.label}</button>
-); */}
