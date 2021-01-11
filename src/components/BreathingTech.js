@@ -10,7 +10,7 @@ class BreathingTech extends React.Component {
     state = {
         breathingTech: {},
         // blueHeart: false,
-        favorited: false,
+        localStorageFavs: [],
         isLoading: true
     }
 
@@ -34,6 +34,7 @@ class BreathingTech extends React.Component {
 
     //grab all favs from localStorage as long as it's not an empty array
     stayFavorited = () => {
+        const localStorFavNames = []
             const allFavs = JSON.parse(localStorage.getItem('favorites'))
         // console.log(allFavs)
         // console.log(typeof(allFavs))
@@ -43,18 +44,17 @@ class BreathingTech extends React.Component {
                 return
             } else {
                 const allFavsArr = Object.entries(allFavs)
+                // console.log(allFavsArr)
+                // this.setState({ localStorageFavs: allFavsArr })
+                //return allFavsArr, pass it down as a prop to favBtn and 
+                //compare each favName to BTname in that component
+
                 for(let arrEle of allFavsArr){
-                    const favName = arrEle[1].name //existing favorite
-                    if(favName === this.state.breathingTech.name){
-                        this.setState((state, props) => ({
-                            blueHeart: true
-                        }))
-                    } else {
-                        this.setState({ blueHeart: false })
-                    }
-                    // favName === this.state.breathingTech.name ? this.setState({ blueHeart: true }) : this.setState({ blueHeart: false })
-                    // console.log(arrEle[1].name)
+                    const favName = arrEle[1].name 
+                    localStorFavNames.push(favName)
                 }
+                // console.log(localStorFavNames)
+                this.setState({ localStorageFavs: localStorFavNames})
             }
         
     }
@@ -243,13 +243,13 @@ class BreathingTech extends React.Component {
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
-    //    this.stayFavorited()
+       this.stayFavorited()
     }
 
     componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
-        // this.stayFavorited()
+        this.stayFavorited()
         this._isMounted = true
       } else {
         return
@@ -261,9 +261,10 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        // console.log(this.state.blueHeart)
+        // console.log(this.state.localStorageFavs)
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
+        const { localStorageFavs } = this.state
         // console.log(this.state.breathingTech.name)
         // const { blueHeart, toggleBlueHeart } = this.props
        
@@ -296,7 +297,13 @@ class BreathingTech extends React.Component {
                 <p className='anim-lower-lip-left' key='4'>lowerlip</p>,
                 <p className='anim-lower-lip-right' key='5'>lowerlip</p>] : null}
 
-                <h2>{name} <FavBtn favorited={this.state.favorited} favoriteBT={this.favoriteBT} unFavoriteBT={this.unFavoriteBT} BTname={name}/></h2>
+                <h2>{name} <FavBtn 
+                favorited={this.state.favorited} 
+                favoriteBT={this.favoriteBT} 
+                unFavoriteBT={this.unFavoriteBT} 
+                BTname={name}
+                localStorageFavs={localStorageFavs}
+                /></h2>
 
                 {/* <h2>{name} <button onClick={() => {
                     this.favoriteBT()

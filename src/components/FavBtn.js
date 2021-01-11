@@ -2,13 +2,23 @@ import React from 'react'
 
 class FavBtn extends React.Component {
     
-    // state = {
-    //     favorited: false
-    // }
+    state = {
+        favorited: false
+    }
 
+    checkForDupes = () => {
+        const { localStorageFavs, BTname } = this.props
+        localStorageFavs.includes(BTname) ? 
+        this.setState({ favorited: true }) : this.setState({ favorited: false })
+    }
+    
+    componentDidMount = () => {
+        this.checkForDupes()
+    }
 
     render () {
-        const { favorited, favoriteBT, unFavoriteBT, BTname } = this.props
+        const { favoriteBT, unFavoriteBT, BTname} = this.props
+        const { favorited } = this.state
 
         return (
             <>
@@ -16,12 +26,12 @@ class FavBtn extends React.Component {
                 <button 
                 id={BTname}
                 // className='favorite-btn'
-                onClick={unFavoriteBT}>💙</button> 
+                onClick={unFavoriteBT}>Favorite</button> 
                 : 
                 <button 
                 id={BTname}
                 // className='favorite-btn'
-                onClick={favoriteBT}>♡</button>}
+                onClick={favoriteBT}>UnFavorite</button>}
                 
             </>
         )
