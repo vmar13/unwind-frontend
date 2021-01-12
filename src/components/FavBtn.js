@@ -2,13 +2,14 @@ import React from 'react'
 
 class FavBtn extends React.Component {
     
-    state = {
-        favorited: false
-    }
+    // state = {
+    //     favorited: false
+    // }
 
     checkForDupes = () => {
         const { localStorageFavs, BTname } = this.props
-        localStorageFavs.includes(BTname) ? 
+        // console.log(localStorageFavs)  //why am I getting an empty array?????
+        localStorageFavs.includes(BTname) ?
         this.setState({ favorited: true }) : this.setState({ favorited: false })
     }
     
@@ -17,21 +18,21 @@ class FavBtn extends React.Component {
     }
 
     render () {
-        const { favoriteBT, unFavoriteBT, BTname} = this.props
-        const { favorited } = this.state
-
+        const { favoriteBT, unFavoriteBT, BTname, favorited} = this.props
+        // const { favorited } = this.state
+// console.log(this.props.localStorageFavs)
         return (
             <>
                 {favorited ? 
                 <button 
                 id={BTname}
                 className='favorite-btn'
-                onClick={unFavoriteBT}>Favorite</button> 
+                onClick={unFavoriteBT}>Unfavorite</button> 
                 : 
                 <button 
                 id={BTname}
                 className='favorite-btn'
-                onClick={favoriteBT}>UnFavorite</button>}
+                onClick={favoriteBT}>Favorite</button>}
                 
             </>
         )

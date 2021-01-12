@@ -9,7 +9,7 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        // blueHeart: false,
+        favorited: false,
         localStorageFavs: [],
         isLoading: true
     }
@@ -34,6 +34,7 @@ class BreathingTech extends React.Component {
 
     //grab all favs from localStorage as long as it's not an empty array
     stayFavorited = () => {
+        const { localStorageFavs, BTname } = this.state
         const localStorFavNames = []
             const allFavs = JSON.parse(localStorage.getItem('favorites'))
         // console.log(allFavs)
@@ -55,6 +56,8 @@ class BreathingTech extends React.Component {
                 }
                 // console.log(localStorFavNames)
                 this.setState({ localStorageFavs: localStorFavNames})
+                localStorageFavs.includes(BTname) ?
+                this.setState({ favorited: true }) : this.setState({ favorited: false })
             }
         
     }
