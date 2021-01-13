@@ -10,6 +10,8 @@ class Login extends React.Component{
         displayError: ''
     }
 
+
+
     handleChange = e =>  {
         this.setState({ [e.target.name]: e.target.value })
     } 
@@ -42,7 +44,6 @@ class Login extends React.Component{
                         'token': data.jwt
                     }
                     localStorage.setItem('user', JSON.stringify(userInfo))
-                    localStorage.setItem('favorites', JSON.stringify(this.props.allFavs))
                     this.props.toggleLoggedIn()
                 }
             })

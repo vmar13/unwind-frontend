@@ -34,7 +34,7 @@ class BreathingTech extends React.Component {
 
     //grab all favs from localStorage as long as it's not an empty array
     stayFavorited = () => {
-        const { localStorageFavs, BTname } = this.state
+        const { localStorageFavs } = this.state
         const localStorFavNames = []
             const allFavs = JSON.parse(localStorage.getItem('favorites'))
         // console.log(allFavs)
@@ -54,15 +54,15 @@ class BreathingTech extends React.Component {
                     const favName = arrEle[1].name 
                     localStorFavNames.push(favName)
                 }
-                // console.log(localStorFavNames)
+                // console.log(this.state.breathingTech.name)
                 this.setState({ localStorageFavs: localStorFavNames})
-                localStorageFavs.includes(BTname) ?
+                localStorageFavs.includes(this.state.breathingTech.name) ?
                 this.setState({ favorited: true }) : this.setState({ favorited: false })
             }
         
     }
 
-    favoriteBT () {
+    favoriteBT = () => {
         const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
         const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
         //only create favorite if array is empty or no existing fav in localStorage
@@ -247,6 +247,8 @@ class BreathingTech extends React.Component {
        this._isMounted = true 
        this.getOneBreathingTech()
        this.stayFavorited()
+    //    console.log(this.state.breathingTech.name)
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -254,6 +256,8 @@ class BreathingTech extends React.Component {
         this.getOneBreathingTech()
         this.stayFavorited()
         this._isMounted = true
+        // console.log(this.state.breathingTech.name)
+
       } else {
         return
       }

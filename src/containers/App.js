@@ -18,8 +18,7 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    allFavs: [],
-    blueHeart: false
+    allFavs: []
   }
 
   componentDidMount() {
@@ -70,6 +69,32 @@ class App extends React.Component {
       return
     }
   }
+
+//   getFavorites = () => {
+//     const user = JSON.parse(localStorage.getItem('user'))
+
+//     if(user){
+//       fetch(API_FAVORITES, {
+//         method: 'GET',
+//         headers: {Authorization: `Bearer ${user.token}`}
+//     })
+//     .then(res => res.json())
+//     .then(allFavsData => {
+//       if(allFavsData.length > 0){
+//         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
+//         this.setState({ allFavs: userFavs })
+//         // const favorites = this.state.allFavs
+//         // console.log(favorites)
+//         // localStorage.setItem('favorites', JSON.stringify(favorites))
+
+//       } else {
+//         return
+//       }
+//     })
+//     } else {
+//       return
+//     }
+// }
   
   getFavorites = () => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -123,11 +148,10 @@ render () {
       breathingTechId={breathingTechId}
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
-      blueHeart={this.state.blueHeart}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} allFavs={this.state.allFavs} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs}  />} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
