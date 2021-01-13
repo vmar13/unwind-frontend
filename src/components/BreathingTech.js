@@ -36,12 +36,13 @@ class BreathingTech extends React.Component {
     stayFavorited = () => {
         const { localStorageFavs } = this.state
         const localStorFavNames = []
-            const allFavs = JSON.parse(localStorage.getItem('favorites'))
+            const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
         // console.log(allFavs)
         // console.log(typeof(allFavs))
         // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
        
             if(allFavs.length < 1){
+                localStorage.setItem('favorites', JSON.stringify(allFavs))
                 return
             } else {
                 const allFavsArr = Object.entries(allFavs)
