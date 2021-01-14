@@ -70,6 +70,32 @@ class App extends React.Component {
     }
   }
 
+  getFavorites = () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    if(user){
+     fetch(API_FAVORITES, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${user.token}`}
+    })
+    .then(res => res.json())
+    .then(allFavsData => {
+      if(allFavsData.length > 0){
+        let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
+        this.setState({ allFavs: userFavs })
+        const favorites = this.state.allFavs
+        // console.log(favorites)
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+      } else {
+        const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
+        localStorage.setItem('favorites', JSON.stringify(allFavs))
+      }
+    })
+    } else {
+      return
+    }
+}
+  
 //   getFavorites = () => {
 //     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -83,10 +109,6 @@ class App extends React.Component {
 //       if(allFavsData.length > 0){
 //         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
 //         this.setState({ allFavs: userFavs })
-//         // const favorites = this.state.allFavs
-//         // console.log(favorites)
-//         // localStorage.setItem('favorites', JSON.stringify(favorites))
-
 //       } else {
 //         return
 //       }
@@ -95,28 +117,6 @@ class App extends React.Component {
 //       return
 //     }
 // }
-  
-  getFavorites = () => {
-    const user = JSON.parse(localStorage.getItem('user'))
-
-    if(user){
-      fetch(API_FAVORITES, {
-        method: 'GET',
-        headers: {Authorization: `Bearer ${user.token}`}
-    })
-    .then(res => res.json())
-    .then(allFavsData => {
-      if(allFavsData.length > 0){
-        let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
-        this.setState({ allFavs: userFavs })
-      } else {
-        return
-      }
-    })
-    } else {
-      return
-    }
-}
 
 addNewFav = newFav => {
   this.setState({ 
