@@ -18,7 +18,8 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    allFavs: []
+    allFavs: [],
+    localStorageFavs: []
   }
 
   componentDidMount() {
@@ -72,6 +73,8 @@ class App extends React.Component {
 
   getFavorites = () => {
     const user = JSON.parse(localStorage.getItem('user'))
+    const localStorFavNames = []
+    // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
 
     if(user){
      fetch(API_FAVORITES, {
@@ -83,18 +86,23 @@ class App extends React.Component {
       if(allFavsData.length > 0){
         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
         this.setState({ allFavs: userFavs })
-        const favorites = this.state.allFavs
-        // console.log(favorites)
-        localStorage.setItem('favorites', JSON.stringify(favorites))
+        
+        for(let favObj of userFavs){
+          const favName = favObj.name
+          localStorFavNames.push(favName)
+        }
+
+        this.setState({ localStorageFavs: localStorFavNames })
       } else {
-        const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
-        localStorage.setItem('favorites', JSON.stringify(allFavs))
+        return
+        // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
+        // localStorage.setItem('favorites', JSON.stringify(allFavs))
       }
     })
     } else {
       return
     }
-}
+  }
   
 //   getFavorites = () => {
 //     const user = JSON.parse(localStorage.getItem('user'))
@@ -132,6 +140,8 @@ deleteFav = favId => {
 
   
 render () {
+console.log(this.state.allFavs, this.state.localStorageFavs)
+
   return (
     <>
     <div className='logo-name'>
@@ -149,7 +159,7 @@ render () {
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
       /> }} />
-      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} allFavs={this.state.allFavs} />} />
+      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
       <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />

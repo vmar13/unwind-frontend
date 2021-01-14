@@ -43,7 +43,7 @@ class BreathingTech extends React.Component {
        
             if(allFavs.length < 1){
                 localStorage.setItem('favorites', JSON.stringify(allFavs))
-                return
+                // return
             } else {
                 const allFavsArr = Object.entries(allFavs)
                 // console.log(allFavsArr)
@@ -254,7 +254,7 @@ class BreathingTech extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
-        this.stayFavorited()
+        // this.stayFavorited()
         this._isMounted = true
         // console.log(this.state.breathingTech.name)
 
