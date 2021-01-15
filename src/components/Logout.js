@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Redirect } from 'react-router'
 
-const Logout = ({ clearUser, loggedIn }) => {
+const Logout = ({ clearUserAndFavorites, loggedIn }) => {
   useEffect(() => {
-    clearUser()
+    clearUserAndFavorites()
   })
 
   return (

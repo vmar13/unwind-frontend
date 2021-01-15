@@ -25,7 +25,7 @@ class App extends React.Component {
   componentDidMount() {
     this.stayLoggedIn()
     this.renderBreathingTechs()
-    this.getFavorites()
+    // this.getFavorites()
   }
 
     
@@ -41,7 +41,7 @@ class App extends React.Component {
     }
   }
 
-  updateUsername = (username) => {
+  updateUsername = username => {
     this.setState({username})
   }
 
@@ -49,10 +49,15 @@ class App extends React.Component {
     this.setState({loggedIn: !this.state.loggedIn})
   }
 
-  clearUser = () => {
+  updateLocalStorageFavs = localStorageFavs => {
+    this.setState({localStorageFavs})
+  }
+
+  clearUserAndFavorites = () => {
     localStorage.clear()
     this.updateUsername('')
     this.toggleLoggedIn()
+    this.updateLocalStorageFavs([])
   }
 
   renderBreathingTechs = () => {
@@ -91,8 +96,11 @@ class App extends React.Component {
           const favName = favObj.name
           localStorFavNames.push(favName)
         }
+        // console.log(localStorFavNames)
 
-        this.setState({ localStorageFavs: localStorFavNames })
+        // this.setState({ localStorageFavs: localStorFavNames })
+        this.updateLocalStorageFavs(localStorFavNames)
+        console.log(this.state.localStorageFavs)
       } else {
         return
         // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
@@ -103,7 +111,26 @@ class App extends React.Component {
       return
     }
   }
+
+  storeFavsInLocalStorage = favsArr => {
+    if(favsArr.length >= 1){
+      localStorage.setItem('favorites', JSON.stringify(favsArr))
+    } else {
+      console.log(favsArr)
+      // const newFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
+      // localStorage.setItem('favorites', JSON.stringify(newFavs))
+    }
+  }
   
+  // storeFavsInLocalStorage = favsArr => {
+  //   console.log(favsArr)
+  //   if(favsArr.length >= 1){
+  //     localStorage.setItem('favorites', JSON.stringify(favsArr))
+  //   } else {
+  //     const newFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
+  //     localStorage.setItem('favorites', JSON.stringify(newFavs))
+  //   }
+  // }
 //   getFavorites = () => {
 //     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -140,7 +167,7 @@ deleteFav = favId => {
 
   
 render () {
-console.log(this.state.allFavs, this.state.localStorageFavs)
+// console.log(this.state.allFavs, this.state.localStorageFavs)
 
   return (
     <>
@@ -159,9 +186,9 @@ console.log(this.state.allFavs, this.state.localStorageFavs)
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
       /> }} />
-      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
+      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}  />} />
+      <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUserAndFavorites={this.clearUserAndFavorites} />} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} localStorageFavs={this.state.localStorageFavs} storeFavsInLocalStorage={this.storeFavsInLocalStorage} getFavorites={this.getFavorites}/>} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 

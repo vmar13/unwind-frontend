@@ -28,8 +28,11 @@ class Profile extends React.Component {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getPracticeTimes()
+        this.props.getFavorites()
+        this.props.storeFavsInLocalStorage(this.props.localStorageFavs)
     }
 
+    
     renderUserProfile = () => {
     const user = JSON.parse(localStorage.getItem('user'))
         if (user) {
@@ -39,6 +42,37 @@ class Profile extends React.Component {
             .then(res => res.json())
             .then(data => console.log(data))
         }
+    }
+
+
+    stayFavorited = () => {
+        const { localStorageFavs } = this.state
+        const localStorFavNames = []
+            const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
+        // console.log(allFavs)
+        // console.log(typeof(allFavs))
+        // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
+       
+            if(allFavs.length < 1){
+                localStorage.setItem('favorites', JSON.stringify(allFavs))
+                // return
+            } else {
+                const allFavsArr = Object.entries(allFavs)
+                // console.log(allFavsArr)
+                // this.setState({ localStorageFavs: allFavsArr })
+                //return allFavsArr, pass it down as a prop to favBtn and 
+                //compare each favName to BTname in that component
+
+                for(let arrEle of allFavsArr){
+                    const favName = arrEle[1].name 
+                    localStorFavNames.push(favName)
+                }
+                // console.log(this.state.breathingTech.name)
+                this.setState({ localStorageFavs: localStorFavNames})
+                localStorageFavs.includes(this.state.breathingTech.name) ?
+                this.setState({ favorited: true }) : this.setState({ favorited: false })
+            }
+        
     }
 
     //tweak so it's only fetching favs for that specific user who's signed in
