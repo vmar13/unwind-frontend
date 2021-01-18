@@ -11,12 +11,12 @@ const FavBtn = ({favoriteBT, unFavoriteBT, BTname, favNames}) => {
                 <button 
                 id={BTname}
                 className='favorite-btn'
-                onClick={unFavoriteBT}>Unfavorite</button> 
+                onClick={unFavoriteBT}>💙</button> 
                 : 
                 <button 
                 id={BTname}
                 className='favorite-btn'
-                onClick={favoriteBT}>Favorite</button>}
+                onClick={favoriteBT}>♡</button>}
 
                 
             </>

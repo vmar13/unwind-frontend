@@ -570,7 +570,9 @@ body {
 }
 
 .favorite-btn {
-  background-color: hotpink;
+  background-color: white;
+  border: none;
+
 }
 
 .form-extra-text {

@@ -284,7 +284,6 @@ class BreathingTech extends React.Component {
 
         // this.stayFavorited()
         this._isMounted = true
-        // console.log(this.state.breathingTech.name)
 
       } else {
         return
@@ -299,9 +298,7 @@ class BreathingTech extends React.Component {
         
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
-        const { localStorageFavs } = this.state
         // console.log(this.state.favNames)
-        // const { blueHeart, toggleBlueHeart } = this.props
        
         return(
         <>
@@ -338,7 +335,6 @@ class BreathingTech extends React.Component {
                 unFavoriteBT={this.unFavoriteBT} 
                 BTname={name}
                 favNames={this.state.favNames}
-                localStorageFavs={localStorageFavs}
                 /></h2>
 
                 {/* <h2>{name} <button onClick={() => {
