@@ -44,8 +44,7 @@ class Login extends React.Component{
                     }
                     localStorage.setItem('user', JSON.stringify(userInfo))
                     this.props.toggleLoggedIn()
-                    // this.props.getFavorites()
-                    // this.props.storeFavsInLocalStorage(this.props.localStorageFavs)
+                    this.props.getFavorites()
                 }
             })
     }
