@@ -10,9 +10,23 @@ class BreathingTech extends React.Component {
     state = {
         breathingTech: {},
         favorited: false,
-        localStorageFavs: [],
+        favNames: [],
         isLoading: true
     }
+
+    //need to pass down allFavs(userFavs), receive as props, put in state, and check against it for each BT
+    //if name is in breathingTechNames array and matches name displayed, then button should say "Unfavorite"
+    //copy app.js lines 95 to 98--need that logic to create array
+    // getBreathingTechNames = () => {
+    //     const favNames = []
+    //     const userFavs = this.props.allFavs
+
+    //     for(let favObj of userFavs){
+    //         const name = favObj.name
+    //         favNames.push(name)
+    //       }
+    //     this.setState({ breathingTechNames: favNames })
+    // }
 
     getOneBreathingTech = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -244,9 +258,21 @@ class BreathingTech extends React.Component {
     //     }
     // }
 
+    createFavNamesArr = arr => {
+        const favNamesArr = []
+
+        for(let favObj of arr){
+          const favName = favObj.name
+          favNamesArr.push(favName)
+        }
+
+        this.setState({ favNames: favNamesArr })
+    }
+
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
+       this.createFavNamesArr(this.props.allFavs)
     //    this.stayFavorited()
 
     }
@@ -254,6 +280,8 @@ class BreathingTech extends React.Component {
     componentDidUpdate(prevProps, prevState) {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
+        this.createFavNamesArr(this.props.allFavs)
+
         // this.stayFavorited()
         this._isMounted = true
         // console.log(this.state.breathingTech.name)
@@ -268,11 +296,11 @@ class BreathingTech extends React.Component {
     }
 
     render() {
-        // console.log(this.state.localStorageFavs)
+        
 
         const { name, step_one, step_two, step_three, step_four } = this.state.breathingTech
         const { localStorageFavs } = this.state
-        // console.log(this.state.breathingTech.name)
+        // console.log(this.state.favNames)
         // const { blueHeart, toggleBlueHeart } = this.props
        
         return(
@@ -309,6 +337,7 @@ class BreathingTech extends React.Component {
                 favoriteBT={this.favoriteBT} 
                 unFavoriteBT={this.unFavoriteBT} 
                 BTname={name}
+                favNames={this.state.favNames}
                 localStorageFavs={localStorageFavs}
                 /></h2>
 

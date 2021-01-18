@@ -18,14 +18,13 @@ class App extends React.Component {
     username: '',
     loggedIn: false,
     breathingTechs: [],
-    allFavs: [],
-    localStorageFavs: []
+    allFavs: []
   }
 
   componentDidMount() {
     this.stayLoggedIn()
     this.renderBreathingTechs()
-    // this.getFavorites()
+    this.getFavorites()
   }
 
     
@@ -49,15 +48,10 @@ class App extends React.Component {
     this.setState({loggedIn: !this.state.loggedIn})
   }
 
-  updateLocalStorageFavs = localStorageFavs => {
-    this.setState({localStorageFavs})
-  }
-
-  clearUserAndFavorites = () => {
+  clearUser = () => {
     localStorage.clear()
     this.updateUsername('')
     this.toggleLoggedIn()
-    this.updateLocalStorageFavs([])
   }
 
   renderBreathingTechs = () => {
@@ -78,7 +72,7 @@ class App extends React.Component {
 
   getFavorites = () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    const localStorFavNames = []
+    // const localStorFavNames = []
     // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
 
     if(user){
@@ -92,15 +86,12 @@ class App extends React.Component {
         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
         this.setState({ allFavs: userFavs })
         
-        for(let favObj of userFavs){
-          const favName = favObj.name
-          localStorFavNames.push(favName)
-        }
-        // console.log(localStorFavNames)
+        // for(let favObj of userFavs){
+        //   const favName = favObj.name
+        //   localStorFavNames.push(favName)
+        // }
 
-        // this.setState({ localStorageFavs: localStorFavNames })
-        this.updateLocalStorageFavs(localStorFavNames)
-        console.log(this.state.localStorageFavs)
+        // this.updateLocalStorageFavs(localStorFavNames)
       } else {
         return
         // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
@@ -122,36 +113,6 @@ class App extends React.Component {
     }
   }
   
-  // storeFavsInLocalStorage = favsArr => {
-  //   console.log(favsArr)
-  //   if(favsArr.length >= 1){
-  //     localStorage.setItem('favorites', JSON.stringify(favsArr))
-  //   } else {
-  //     const newFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
-  //     localStorage.setItem('favorites', JSON.stringify(newFavs))
-  //   }
-  // }
-//   getFavorites = () => {
-//     const user = JSON.parse(localStorage.getItem('user'))
-
-//     if(user){
-//       fetch(API_FAVORITES, {
-//         method: 'GET',
-//         headers: {Authorization: `Bearer ${user.token}`}
-//     })
-//     .then(res => res.json())
-//     .then(allFavsData => {
-//       if(allFavsData.length > 0){
-//         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
-//         this.setState({ allFavs: userFavs })
-//       } else {
-//         return
-//       }
-//     })
-//     } else {
-//       return
-//     }
-// }
 
 addNewFav = newFav => {
   this.setState({ 
@@ -167,7 +128,7 @@ deleteFav = favId => {
 
   
 render () {
-// console.log(this.state.allFavs, this.state.localStorageFavs)
+// console.log(this.state.allFavs)
 
   return (
     <>
@@ -183,12 +144,13 @@ render () {
         const breathingTechId = parseInt(routeProps.match.params.id)
       return <BreathingTech {...routeProps} 
       breathingTechId={breathingTechId}
+      allFavs={this.state.allFavs}
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}  />} />
-      <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUserAndFavorites={this.clearUserAndFavorites} />} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} localStorageFavs={this.state.localStorageFavs} storeFavsInLocalStorage={this.storeFavsInLocalStorage} getFavorites={this.getFavorites}/>} />
+      <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
+      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
       <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
