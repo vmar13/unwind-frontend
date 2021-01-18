@@ -118,7 +118,6 @@ addNewFav = newFav => {
   this.setState({ 
       allFavs: [...this.state.allFavs, newFav],
   })
-  console.log(this.state.allFavs)
 }
 
 deleteFav = favId => {
@@ -147,6 +146,7 @@ console.log(this.state.allFavs)
       allFavs={this.state.allFavs}
       addNewFav={this.addNewFav} 
       deleteFav={this.deleteFav}
+      getFavorites={this.getFavorites}
       /> }} />
       <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} getFavorites={this.getFavorites} />} />
       <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />

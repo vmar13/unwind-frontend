@@ -9,24 +9,9 @@ class BreathingTech extends React.Component {
 
     state = {
         breathingTech: {},
-        favorited: false,
         favNames: [],
         isLoading: true
     }
-
-    //need to pass down allFavs(userFavs), receive as props, put in state, and check against it for each BT
-    //if name is in breathingTechNames array and matches name displayed, then button should say "Unfavorite"
-    //copy app.js lines 95 to 98--need that logic to create array
-    // getBreathingTechNames = () => {
-    //     const favNames = []
-    //     const userFavs = this.props.allFavs
-
-    //     for(let favObj of userFavs){
-    //         const name = favObj.name
-    //         favNames.push(name)
-    //       }
-    //     this.setState({ breathingTechNames: favNames })
-    // }
 
     getOneBreathingTech = () => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -46,42 +31,7 @@ class BreathingTech extends React.Component {
         })
     }
 
-    //grab all favs from localStorage as long as it's not an empty array
-    stayFavorited = () => {
-        const { localStorageFavs } = this.state
-        const localStorFavNames = []
-            const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
-        // console.log(allFavs)
-        // console.log(typeof(allFavs))
-        // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
-       
-            if(allFavs.length < 1){
-                localStorage.setItem('favorites', JSON.stringify(allFavs))
-                // return
-            } else {
-                const allFavsArr = Object.entries(allFavs)
-                // console.log(allFavsArr)
-                // this.setState({ localStorageFavs: allFavsArr })
-                //return allFavsArr, pass it down as a prop to favBtn and 
-                //compare each favName to BTname in that component
-
-                for(let arrEle of allFavsArr){
-                    const favName = arrEle[1].name 
-                    localStorFavNames.push(favName)
-                }
-                // console.log(this.state.breathingTech.name)
-                this.setState({ localStorageFavs: localStorFavNames})
-                localStorageFavs.includes(this.state.breathingTech.name) ?
-                this.setState({ favorited: true }) : this.setState({ favorited: false })
-            }
-        
-    }
-
     favoriteBT = () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
-        const existingFav = favorites.filter(fav => fav.name === this.state.breathingTech.name)
-        //only create favorite if array is empty or no existing fav in localStorage
-        if([] || !existingFav) {
             const user = JSON.parse(localStorage.getItem('user'))
 
             //send POST request to create favorite of BT
@@ -103,66 +53,37 @@ class BreathingTech extends React.Component {
             .then(newFav => {
                 console.log(newFav)
                 this.props.addNewFav(newFav)
-                favorites.push(newFav)
-                localStorage.setItem('favorites', JSON.stringify(favorites))
-                this.stayFavorited()
+                let newFavName = newFav.name
+                this.setState({ favNames: [...this.state.favNames, newFavName]})      
+
             })
-        } else {
-            return
-        }
     }
+   
+    // findFavId = arr => {
+    //     let id 
 
-    // async favoriteBT () {
-    //     const user = JSON.parse(localStorage.getItem('user'))
+    //     for(let favObj of arr){
+    //         if(favObj.name === this.state.breathingTech.name){
+    //             id = favObj.id
 
-    //     if(this.state.breathingTech.favorited === false && this.state.breathingTech.fav_id === 0){
-    //         //send POST request to create favorite of BT
-    //         await fetch(API_FAVORITES, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             },
-    //             body: JSON.stringify({
-    //                 favorite: { 
-    //                     user_id: user.id,
-    //                     breathing_technique_id: this.state.breathingTech.id,
-    //                     name: this.state.breathingTech.name 
-    //                 }      
-    //             })
-    //         })
-    //         .then(res => res.json())
-    //         .then(favObj => {
-    //             this.props.addNewFav(favObj)
-    //             this.setState({ favorite: favObj })
-    //         })
-    //         //send PATCH request to breathingTech to toggle favorited:false to true and assign fav_id
-    //         await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
-    //             method: 'PATCH',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             },
-    //             body: JSON.stringify({ 
-    //                 favorited: true,
-    //                 fav_id: this.state.favorite.id 
-    //             })
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    //     } else {
-    //         return
+    //             this.setState({ favId: id})
+    //         }
     //     }
     // }
             
-    unFavoriteBT = () => {
+    unFavoriteBT = (arr) => {
         const user = JSON.parse(localStorage.getItem('user'))
+        let favId 
+        let favName
 
-        if(this.state.breathingTech.favorited === true && this.state.breathingTech.fav_id !== 0) {
-            const favId = this.state.breathingTech.fav_id
-        // console.log(favId)
+        for(let favObj of arr){
+            if(favObj.name === this.state.breathingTech.name){
+                favId = favObj.id
+                favName = favObj.name
+            }
+        }
 
-            fetch(`${API_FAVORITES}/${favId}`, {
+        fetch(`${API_FAVORITES}/${favId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -170,93 +91,8 @@ class BreathingTech extends React.Component {
                 }
             })
             this.props.deleteFav(favId)
-            //send PATCH request to breathingTech to toggle favorited:true to false
-            fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${user.token}`
-                },
-                body: JSON.stringify({ 
-                    favorited: false,
-                    fav_id: 0 
-                })
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
-        } else {
-            return
-        }
+            this.setState({ favNames: this.state.favNames.filter(name => name !== favName)})      
     }
-
-    // async toggleFavBT () {
-    //     const user = JSON.parse(localStorage.getItem('user'))
-
-    //     if(this.state.breathingTech.favorited === false){
-    //         //send POST request to create favorite of BT
-    //         await fetch(API_FAVORITES, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             },
-    //             body: JSON.stringify({
-    //                 favorite: { 
-    //                     user_id: user.id,
-    //                     breathing_technique_id: this.state.breathingTech.id,
-    //                     name: this.state.breathingTech.name 
-    //                 }      
-    //             })
-    //         })
-    //         .then(res => res.json())
-    //         .then(favObj => {
-    //             this.props.addNewFav(favObj)
-    //             this.setState({ favorite: favObj })
-    //         })
-    //         //send PATCH request to breathingTech to toggle favorited:false to true and assign fav_id
-    //         await fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
-    //             method: 'PATCH',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             },
-    //             body: JSON.stringify({ 
-    //                 favorited: true,
-    //                 fav_id: this.state.favorite.id 
-    //             })
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    //     } else {
-    //         //this.state.breathingTech.favorited === true
-    //         // const user = JSON.parse(localStorage.getItem('user'))
-    //         const favId = this.state.breathingTech.fav_id
-    //         // console.log(favId)
-
-    //         fetch(`${API_FAVORITES}/${favId}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             }
-    //         })
-    //         this.props.deleteFav(favId)
-    //         //send PATCH request to breathingTech to toggle favorited:true to false
-    //         fetch(`${API_BREATHING_TECHS}/${this.state.breathingTech.id}`, {
-    //             method: 'PATCH',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 Authorization: `Bearer ${user.token}`
-    //             },
-    //             body: JSON.stringify({ 
-    //                 favorited: false,
-    //                 fav_id: 0 
-    //             })
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    //     }
-    // }
 
     createFavNamesArr = arr => {
         const favNamesArr = []
@@ -273,7 +109,6 @@ class BreathingTech extends React.Component {
        this._isMounted = true 
        this.getOneBreathingTech()
        this.createFavNamesArr(this.props.allFavs)
-    //    this.stayFavorited()
 
     }
 
@@ -281,8 +116,7 @@ class BreathingTech extends React.Component {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
         this.createFavNamesArr(this.props.allFavs)
-
-        // this.stayFavorited()
+        // this.props.getFavorites()
         this._isMounted = true
 
       } else {
@@ -330,11 +164,11 @@ class BreathingTech extends React.Component {
                 <p className='anim-lower-lip-right' key='5'>lowerlip</p>] : null}
 
                 <h2>{name} <FavBtn 
-                favorited={this.state.favorited} 
                 favoriteBT={this.favoriteBT} 
                 unFavoriteBT={this.unFavoriteBT} 
                 BTname={name}
                 favNames={this.state.favNames}
+                allFavs={this.props.allFavs}
                 /></h2>
 
                 {/* <h2>{name} <button onClick={() => {

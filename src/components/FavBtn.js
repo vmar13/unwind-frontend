@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FavBtn = ({favoriteBT, unFavoriteBT, BTname, favNames}) => {
+const FavBtn = ({favoriteBT, unFavoriteBT, BTname, favNames, allFavs}) => {
 
     console.log(favNames)
 
@@ -11,7 +11,7 @@ const FavBtn = ({favoriteBT, unFavoriteBT, BTname, favNames}) => {
                 <button 
                 id={BTname}
                 className='favorite-btn'
-                onClick={unFavoriteBT}>Unfavorite</button> 
+                onClick={() => unFavoriteBT(allFavs)}>Unfavorite</button> 
                 : 
                 <button 
                 id={BTname}
