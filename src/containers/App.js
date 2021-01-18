@@ -72,8 +72,6 @@ class App extends React.Component {
 
   getFavorites = () => {
     const user = JSON.parse(localStorage.getItem('user'))
-    // const localStorFavNames = []
-    // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
 
     if(user){
      fetch(API_FAVORITES, {
@@ -85,31 +83,13 @@ class App extends React.Component {
       if(allFavsData.length > 0){
         let userFavs = allFavsData.filter(fav => fav.user_id === user.id)
         this.setState({ allFavs: userFavs })
-        
-        // for(let favObj of userFavs){
-        //   const favName = favObj.name
-        //   localStorFavNames.push(favName)
-        // }
 
-        // this.updateLocalStorageFavs(localStorFavNames)
       } else {
         return
-        // const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
-        // localStorage.setItem('favorites', JSON.stringify(allFavs))
       }
     })
     } else {
       return
-    }
-  }
-
-  storeFavsInLocalStorage = favsArr => {
-    if(favsArr.length >= 1){
-      localStorage.setItem('favorites', JSON.stringify(favsArr))
-    } else {
-      console.log(favsArr)
-      // const newFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
-      // localStorage.setItem('favorites', JSON.stringify(newFavs))
     }
   }
   

@@ -180,9 +180,6 @@ class Profile extends React.Component {
         .then(res => {
             let event = this.state.practiceTime
             event.remove()
-            // let updatedPTs = this.state.practiceTimes.filter(practiceTime => practiceTime.id !== id)
-            // this.setState({ practiceTimes: updatedPTs })
-            // console.log(this.state.practiceTimes)
             this.toggleEventClicked()
         })
         

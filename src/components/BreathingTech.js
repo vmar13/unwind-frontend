@@ -58,18 +58,6 @@ class BreathingTech extends React.Component {
 
             })
     }
-   
-    // findFavId = arr => {
-    //     let id 
-
-    //     for(let favObj of arr){
-    //         if(favObj.name === this.state.breathingTech.name){
-    //             id = favObj.id
-
-    //             this.setState({ favId: id})
-    //         }
-    //     }
-    // }
             
     unFavoriteBT = (arr) => {
         const user = JSON.parse(localStorage.getItem('user'))
@@ -170,12 +158,6 @@ class BreathingTech extends React.Component {
                 favNames={this.state.favNames}
                 allFavs={this.props.allFavs}
                 /></h2>
-
-                {/* <h2>{name} <button onClick={() => {
-                    this.favoriteBT()
-                    // this.unFavoriteBT()
-                     }}
-                    className='favorite-btn'>{blueHeart ? '💙' : '♡'}</button></h2> */}
 
                 <ul className='bt-instructions'>
                     <li>{step_one}</li>
