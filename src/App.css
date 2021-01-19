@@ -523,15 +523,20 @@ body {
 
 #cal-form-submit-btn {
   margin-top: 5%;
+  background-color: #663399;
+  border: none;
+  color: white;
+  /* border-radius: 3%; */
+  padding: 1%;
 }
 
 #calendar-form {
-  background-color: white;
+  background-color: rgb(222, 221, 247);
   position: absolute;
   width: 72%;
   height: 85%;
-  margin-top: -45.5%;
-  margin-left: 24.5%;
+  margin-top: 4.5%;
+  margin-left: 21%;
   z-index: 999;
   border-radius: 3%;
 
@@ -541,10 +546,15 @@ body {
   position: absolute;
   top: 4%;
   left: 95%;
+  color: white;
+  background-color: #663399;
+  border: none;
+  padding: 1%;
+  /* border-radius: 3%; */
 }
 
 #calendar-inner-form {
-  background-color: white;
+  background-color: rgb(222, 221, 247);
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -561,14 +571,26 @@ body {
   position: absolute;
   top: 5%;
   left: 87%;
+  background-color: #663399;
+  color: white;
+  border: none;
+  padding: 2%;
+}
+
+#event-cancel-btn {
+  background-color: #663399;
+  color: white;
+  border: none;
+  padding: 3%;
+  margin-top: 2%;
 }
 
 #event-info {
   position: absolute;
   top: 30%;
   left: 49%;
-  background-color: rgb(118, 141, 218);
-  color: white;
+  background-color: rgb(222, 221, 247);
+  color: black;
   /* width: 35%; */
   z-index: 999;
   padding: 5%;

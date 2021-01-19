@@ -216,7 +216,7 @@ class Profile extends React.Component {
                 <h4>Date: {start.slice(1,11)}</h4>
                 <h4>From: {start.slice(12,17)} to {end.slice(12,17)}</h4>
                 <button onClick={this.toggleEventClicked} id='event-close-btn'>X</button>
-                <button onClick={() => this.cancelEvent(this.state.practiceTimeId)}>Cancel Event</button>
+                <button onClick={() => this.cancelEvent(this.state.practiceTimeId)} id='event-cancel-btn'>Cancel Event</button>
             </div>
             : null }
 
