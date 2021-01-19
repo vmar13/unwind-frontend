@@ -96,6 +96,7 @@ class BreathingTech extends React.Component {
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
+    //    this.props.getFavorites()
        this.createFavNamesArr(this.props.allFavs)
 
     }

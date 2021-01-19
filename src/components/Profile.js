@@ -28,7 +28,6 @@ class Profile extends React.Component {
         this.renderUserProfile()
         this.props.fetchBTs()
         this.getPracticeTimes()
-        // this.props.storeFavsInLocalStorage(this.props.localStorageFavs)
     }
 
     
@@ -116,6 +115,7 @@ class Profile extends React.Component {
             end: info.endStr,
             filledIn: true
         })
+        // console.log(info)
     }
 
     toggleFilledIn = () => {
@@ -160,12 +160,12 @@ class Profile extends React.Component {
         this.setState({ 
             eventClicked: true,
             title: info.event.title,
-            start: JSON.stringify(info.event.start),
-            end: JSON.stringify(info.event.end),
+            start: JSON.stringify(info.event.startStr),
+            end: JSON.stringify(info.event.endStr),
             practiceTimeId: info.event.id,
             practiceTime: info.event
         })
-        // console.log(this.state.practiceTime)
+        // console.log(info)
     }
 
     cancelEvent = id => {
@@ -187,6 +187,7 @@ class Profile extends React.Component {
 
 
     render() {
+        // console.log(this.state.start, this.state.end)
 
         const { start, end, filledIn, title, eventClicked } = this.state
 
