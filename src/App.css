@@ -611,8 +611,8 @@ body {
 #full-calendar {
   position: absolute;
   width: 70%;
-  margin-top: -45%;
-  margin-left: 25%;
+  margin-top: 5%;
+  margin-left: 22%;
 }
 
 input[type=text], input[type=password] {
@@ -717,7 +717,7 @@ li {
   /* margin-top: -40%;
   margin-left: .7%; */
   position: absolute;
-  margin-top: -50%;
+  margin-top: 0%;
   margin-left: 85%;
 }
 
