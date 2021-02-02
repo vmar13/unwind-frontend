@@ -49,7 +49,6 @@ class Profile extends React.Component {
             const allFavs = JSON.parse(localStorage.getItem('favorites') || '[]')
         // console.log(allFavs)
         // console.log(typeof(allFavs))
-        // const existingFav = allFavs.includes(fav => fav.name === this.state.breathingTech.name)
        
             if(allFavs.length < 1){
                 localStorage.setItem('favorites', JSON.stringify(allFavs))
@@ -57,7 +56,6 @@ class Profile extends React.Component {
             } else {
                 const allFavsArr = Object.entries(allFavs)
                 // console.log(allFavsArr)
-                // this.setState({ localStorageFavs: allFavsArr })
                 //return allFavsArr, pass it down as a prop to favBtn and 
                 //compare each favName to BTname in that component
 
@@ -195,7 +193,7 @@ class Profile extends React.Component {
             <>
             <div className='profile-welcome'>
                 {this.props.username ? <h3 className='welcome-user'>Welcome, {this.props.username}!</h3> : null}
-                {/* ability to create, update, or delete BT reminder */}
+            
             </div>
             {/* <p>Schedule a time to practice your favorite breathing techniques.</p> */}
        

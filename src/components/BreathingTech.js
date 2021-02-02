@@ -96,7 +96,6 @@ class BreathingTech extends React.Component {
     componentDidMount(){
        this._isMounted = true 
        this.getOneBreathingTech()
-    //    this.props.getFavorites()
        this.createFavNamesArr(this.props.allFavs)
 
     }
@@ -105,7 +104,6 @@ class BreathingTech extends React.Component {
       if(prevProps.breathingTechId !== this.props.breathingTechId){
         this.getOneBreathingTech()
         this.createFavNamesArr(this.props.allFavs)
-        // this.props.getFavorites()
         this._isMounted = true
 
       } else {

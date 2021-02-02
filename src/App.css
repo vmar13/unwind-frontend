@@ -19,7 +19,7 @@ li {
   color: transparent;
   position: absolute;
   top: -23%;
-  left: 45.6%;
+  left: 45.7%;
   background: pink;
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
@@ -43,7 +43,7 @@ li {
   color: transparent;
   position: absolute;
   top: -43.5%;
-  left: 44%;
+  left: 44.2%;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -68,7 +68,7 @@ li {
   color: transparent;
   position: absolute;
   top: -41%;
-  left: 44.8%;
+  left: 45.2%;
   background: rgb(17, 1, 3);
   width: 12px;
   height: 12px;
@@ -588,7 +588,7 @@ body {
 #event-info {
   position: absolute;
   top: 30%;
-  left: 49%;
+  left: 44.6%;
   background-color: rgb(222, 221, 247);
   color: black;
   /* width: 35%; */
@@ -768,6 +768,8 @@ input[type=submit]{
 .source {
   color: white;
   font-size: 10pt;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 .welcome-user {
