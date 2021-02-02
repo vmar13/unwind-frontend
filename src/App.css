@@ -15,6 +15,7 @@ li {
   color: white;
 }
 
+
 .anim-tongue {
   color: transparent;
   position: absolute;
@@ -196,23 +197,6 @@ li {
   }
 }
 
-/* @keyframes animate {
-  0% {
-    box-shadow: 0 0 0 15px rgba(167, 136, 202, 0.486), 0 0 0 30px rgba(155, 64, 216, 0.486), 0 0 0 45px rgba(153, 124, 219, 0.486), 0 0 0 60px rgba(151, 117, 196, 0.486), 0 0 0 75px rgba(189, 137, 219, 0.486);
-
-  }
-
-  50% {
-    box-shadow: 0 0 0 25px rgba(188, 237, 243, 0.616), 0 0 0 50px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616), 0 0 0 100px rgba(188, 237, 243, 0.616), 0 0 0 125px rgba(188, 237, 243, 0.616);
-    
-
-  }
-
-  100% {
-    box-shadow: 0 0 0 15px rgba(188, 237, 243, 0.616), 0 0 0 30px rgba(188, 237, 243, 0.616), 0 0 0 45px rgba(188, 237, 243, 0.616), 0 0 0 60px rgba(188, 237, 243, 0.616), 0 0 0 75px rgba(188, 237, 243, 0.616);
-
-  }
-} */
 
 .anim-hum {
   color: transparent;
@@ -227,9 +211,6 @@ li {
   animation: breathe 7s linear infinite, 
              shake 7s infinite;
   transform: translate3d(0, 0, 0);
-  /* backface-visibility: hidden; */
-  /* perspective: 1000px; */
-  /* animation-iteration-count: infinite alternate; */
 }
 
 @keyframes breathe {
@@ -350,7 +331,6 @@ li {
     height: 35px;
     top: -35%;
     transform: rotate(20deg) scale(1.7);
-    /* border-radius: 50% 50% 100% 0% / 46% 0% 100% 54%; */
   }
 }
 
@@ -518,7 +498,6 @@ body {
   margin-top: 65%;
   overflow-y: scroll;
   height: 145px;
-  /* background-color:  rgb(53, 38, 185); */
 }
 
 #cal-form-submit-btn {
@@ -526,7 +505,6 @@ body {
   background-color: #663399;
   border: none;
   color: white;
-  /* border-radius: 3%; */
   padding: 1%;
 }
 
@@ -550,7 +528,6 @@ body {
   background-color: #663399;
   border: none;
   padding: 1%;
-  /* border-radius: 3%; */
 }
 
 #calendar-inner-form {
@@ -591,7 +568,6 @@ body {
   left: 44.6%;
   background-color: rgb(222, 221, 247);
   color: black;
-  /* width: 35%; */
   z-index: 999;
   padding: 5%;
   border-radius: 3%;
@@ -599,7 +575,6 @@ body {
 
 .favorite-btn {
   background-color: transparent;
-  /* margin-left: 0%; */
   border: none;
 }
 
@@ -611,7 +586,6 @@ body {
   height: 3vh;
   padding: 3%;
   margin: 6% auto auto auto;
-  /* z-index: 1; */
 }
 
 .home-img {
@@ -672,11 +646,6 @@ input[type=submit]{
   padding: 2% 2%;
 }
 
-/* input[type="button"]:focus {
-  border: none;
-  outline: none;
-} */
-
 #login-form-container {
   position: absolute;
   top: 20%;
@@ -701,7 +670,6 @@ input[type=submit]{
 
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
 .logo-name {
-  /* color:  rgb(47, 172, 189); */
   color:  rgb(53, 38, 185);
   font-family: 'Baloo Tamma 2', cursive;
   font-size: 30pt;
@@ -722,19 +690,6 @@ input[type=submit]{
   /* z-index: 999; */
 }
 
-/* .nav-container {
-  background: rgba(255, 255, 255, 0.411);
-  display: flex;
-  flex-direction: column;
-  width: 19%;
-  margin-top: 10%;
-  margin-bottom: 10%;
-  padding: 2% 1%;
-  border-radius: 3%;
-  position: relative;
-  z-index: 999;
-} */
-
 .nav-element {
   display: list-item;
   list-style: none;
@@ -743,13 +698,6 @@ input[type=submit]{
   font-family: 'Baloo Tamma 2', cursive;
   font-size: 13.5pt;
 }
-
-/* .nav-element {
-  list-style: none;
-  display: inline-flex;
-  margin: .5% auto;
-  padding-bottom: 6%;
-} */
 
 .profile-welcome {
   position: absolute;
