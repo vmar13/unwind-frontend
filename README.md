@@ -4,6 +4,8 @@ The Unwind application was created to teach users breathing techniques to relax.
 
 **NOTE: This is the frontend repository. View the [backend repo](https://github.com/vmar13/unwind-backend).**
 
+*Frontend developed with React and FullCalendar library*
+
 ## Prerequisites
 * React ^16.13.1
 * Node v13.9.0
