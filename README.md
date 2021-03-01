@@ -1,7 +1,7 @@
 # 🌀 UNWIND (client)
 
-![Lion\'s Breath breathing technique](https://imgur.com/a/AZon5Tf)
-The Unwind application was created to teach users breathing techniques to relax, such as Lion's Breath above. Watch the [video demo](https://www.youtube.com/watch?v=v7KwQT727PM&feature=youtu.be).
+<!-- ![Lion\'s Breath breathing technique](https://imgur.com/a/AZon5Tf) -->
+The Unwind application was created to teach users breathing techniques to relax. Watch the [video demo](https://www.youtube.com/watch?v=v7KwQT727PM&feature=youtu.be).
 
 **NOTE: This is the frontend repository. View the [backend repo](https://github.com/vmar13/unwind-backend).**
 
