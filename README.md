@@ -16,6 +16,6 @@ To view the backend repo, visit: https://github.com/vmar13/unwind-backend
 5. When you see the message, "Something is already running on port 3000. Probably:
   puma 4.3.7 (tcp://localhost:3000) [unwind-backend]   (pid 34376)...
   Would you like to run the app on another port instead?" Enter "y" for yes.
-6. Run "npm test" to run tests
+
 
 
