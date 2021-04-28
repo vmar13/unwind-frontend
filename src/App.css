@@ -714,8 +714,10 @@ input[type=submit]{
 }
 
 .source {
-  color: white;
-  font-size: 10pt;
+  color: rgb(209, 209, 255);
+  font-size: 12pt;
+  font-weight: bold;
+  text-decoration: underline;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
