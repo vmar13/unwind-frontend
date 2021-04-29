@@ -191,7 +191,7 @@ class Profile extends React.Component {
 
         return (
             <>
-            <div className='profile-welcome'>
+            <div data-testid='username'  className='profile-welcome'>
                 {this.props.username ? <h3 className='welcome-user'>Welcome, {this.props.username}!</h3> : null}
             
             </div>
