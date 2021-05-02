@@ -1,12 +1,12 @@
 import React from 'react'
-import '../App.css'
-import { Route, Switch } from 'react-router-dom'
-import BreathingTech from '../components/BreathingTech'
-import SignUp from '../components/SignUp'
-import Profile from '../components/Profile'
-import Login from '../components/Login'
-import Logout from '../components/Logout'
-import NavBar from '../components/NavBar'
+import './App.css'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import BreathingTech from './components/BreathingTech'
+import SignUp from './components/SignUp'
+import Profile from './components/Profile'
+import Login from './components/Login'
+import Logout from './components/Logout'
+import NavBar from './components/NavBar'
 
 
 const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
@@ -112,12 +112,12 @@ console.log(this.state.allFavs)
   return (
     <>
     <div className='logo-name'>
-      Unwind <img src={require('../images/tornado.png')} alt='tornado' className='logo' />
+      Unwind <img src={require('./images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
     {this.state.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
 
-
+  <BrowserRouter>
     <Switch>
       <Route path='/breathing_techniques/:id' render={ (routeProps) => {
         const breathingTechId = parseInt(routeProps.match.params.id)
@@ -135,7 +135,7 @@ console.log(this.state.allFavs)
       <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
 
     </Switch>
-
+    </BrowserRouter>
     
     </>
   )
