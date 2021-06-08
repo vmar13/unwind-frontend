@@ -1,21 +1,20 @@
-import React from 'react'
-import FavBtn from '../components/FavBtn'
+import React from 'react';
+import FavBtn from '../components/FavBtn';
 
-const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`
-const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`
+const API_BREATHING_TECHS = `http://localhost:3000/api/v1/breathing_techniques`;
+const API_FAVORITES =  `http://localhost:3000/api/v1/favorites`;
 
 class BreathingTech extends React.Component {
-    _isMounted = false
+    _isMounted = false;
 
     state = {
         breathingTech: {},
         favNames: [],
         isLoading: true
-    }
+    };
 
     getOneBreathingTech = () => {
         const user = JSON.parse(localStorage.getItem('user'))
-
         fetch(`${API_BREATHING_TECHS}/${this.props.breathingTechId}`, {
             method: 'GET',
             headers: {Authorization: `Bearer ${user.token}`}
@@ -182,4 +181,4 @@ class BreathingTech extends React.Component {
     }
 }
 
-export default BreathingTech
+export default BreathingTech;
