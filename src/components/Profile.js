@@ -179,15 +179,17 @@ class Profile extends React.Component {
             let event = this.state.practiceTime
             event.remove()
             this.toggleEventClicked()
-        })
-        
+        })  
     }
-
 
     render() {
         // console.log(this.state.start, this.state.end)
 
-        const { start, end, filledIn, title, eventClicked } = this.state
+        const { start, end, filledIn, title, eventClicked } = this.state;
+        let noFavs;
+        if (this.props.allFavs.length < 1) {
+            noFavs = "You don't have favorites yet. Check out breathing techniques in the nav bar and click the heart to 'favorite' one.";
+        };
 
         return (
             <>
@@ -203,7 +205,7 @@ class Profile extends React.Component {
                 <div id='calendar-inner-form'>
                     <h4> Date & Time: from {start.slice(0,10)} at {start.slice(11,16)}  to  {end.slice(0,10)} at {end.slice(11,16)} </h4>
                     <h4>Choose a breathing technique to practice:</h4>
-                    <Dropdown allFavs={this.props.allFavs} onSelectChange={this.handleSelectChange}/><br />
+                    <Dropdown allFavs={this.props.allFavs} onSelectChange={this.handleSelectChange}/><br /> <p>{noFavs}</p>
                     <button id='cal-form-submit-btn' onClick={this.createPracticeTime}>Submit</button>
                 </div>
             </div>

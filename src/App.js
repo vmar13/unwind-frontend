@@ -113,26 +113,27 @@ render () {
       Unwind <img src={require('./images/tornado.png')} alt='tornado' className='logo' />
     </div>
   
-  <BrowserRouter>
-  {this.state.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
-    <Switch>
-      <Route path='/breathing_techniques/:id' render={ (routeProps) => {
-        const breathingTechId = parseInt(routeProps.match.params.id)
-      return <BreathingTech {...routeProps} 
-      breathingTechId={breathingTechId}
-      allFavs={this.state.allFavs}
-      addNewFav={this.addNewFav} 
-      deleteFav={this.deleteFav}
-      getFavorites={this.getFavorites}
-      /> }} />
-      <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} getFavorites={this.getFavorites} />} />
-      <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
-      <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
-      <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
-      <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
-    </Switch>
-  </BrowserRouter>
-    
+    <BrowserRouter>
+      <div>
+      {this.state.loggedIn ? <NavBar breathingTechs={this.state.breathingTechs} /> : null}
+        <Switch>
+          <Route path='/breathing_techniques/:id' render={ (routeProps) => {
+            const breathingTechId = parseInt(routeProps.match.params.id)
+          return <BreathingTech {...routeProps} 
+          breathingTechId={breathingTechId}
+          allFavs={this.state.allFavs}
+          addNewFav={this.addNewFav} 
+          deleteFav={this.deleteFav}
+          getFavorites={this.getFavorites}
+          /> }} />
+          <Route path='/login' render={ () => <Login updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} getFavorites={this.getFavorites} />} />
+          <Route path='/logout' render={ () => <Logout loggedIn={this.state.loggedIn} clearUser={this.clearUser} />} />
+          <Route path='/profile' render={ () => <Profile username={this.state.username} loggedIn={this.state.loggedIn} breathingTechs={this.state.breathingTechs} fetchBTs={this.renderBreathingTechs} allFavs={this.state.allFavs} />} />
+          <Route path='/signup' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn} />} />
+          <Route path='/' render={ () => <SignUp updateUsername={this.updateUsername} toggleLoggedIn={this.toggleLoggedIn} loggedIn={this.state.loggedIn}/>} />
+        </Switch>
+      </div>
+    </BrowserRouter>
     </>
   )
 }
